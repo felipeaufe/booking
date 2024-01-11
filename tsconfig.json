@@ -18,8 +18,18 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "@elements/*": ["src/elements/*"],
+      "@components/*": ["src/components/*"],
+      "@compositions/*": ["src/compositions/*"],
+      "@services/*": ["src/services/*"],
+      "@config/*": ["src/config/*"],
+      "@pages/*": ["src/pages/*"],
+    },
   },
-  "include": ["src", "test-config"],
+  "include": ["**/*.js", "**/*.ts", "**/*.tsx", "**/*.json"],
+  "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
