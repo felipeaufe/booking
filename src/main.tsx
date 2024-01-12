@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client'
 import { router } from './router.tsx'
 import { RouterProvider } from 'react-router-dom'
 
+import './assets/css/tokens.css';
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <RouterProvider router={router}/>
