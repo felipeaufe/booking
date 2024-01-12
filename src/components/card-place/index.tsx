@@ -1,5 +1,6 @@
+import { device } from "@assets/styled/media-query";
 import { Icon } from "@elements/icon";
-import { Place } from "@services/places-service";
+import { Place } from "@state/places/types";
 import styled from "styled-components";
 
 interface CardPlaceProps {
@@ -38,6 +39,10 @@ const Container = styled.div`
 
   &:hover {
     opacity: .9;
+  }
+
+  @media ${device.mobileL} {
+    width: 304px;
   }
 `
 
