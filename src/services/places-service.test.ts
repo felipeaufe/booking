@@ -1,20 +1,11 @@
-import { Place, placeService } from "./places-service";
+import { places } from "@test-config/mock-data/places";
+import { placeService } from "./places-service";
 import { http } from "@config/http";
 
 describe('places-service', () => {
 
   const mockGet = jest.spyOn(http, 'get');
-  const place: Place = {
-    code: "lagoa-preta",
-    name: "Lagoa Preta",
-    description: "",
-    rate: 4.9,
-    images: [
-      "01.jpg"
-    ],
-    state: "Paraná",
-    country: "BR"
-  }
+  const place = places[0];
 
   it('should get return places on success', async () => {
     mockGet.mockResolvedValue({ data: [place]});

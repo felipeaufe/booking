@@ -1,3 +1,4 @@
+import '@test-config/mocks/swiper';
 import { render } from "@testing-library/react";
 import Home from ".";
 
