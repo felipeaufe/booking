@@ -21,9 +21,10 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "@elements/*": ["src/elements/*"],
-      "@components/*": ["src/components/*"],
       "@compositions/*": ["src/compositions/*"],
+      "@test-config/*": ["src/test-config/*"],
+      "@components/*": ["src/components/*"],
+      "@elements/*": ["src/elements/*"],
       "@services/*": ["src/services/*"],
       "@config/*": ["src/config/*"],
       "@assets/*": ["src/assets/*"],
