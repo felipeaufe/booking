@@ -1,21 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import { CardPlace } from ".";
-import { Place } from "@services/places-service";
+import { places } from "@test-config/mock-data/places";
 
 describe('card-place', () => {
 
-  const place: Place = {
-    code: "lagoa-preta",
-    name: "Lagoa Preta",
-    description: "",
-    rate: 4.9,
-    images: [
-      "01.jpg"
-    ],
-    state: "Paraná",
-    country: "BR"
-  }
-
+  const place = places[0];
+  
   it('should render card place', () => {
 
     render(<CardPlace place={place} />)
