@@ -1,14 +1,5 @@
+import { Place } from "@state/places/types";
 import { http } from "../config/http";
-
-export interface Place {
-  code: string;
-  name: string;
-  description: string;
-  rate: number;
-  images: string[];
-  state: string;
-  country: string;
-}
 
 export const placeService = {
   async get (): Promise<Place[]> {

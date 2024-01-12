@@ -29,6 +29,7 @@
       "@config/*": ["src/config/*"],
       "@assets/*": ["src/assets/*"],
       "@pages/*": ["src/pages/*"],
+      "@state/*": ["src/state/*"],
     },
   },
   "include": ["**/*.js", "**/*.ts", "**/*.tsx", "**/*.json"],

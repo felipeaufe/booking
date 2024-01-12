@@ -28,7 +28,8 @@ export default defineConfig({
       'services',
       'config',
       'assets',
-      'pages'
+      'pages',
+      'state'
     ]),
   }
 })
