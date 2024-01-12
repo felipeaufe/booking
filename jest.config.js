@@ -8,6 +8,7 @@ export default {
     '@elements/(.*)$': '<rootDir>/src/elements/$1',
     '@services/(.*)$': '<rootDir>/src/services/$1',
     '@config/(.*)$': '<rootDir>/src/config/$1',
+    '@assets/(.*)$': '<rootDir>/src/assets/$1',
     '@pages/(.*)$': '<rootDir>/src/pages/$1',
     '@/(.*)$': '<rootDir>/src/$1',
       

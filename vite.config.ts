@@ -27,6 +27,7 @@ export default defineConfig({
       'compositions',
       'services',
       'config',
+      'assets',
       'pages'
     ]),
   }

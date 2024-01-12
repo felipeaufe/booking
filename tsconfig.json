@@ -26,6 +26,7 @@
       "@compositions/*": ["src/compositions/*"],
       "@services/*": ["src/services/*"],
       "@config/*": ["src/config/*"],
+      "@assets/*": ["src/assets/*"],
       "@pages/*": ["src/pages/*"],
     },
   },

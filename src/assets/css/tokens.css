@@ -24,6 +24,8 @@
   --spacing-24: 24px;
   --spacing-28: 28px;
   --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
 
 
   /* Font Size */
@@ -33,6 +35,9 @@
   --font-size-20: 20px;
   --font-size-24: 24px;
   --font-size-28: 28px;
+  --font-size-32: 32px;
+  --font-size-36: 36px;
+  --font-size-40: 40px;
 
   /* Font Weight */
   --font-weight-thin: 100;
@@ -57,4 +62,12 @@
   --border-radius-20: 20px;
 
 
+  /* Media Devices */
+  --device-mobileS: 320px;
+  --device-mobile: 375px;
+  --device-mobileL: 425px;
+  --device-tablet: 768px;
+  --device-laptop: 1024px;
+  --device-laptopL: 1440px;
+  --device-desktop: 2560px;
 }
