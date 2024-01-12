@@ -1,0 +1,94 @@
+[
+  {
+    "code": "lagoa-preta",
+    "name": "Lagoa Preta",
+    "description": "",
+    "rate": 4.9,
+    "images": [
+      "01.jpg"
+    ],
+    "state": "Paraná",
+    "country": "BR"
+  },
+  {
+    "code": "lencoes-maranhenses",
+    "name": "Lençóis Maranhenses",
+    "description": "",
+    "rate": 4.9,
+    "images": [
+      "01.jpg"
+    ],
+    "state": "Maranhão",
+    "country": "BR"
+  },
+  {
+    "code": "chapada-diamantina",
+    "name": "Chapada Diamantina",
+    "description": "",
+    "rate": 4.9,
+    "images": [
+      "01.jpg",
+      "02.jpg",
+      "03.jpg",
+      "04.jpg",
+      "05.jpg"
+    ],
+    "state": "Bahia",
+    "country": "BR"
+  },
+  {
+    "code": "cataratas-do-iguacu",
+    "name": "Cataratas do Iguaçu",
+    "description": "",
+    "rate": 4.9,
+    "images": [
+      "01.jpg"
+    ],
+    "state": "Paraná",
+    "country": "BR"
+  },
+  {
+    "code": "rio-de-janeiro",
+    "name": "Rio de Janeiro",
+    "description": "",
+    "rate": 4.9,
+    "images": [
+      "01.jpg"
+    ],
+    "state": "Rio de Janeiro",
+    "country": "BR"
+  },
+  {
+    "code": "gramado",
+    "name": "Gramado",
+    "description": "",
+    "rate": 4.9,
+    "images": [
+      "01.jpg"
+    ],
+    "state": "Rio Grande do Sul",
+    "country": "BR"
+  },
+  {
+    "code": "fernando-de-noronha",
+    "name": "Fernando de noronha",
+    "description": "",
+    "rate": 4.9,
+    "images": [
+      "01.jpg"
+    ],
+    "state": "Pernambuco",
+    "country": "BR"
+  },
+  {
+    "code": "bonito",
+    "name": "Bonito", 
+    "description": "",
+    "rate": 4.9,
+    "images": [
+      "01.jpg"
+    ],
+    "state": "Mato Grosso do Sul",
+    "country": "BR"
+  }
+]

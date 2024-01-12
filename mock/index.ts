@@ -1,16 +1,11 @@
+import Places from './data/places.json';
+
 export default [
   {
-    url: '/api/user',
+    url: '/api/places',
     method: 'get',
     response: () => {
-      return {
-        code: 200,
-        data: {
-          id: 1,
-          name: 'John Doe',
-          email: 'john@example.com',
-        },
-      };
+      return Places;
     },
   },
 ];
