@@ -1,22 +1,20 @@
 import '../../test-config/mocks/swiper';
+import '../../test-config/mocks/use-navigate';
 
-import { placeService } from "@services/places-service";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { places } from "@test-config/mock-data/places";
 import { ExplorePlace } from ".";
 import { act } from 'react-dom/test-utils';
+import { renderRedux } from '@test-config/test-utils/render';
+import { initialState } from '@state/places';
 
 
 describe('explore-place', () => {
 
-  const mockGet = jest.spyOn(placeService, 'get');
-  mockGet.mockResolvedValue(places);
-
   it('should render with two places', async () => {
-    mockGet.mockResolvedValue(places);
 
     await act(async () => {
-      render(<ExplorePlace />)
+      renderRedux(<ExplorePlace />, { places: { ...initialState, data: places } })
     })
 
     expect(screen.getByText("Explore Place")).toBeInTheDocument();
@@ -25,10 +23,8 @@ describe('explore-place', () => {
   })
 
   it('should ignore component if no places', async () => {
-    mockGet.mockResolvedValue([]);
-
     await act(async () => {
-      render(<ExplorePlace />)
+      renderRedux(<ExplorePlace />, { places: initialState })
     })
 
     expect(screen.queryByText("Explore Place")).not.toBeInTheDocument();
