@@ -13,3 +13,5 @@ export interface PlaceState {
   readonly loading: boolean;
   readonly error: boolean;
 }
+
+export const STORE_PLACES = 'places';

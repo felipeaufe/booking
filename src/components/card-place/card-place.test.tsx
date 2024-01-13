@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { CardPlace } from ".";
+import { CardPlace } from "./card-place";
 import { places } from "@test-config/mock-data/places";
 
 describe('card-place', () => {

@@ -1,5 +1,5 @@
 import { device } from "@assets/styled/media-query";
-import { Icon } from "@elements/icon";
+import { Icon } from "@elements/icon/icon";
 import { Place } from "@state/places/types";
 import styled from "styled-components";
 

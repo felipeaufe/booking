@@ -30,6 +30,7 @@
       "@assets/*": ["src/assets/*"],
       "@pages/*": ["src/pages/*"],
       "@state/*": ["src/state/*"],
+      "@utils/*": ["src/utils/*"],
     },
   },
   "include": ["**/*.js", "**/*.ts", "**/*.tsx", "**/*.json"],

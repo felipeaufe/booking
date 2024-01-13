@@ -1,9 +1,10 @@
 
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { Place, PlaceState } from "./types";
+import { Place, PlaceState, STORE_PLACES } from "./types";
+import { store } from "@utils/store";
 
 export const initialState: PlaceState = {
-  data: [],
+  data:  store.get(STORE_PLACES) as Place[] || [],
   loading: false,
   error: false
 };

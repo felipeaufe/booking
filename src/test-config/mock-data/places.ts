@@ -1,4 +1,4 @@
-import { Place } from "@services/places-service";
+import { Place } from "@state/places/types";
 
 export const places: Place[] = [
   {

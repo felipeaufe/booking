@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { Icon } from ".";
+import { Icon } from "./icon";
 
 describe('icon', () => {
   it('should render icon component with style solid and icon star', () => {

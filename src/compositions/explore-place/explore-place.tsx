@@ -1,9 +1,11 @@
 import { useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Grid, Pagination } from "swiper/modules";
 
-import { CardPlace } from "@components/card-place";
+import { CardPlace } from "@components/card-place/card-place";
 // import { placeService } from "@services/places-service";
 
 import 'swiper/css';
@@ -15,8 +17,13 @@ import { useDispatch, useSelector } from "@state/store";
 import { placesActions } from "@state/places/saga";
 
 export function ExplorePlace () {
+  const navigate = useNavigate();
   const places = useSelector(state => state.places.data);
   const dispatch = useDispatch();
+
+  const handleRedirect = (code: string) => {
+    navigate(`/place/${code}`)
+  }
 
   useEffect(() => {
     dispatch({ type: placesActions.FETCH_REQUEST});
@@ -45,7 +52,7 @@ export function ExplorePlace () {
       >
         {places.map((place) => 
           <SwiperSlide key={place.code}>
-            <CardPlace place={place} />
+            <CardPlace place={place} onClick={() => handleRedirect(place.code)} />
           </SwiperSlide>
         )}
       </Swiper>

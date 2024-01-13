@@ -1,8 +1,8 @@
 # Todo - Create a booking page
 A booking is when a guest selects a start and end date and submits a reservation on a property.
 
-[ ] Web Application with React;
-[ ] Use ES6 or newer;
+[x] Web Application with React;
+[x] Use ES6 or newer;
 [ ] Create a booking;
 [ ] Read a booking;
 [ ] Update a booking;
@@ -14,5 +14,5 @@ A booking is when a guest selects a start and end date and submits a reservation
 [ ] UI Responsive;
 [ ] Documentatin;
 [ ] Unit Test;
-[ ] Style Guide with Figma;
+[x] Style Guide with Figma;
 [ ] Readme.MD with all information needed

@@ -1,4 +1,4 @@
-import { ExplorePlace } from "../../compositions/explore-place";
+import { ExplorePlace } from "../../compositions/explore-place/explore-place";
 
 function Home() {
   return (

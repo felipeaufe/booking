@@ -28,6 +28,7 @@ export default {
     '@assets/(.*)$': '<rootDir>/src/assets/$1',
     '@pages/(.*)$': '<rootDir>/src/pages/$1',
     '@state/(.*)$': '<rootDir>/src/state/$1',
+    '@utils/(.*)$': '<rootDir>/src/utils/$1',
     '@/(.*)$': '<rootDir>/src/$1',
     // mocking assests and styling
   '^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
