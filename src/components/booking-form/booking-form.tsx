@@ -1,6 +1,6 @@
 import { Input } from "@assets/styled/Input";
 import { Button } from "@assets/styled/button";
-import { Select } from "@assets/styled/select";
+import { GuestSelect } from "@components/guest-select/guest-select";
 import styled from "styled-components";
 
 export function BookingForm () {
@@ -10,9 +10,7 @@ export function BookingForm () {
         <Input type="text" placeholder="Check-in"/>
         <Input type="text" placeholder="Checkout"/>
       </div>
-      <Select>
-        <option value="" disabled selected>Guests</option>
-      </Select>
+      <GuestSelect />
       <Button variant="primary">Reserve</Button>
     </Container>
   );
@@ -33,3 +31,4 @@ const Container = styled.div`
     gap: 12px;
   }
 `;
+
