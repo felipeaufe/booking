@@ -3,6 +3,7 @@ import { Icon } from "@elements/icon/icon"
 import styled from "styled-components"
 import { MenuPrincipal } from "./menu-principal";
 import { useCallback, useState } from "react";
+import { useViewport } from "@hook/use-media-query";
 
 export function MenuMobile () {
   
@@ -12,7 +13,9 @@ export function MenuMobile () {
     setOpen(!open);
   }, [open])
 
-  return (
+  const { isMobile } = useViewport();
+  
+  return isMobile && (
     <Container>
       <Menu>
         <User onClick={() => openMenu()}>

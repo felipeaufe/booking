@@ -1,9 +1,12 @@
-import { device } from "@assets/styled/media-query"
 import styled from "styled-components"
+
+import { useViewport } from "@hook/use-media-query"
 import { MenuPrincipal } from "./menu-principal"
 
 export function MenuDesktop () {
-  return (
+  const { isDesktop } = useViewport();
+
+  return isDesktop && (
     <Content>
       <MenuPrincipal />
     </Content>
@@ -15,9 +18,5 @@ const Content = styled.div`
   width: 100%;
   & > ul:nth-child(2) {
     margin-left: auto;
-  }
-
-  @media ${device.mobileL} {
-    display: none;
   }
 `;
