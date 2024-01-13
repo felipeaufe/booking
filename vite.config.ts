@@ -30,7 +30,8 @@ export default defineConfig({
       'assets',
       'pages',
       'state',
-      'utils'
+      'utils',
+      'hook'
     ]),
   }
 })
