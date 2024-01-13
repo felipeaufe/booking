@@ -37,3 +37,6 @@ export function get<T>(key: string): T | string | null {
 export function remove(key: string): void {
   localStorage.removeItem(key)
 }
+
+
+export const store = { set, get ,remove };
