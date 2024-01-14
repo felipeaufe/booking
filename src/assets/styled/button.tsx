@@ -4,6 +4,11 @@ const variants = ({variant}: {variant: string}) => ({
   primary: css`
     background-color: var(--color-dark);
     color: white;
+
+    &:disabled {
+      cursor: not-allowed;
+      background-color: var(--color-dark-50);
+    }
   `,
   secondary: css`
     background-color: white;

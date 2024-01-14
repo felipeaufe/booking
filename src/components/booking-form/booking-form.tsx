@@ -2,19 +2,14 @@ import styled from "styled-components";
 import { Button } from "@assets/styled/button";
 import { GuestSelect, Guests } from "@components/guest-select/guest-select";
 import { ButtonDatePicker } from "@elements/button-date-picker/button-date-picker";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { addDays } from "@utils/date";
 import { Booking } from "@state/bookings/types";
 import { useDispatch, useSelector } from "@state/store";
 import { bookingsActions } from "@state/bookings/saga";
+import { toast } from "react-toastify";
 
 export interface BookingForm extends Omit<Booking, "placeCode"> {}
-
-const GESTS_INITIAL = {
-  adults: 0,
-  children: 0,
-  pets: 0
-};
 
 type BookingFormProps = {
   readonly code: string;
@@ -22,34 +17,60 @@ type BookingFormProps = {
 export function BookingForm ({ code }: BookingFormProps) {
   const dispatch = useDispatch();
 
+  const error = useSelector(state => state.bookings.error);
   const loading = useSelector(state => state.bookings.loading);
   const success = useSelector(state => state.bookings.success);
 
+  const [ adults, setAdults ] = useState(0);
+  const [ children, setChildren ] = useState(0);
+  const [ pets, setPets ] = useState(0);
+
   const [ checkIn, setCheckIn ] = useState<Date | null>(null);
   const [ checkOut, setCheckOut ] = useState<Date | null>(null);
-  const [ guests, setGuests ] = useState<Guests>(GESTS_INITIAL);
+
+  const handleGuests = (value: Guests) => {
+    setAdults(value.adults);
+    setChildren(value.children);
+    setPets(value.pets);
+  }
+  
+  const isValid = useMemo(() => {
+    return checkIn && checkOut && ( adults > 0 || children > 0 || pets > 0)
+  }, [checkIn, checkOut, adults, children, pets]);
   
   const handleOnClick = useCallback(() => {
-    if (checkIn && checkOut && ( guests?.adults > 0 || guests?.children > 0 || guests?.pets > 0)) {
+    if (isValid) {
       
       const data: Booking = {
         placeCode: code,
-        checkIn: checkIn.getTime(),
-        checkOut: checkOut.getTime(),
-        guests,
+        checkIn: (checkIn as Date).getTime(),
+        checkOut: (checkOut as Date).getTime(),
+        guests: {
+          adults,
+          children,
+          pets
+        },
       };
 
       dispatch({ type: bookingsActions.STORE_REQUEST, payload: data })
     }
-  }, [code, guests, checkIn, checkOut, dispatch]);
+  }, [code, isValid, adults, children, pets, checkIn, checkOut, dispatch]);
 
   useEffect(() => {
     if(success) {
       setCheckIn(null);
       setCheckOut(null);
-      setGuests(GESTS_INITIAL);
+      setAdults(0);
+      setChildren(0);
+      setPets(0);
+
+      toast.success("Your reservation has been registered successfully.")
     }
-  }, [success])
+
+    if(error) {
+      toast.error("Oops, we were unable to proceed with the reservation.")
+    }
+  }, [error, success])
   
   return (
     <Container>
@@ -75,8 +96,8 @@ export function BookingForm ({ code }: BookingFormProps) {
           Checkout{ checkOut ? `: ${checkOut?.toLocaleDateString()}` : ''}
         </CheckOut>
       </div>
-      <GuestSelect onChange={data => setGuests(data)} />
-      <Button disabled={loading} variant="primary" onClick={handleOnClick}>Reserve</Button>
+      <GuestSelect adults={adults} gestChildren={children} pets={pets} onChange={data => handleGuests(data)} />
+      <Button disabled={loading || !isValid} variant="primary" onClick={handleOnClick}>Reserve</Button>
     </Container>
   );
 }

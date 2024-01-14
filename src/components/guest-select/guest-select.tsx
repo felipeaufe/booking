@@ -9,44 +9,41 @@ export interface Guests {
 }
 
 interface GuestSelectProps  {
-  onChange: (value: Guests) => void
+  readonly adults: number;
+  readonly gestChildren: number;
+  readonly pets: number;
+  readonly onChange: (value: Guests) => void;
 }
 
-export function GuestSelect ({ onChange }: GuestSelectProps) {
+export function GuestSelect ({ adults, gestChildren, pets, onChange }: GuestSelectProps) {
   const ref = useRef(null);
-  const [ guestsForm, setGuestsOpen ] = useState(false);
-  const [ adults, setAdults ] = useState(0);
-  const [ children, setChildren ] = useState(0);
-  const [ pets, setPets ] = useState(0);
-
+  const [guestsForm, setGuestsOpen] = useState(false);
+  
   const handleValue = (value: number) => {
     return value > 0 ? value : 0;
   }
   
   const handleAdults = (value: number) => {
-    setAdults(handleValue(value));
     onChange({
-      adults: value,
-      children,
+      adults: handleValue(value),
+      children: gestChildren,
       pets
     });
   }
 
   const handleChildren = (value: number) => {
-    setChildren(handleValue(value));
     onChange({
       adults,
-      children: value,
+      children: handleValue(value),
       pets
     });
   }
 
   const handlePets = (value: number) => {
-    setPets(handleValue(value));
     onChange({
       adults,
-      children,
-      pets: value
+      children: gestChildren,
+      pets: handleValue(value)
     });
   }
 
@@ -60,20 +57,20 @@ export function GuestSelect ({ onChange }: GuestSelectProps) {
     if(adults > 0) {
       label = `${label} Adults: ${adults}`;
     }
-    if(children > 0) {
-      label = `${label} Children: ${children}`;
+    if(gestChildren > 0) {
+      label = `${label} Children: ${gestChildren}`;
     }
     if(pets > 0) {
       label = `${label} Pets: ${pets}`;
     }
     
-    if(adults === 0 && children === 0 && pets === 0) {
+    if(adults === 0 && gestChildren === 0 && pets === 0) {
        return "Guests";
     }
 
     return label;
 
-  },[adults, children, pets]) 
+  },[adults, gestChildren, pets]) 
 
   useEffect(() => {
     if(guestsForm) {
@@ -93,7 +90,7 @@ export function GuestSelect ({ onChange }: GuestSelectProps) {
 
   return (
     <Container ref={ref}>
-      <Select role="button" onClick={toggleGuests}>{selectLabel}</Select>
+      <Button onClick={toggleGuests}>{selectLabel}</Button>
       <Content className={ guestsForm ? "open" : ""}>
         <Item>
           <Span>Adults</Span>
@@ -105,7 +102,7 @@ export function GuestSelect ({ onChange }: GuestSelectProps) {
         <Item>
           <Span>Children</Span>
           <Quantity
-            value={children}
+            value={gestChildren}
             onClick={handleChildren}
           />
         </Item>
@@ -155,7 +152,7 @@ const Item = styled.div`
 
 const Span = styled.span``
 
-const Select = styled.div`
+const Button = styled.button`
   display: flex;
   align-items: center;
   cursor: pointer;
