@@ -1,6 +1,6 @@
 import { places } from "@test-config/mock-data/places";
-import { placeService } from "./places-service";
 import { http } from "@config/http";
+import { placesService } from "./places-service";
 
 describe('places-service', () => {
 
@@ -9,7 +9,7 @@ describe('places-service', () => {
 
   it('should get return places on success', async () => {
     mockGet.mockResolvedValue({ data: [place]});
-    const response = await placeService.get();
+    const response = await placesService.get();
     
     expect(response).toMatchObject([place]);
     expect(response.length).toBe(1);
@@ -19,6 +19,6 @@ describe('places-service', () => {
   it('should get throw an error on fail', async () => {
     mockGet.mockRejectedValue(new Error('error'));
     
-    await expect(placeService.get()).rejects.toThrow("error")
+    await expect(placesService.get()).rejects.toThrow("error")
   });
 })
