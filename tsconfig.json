@@ -34,7 +34,7 @@
       "@hook/*": ["src/hook/*"],
     },
   },
-  "include": ["**/*.js", "**/*.ts", "**/*.tsx", "**/*.json"],
+  "include": ["**/*.js", "**/*.ts", "**/*.tsx", "**/*.json", "src/elements/button-datepicker"],
   "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
