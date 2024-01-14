@@ -1,14 +1,43 @@
 import styled from "styled-components";
 import { Button } from "@assets/styled/button";
-import { GuestSelect } from "@components/guest-select/guest-select";
+import { GuestSelect, Guests } from "@components/guest-select/guest-select";
 import { ButtonDatePicker } from "@elements/button-date-picker/button-date-picker";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { addDays } from "@utils/date";
 
-export function BookingForm () {
+export interface Booking {
+  checkIn: Date
+  checkOut: Date
+  guests: {
+    adults: number
+    children: number
+    pets: number
+  }
+}
+
+type BookingFormProps = {
+  onSubmit: (value: Booking) => void
+}
+export function BookingForm ({ onSubmit }: BookingFormProps) {
+
+  const [ guests, setGuests ] = useState<Guests>({
+    adults: 0,
+    children: 0,
+    pets: 0
+  });
 
   const [ checkIn, setCheckIn ] = useState<Date | null>(null);
   const [ checkOut, setCheckOut ] = useState<Date | null>(null);
+
+  const handleOnClick = useCallback(() => {
+    if (checkIn && checkOut && ( guests?.adults > 0 || guests?.children > 0 || guests?.pets > 0)) {
+      onSubmit({
+        checkIn,
+        checkOut,
+        guests,
+      });
+    }
+  }, [guests, checkIn, checkOut, onSubmit]);
 
   return (
     <Container>
@@ -34,8 +63,8 @@ export function BookingForm () {
           Checkout{ checkOut ? `: ${checkOut?.toLocaleDateString()}` : ''}
         </CheckOut>
       </div>
-      <GuestSelect />
-      <Button variant="primary">Reserve</Button>
+      <GuestSelect onChange={data => setGuests(data)} />
+      <Button variant="primary" onClick={handleOnClick}>Reserve</Button>
     </Container>
   );
 }
