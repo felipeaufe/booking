@@ -1,7 +1,8 @@
 
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { Place, PlaceState, STORE_PLACES } from "./types";
 import { store } from "@utils/store";
+import { reducers } from "./reducers";
 
 export const initialState: PlaceState = {
   data:  store.get(STORE_PLACES) as Place[] || [],
@@ -12,18 +13,7 @@ export const initialState: PlaceState = {
 const slice = createSlice({
   name: 'places',
   initialState,
-  reducers: {
-    fetchSuccess: (state, action: PayloadAction<Place[]>) => {
-      state.data = action.payload;  
-      state.loading = false;
-      state.error = false;
-    },
-    fetchFailure: (state) => {
-      state.data = [];  
-      state.loading = false;
-      state.error = true;
-    },
-  },
+  reducers,
 })
 
 export const { fetchSuccess, fetchFailure } = slice.actions;
