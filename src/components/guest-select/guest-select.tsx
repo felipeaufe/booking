@@ -2,7 +2,17 @@ import { Quantity } from "@components/quantity/quantity";
 import { useEffect, useMemo, useRef, useState } from "react";
 import styled from "styled-components";
 
-export function GuestSelect () {
+export interface Guests {
+  adults: number
+  children: number
+  pets: number
+}
+
+interface GuestSelectProps  {
+  onChange: (value: Guests) => void
+}
+
+export function GuestSelect ({ onChange }: GuestSelectProps) {
   const ref = useRef(null);
   const [ guestsForm, setGuestsOpen ] = useState(false);
   const [ adults, setAdults ] = useState(0);
@@ -15,14 +25,29 @@ export function GuestSelect () {
   
   const handleAdults = (value: number) => {
     setAdults(handleValue(value));
+    onChange({
+      adults: value,
+      children,
+      pets
+    });
   }
 
   const handleChildren = (value: number) => {
     setChildren(handleValue(value));
+    onChange({
+      adults,
+      children: value,
+      pets
+    });
   }
 
   const handlePets = (value: number) => {
     setPets(handleValue(value));
+    onChange({
+      adults,
+      children,
+      pets: value
+    });
   }
 
   const toggleGuests = () => {
