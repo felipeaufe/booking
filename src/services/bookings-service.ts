@@ -15,5 +15,16 @@ export const bookingsService = {
       console.error(error);
       throw error;
     }
+  },
+
+  async get (): Promise<Booking[]> {
+    try {
+      const response = await http.get<Booking[]>('/api/bookings');
+      return response.data;
+      
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   }
 }
