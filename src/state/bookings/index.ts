@@ -17,5 +17,5 @@ const slice = createSlice({
   reducers,
 })
 
-export const { storeUpdating, storeSuccess, storeFailure } = slice.actions;
+export const { storeUpdating, storeSuccess, storeFailure, fetchFailure, fetchSuccess } = slice.actions;
 export const { reducer } = slice;

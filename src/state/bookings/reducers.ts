@@ -4,12 +4,15 @@ import { store } from "@utils/store";
 import { WritableDraft } from "src/types";
 
 export const reducers = {
-  storeUpdating: (state: WritableDraft<BookingState>) => {
+  /**
+   * Store reducers
+   */
+  storeUpdating (state: WritableDraft<BookingState>) {
     state.loading = true;
     state.error = false;
     state.success = false;
   },
-  storeSuccess: (state: WritableDraft<BookingState>, action: PayloadAction<Booking>) => {
+  storeSuccess (state: WritableDraft<BookingState>, action: PayloadAction<Booking>) {
     const bookings = store.get(STORE_BOOKINGS) as Booking[] || [];
     
     bookings.push(action.payload);
@@ -20,12 +23,26 @@ export const reducers = {
     state.error = false;
     state.success = true;
   },
-  storeFailure: (state: WritableDraft<BookingState>) => {
+  storeFailure (state: WritableDraft<BookingState>) {
     const bookings = store.get(STORE_BOOKINGS) as Booking[] || [];
 
     state.data = bookings;  
     state.loading = false;
     state.error = true;
     state.success = false;
+  },
+
+  /**
+   * Fetch reducers
+   */ 
+  fetchSuccess (state: WritableDraft<BookingState>, action: PayloadAction<Booking[]>) {
+    state.data = action.payload;  
+    state.loading = false;
+    state.error = false;
+  },
+  fetchFailure (state: WritableDraft<BookingState>) {
+    state.data = [];  
+    state.loading = false;
+    state.error = true;
   },
 }

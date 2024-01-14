@@ -1,1 +1,24 @@
-[]
+[
+  {
+    "placeCode": "chapada-diamantina",
+    "checkIn": 1706065200000,
+    "checkOut": 1706670000000,
+    "guests": {
+      "adults": 2,
+      "children": 0,
+      "pets": 0
+    },
+    "id": "442c7b41-047c-45d7-b09a-cb683409b0c9"
+  },
+  {
+    "placeCode": "gramado",
+    "checkIn": 1706842800000,
+    "checkOut": 1706583600000,
+    "guests": {
+      "adults": 0,
+      "children": 3,
+      "pets": 0
+    },
+    "id": "46389c8e-a12f-4f16-ae9c-d17a11e3e839"
+  }
+]
