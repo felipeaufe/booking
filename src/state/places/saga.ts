@@ -1,5 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
-import { placeService } from '@services/places-service'; 
+import { placesService } from '@services/places-service'; 
 import { fetchFailure, fetchSuccess } from '.';
 import { Place, STORE_PLACES } from './types';
 import { store } from '@utils/store';
@@ -14,7 +14,7 @@ function* places() {
       let places: Place[] = store.get(STORE_PLACES) as Place[];
 
       if(!places) {
-        places = yield call(placeService.get);
+        places = yield call(placesService.get);
         store.set(STORE_PLACES, places);
       }
 

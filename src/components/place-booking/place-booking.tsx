@@ -1,10 +1,15 @@
 import { BookingForm } from "@components/booking-form/booking-form";
 import styled from "styled-components";
 
-export function PlaceBooking () {
+interface PlaceBookingProps {
+  readonly code: string;
+}
+
+export function PlaceBooking ({ code }: PlaceBookingProps) {
+
   return (
     <Container>
-      <BookingForm />
+      <BookingForm code={ code }/>
     </Container>
   );
 }

@@ -26,7 +26,7 @@ export function Place () {
       <PlaceImages code={place.code} name={place.name} images={place.images} />
       <BookingContainer>
         <PlaceInformation place={place} />
-        <PlaceBooking />
+        <PlaceBooking code={place.code} />
       </BookingContainer>
     </Container>
   )
