@@ -3,19 +3,25 @@ import "react-datepicker/dist/react-datepicker.css";
 import styled from "styled-components";
 
 interface ButtonDatePickerProps {
-  children: React.ReactNode;
-  value: Date | null;
-  disabled?: boolean;
-  includeDateIntervals?: { start: Date; end: Date }[] 
-  onChange: (value: Date) => void;
+  readonly children: React.ReactNode;
+  readonly value: Date | null;
+  readonly disabled?: boolean;
+  readonly includeDateIntervals?: { start: Date; end: Date }[] 
+  readonly excludeDateIntervals?: { start: Date; end: Date }[] 
+  readonly maxDate?: Date;
+  readonly minDate?: Date;
+  readonly onChange: (value: Date) => void;
 }
-export function ButtonDatePicker ({ children, value, includeDateIntervals, disabled, onChange,...rest }: ButtonDatePickerProps) {
+export function ButtonDatePicker ({ children, value, maxDate, minDate, includeDateIntervals, excludeDateIntervals, disabled, onChange,...rest }: ButtonDatePickerProps) {
   return (
     <div {...rest }>
       <DatePicker
         selected={value}
         onChange={onChange}
         includeDateIntervals={includeDateIntervals}
+        excludeDateIntervals={excludeDateIntervals}
+        maxDate={maxDate}
+        minDate={minDate}
         disabled={disabled}
         customInput={
           <Button>
