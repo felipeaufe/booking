@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
 import styled from "styled-components";
@@ -13,22 +12,15 @@ import 'swiper/css/grid';
 import 'swiper/css/pagination';
 import { Container as ContainerStyled } from "@assets/styled/container";
 import { device } from "@assets/styled/media-query";
-import { useDispatch, useSelector } from "@state/store";
-import { placesActions } from "@state/places/saga";
+import { useSelector } from "@state/store";
 
 export function ExplorePlace () {
   const navigate = useNavigate();
   const places = useSelector(state => state.places.data);
-  const dispatch = useDispatch();
 
   const handleRedirect = (code: string) => {
     navigate(`/place/${code}`)
   }
-
-  useEffect(() => {
-    dispatch({ type: placesActions.FETCH_REQUEST});
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
 
   if(places.length === 0) {
