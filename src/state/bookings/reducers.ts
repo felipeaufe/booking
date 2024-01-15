@@ -4,9 +4,7 @@ import { store } from "@utils/store";
 import { WritableDraft } from "src/types";
 
 export const reducers = {
-  /**
-   * Store reducers
-   */
+  /**!SECTION STORE */
   storeUpdating (state: WritableDraft<BookingState>) {
     state.loading = true;
     state.error = false;
@@ -32,9 +30,7 @@ export const reducers = {
     state.success = false;
   },
 
-  /**
-   * Fetch reducers
-   */ 
+  /**!SECTION FETCH */
   fetchSuccess (state: WritableDraft<BookingState>, action: PayloadAction<Booking[]>) {
     state.data = action.payload;  
     state.loading = false;
@@ -42,6 +38,17 @@ export const reducers = {
   },
   fetchFailure (state: WritableDraft<BookingState>) {
     state.data = [];  
+    state.loading = false;
+    state.error = true;
+  },
+
+  /**!SECTION DELETE */
+  deleteUpdating (state: WritableDraft<BookingState>) {
+    state.loading = true;
+    state.error = true;
+  },
+
+  deleteFailure (state: WritableDraft<BookingState>) {
     state.loading = false;
     state.error = true;
   },
