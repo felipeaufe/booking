@@ -1,19 +1,23 @@
 import { Icon } from "@elements/icon/icon";
 import { Booking } from "@state/bookings/types"
 import { useDispatch, useSelector } from "@state/store";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import styled from "styled-components"
 import { Button as ButtonStyled } from '@assets/styled/button';
 import { device } from "@assets/styled/media-query";
 import { useViewport } from "@hook/use-media-query";
 import { bookingsActions } from "@state/bookings/saga";
 import { useDialog } from "@hook/use-dialog";
+import { Modal } from "@components/modal/modal";
+import { BookingForm } from "@components/booking-form/booking-form";
 
 interface CardBookingProps {
   booking: Booking
 }
 
 export function CardBooking({ booking }: CardBookingProps) {
+  const [ openModal, setOpenModal ] = useState(false);
+
   const dispatch = useDispatch();
   const dialog = useDialog();
 
@@ -33,8 +37,14 @@ export function CardBooking({ booking }: CardBookingProps) {
       dispatch({ type: bookingsActions.DELETE_REQUEST, payload: booking.id })
     }
   }
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  }
   
-  const handleOnEdit = () => {}
+  const handleOnEdit = () => {
+    setOpenModal(true); 
+  }
 
   return place && (
     <Container>
@@ -72,6 +82,9 @@ export function CardBooking({ booking }: CardBookingProps) {
           </ButtonContent>
         </Content>
       </Box>
+      <Modal title={`Updating: ${place.name}`} open={openModal} onClose={handleCloseModal} >
+        <BookingForm placeCode={booking.placeCode} />
+      </Modal>
     </Container>
   )
 }

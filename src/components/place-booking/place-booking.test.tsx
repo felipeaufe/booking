@@ -5,10 +5,10 @@ import { screen } from "@testing-library/react";
 
 describe('place-booking', () => {
 
-  const code = "lagoa-preta";
+  const placeCode = "lagoa-preta";
 
   it('should render', () => {
-    renderRedux(<BookingForm code={code} />, { bookings: initialState });
+    renderRedux(<BookingForm placeCode={placeCode} />, { bookings: initialState });
 
     const checkIn = screen.getByText('Check-in');
     const checkout = screen.getByText('Checkout');

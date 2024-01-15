@@ -9,7 +9,7 @@ export function PlaceBooking ({ code }: PlaceBookingProps) {
 
   return (
     <Container>
-      <BookingForm code={ code }/>
+      <BookingForm placeCode={ code }/>
     </Container>
   );
 }

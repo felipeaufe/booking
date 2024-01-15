@@ -13,9 +13,9 @@ import { findNextFreeDate, getBookingsIntervals } from "@utils/bookings-interval
 export interface BookingForm extends Omit<Booking, "placeCode"> {}
 
 type BookingFormProps = {
-  readonly code: string;
+  readonly placeCode: string;
 }
-export function BookingForm ({ code }: BookingFormProps) {
+export function BookingForm ({ placeCode }: BookingFormProps) {
   const dispatch = useDispatch();
 
   const bookings = useSelector(state => state.bookings.data);
@@ -42,8 +42,8 @@ export function BookingForm ({ code }: BookingFormProps) {
   }
 
   const excludedIntervals = useMemo(() => {
-    return getBookingsIntervals(code, bookings);
-  }, [code, bookings]);
+    return getBookingsIntervals(placeCode, bookings);
+  }, [placeCode, bookings]);
 
   const checkoutMaxDate = useMemo(() => {
     return findNextFreeDate(checkIn  || addDays(new Date(), 2), excludedIntervals) || addDays(new Date(), 30);
@@ -57,7 +57,7 @@ export function BookingForm ({ code }: BookingFormProps) {
     if (isValid) {
       
       const data: Booking = {
-        placeCode: code,
+        placeCode,
         checkIn: (checkIn as Date).getTime(),
         checkOut: (checkOut as Date).getTime(),
         guests: {
@@ -69,7 +69,7 @@ export function BookingForm ({ code }: BookingFormProps) {
 
       dispatch({ type: bookingsActions.STORE_REQUEST, payload: data })
     }
-  }, [code, isValid, adults, children, pets, checkIn, checkOut, dispatch]);
+  }, [placeCode, isValid, adults, children, pets, checkIn, checkOut, dispatch]);
 
   useEffect(() => {
     if(success) {

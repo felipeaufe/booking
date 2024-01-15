@@ -18,7 +18,7 @@ jest.mock("@elements/button-date-picker/button-date-picker", () => ({
 
 describe('booking-form', () => {
 
-  const code = "lagoa-preta";
+  const placeCode = "lagoa-preta";
 
   const dispatchSpy = jest.fn();
 
@@ -26,7 +26,7 @@ describe('booking-form', () => {
   
 
   fit('should return a booking data on submit', async () => {
-    renderRedux(<BookingForm code={code} />, {
+    renderRedux(<BookingForm placeCode={placeCode} />, {
       bookings: {
         data: [] as Booking[],
         loading: false,
@@ -53,7 +53,7 @@ describe('booking-form', () => {
     expect(dispatchSpy).toHaveBeenCalledWith({
       type: bookingsActions.STORE_REQUEST,
       payload: {
-        placeCode: code,
+        placeCode,
         checkIn: today.getTime(),
         checkOut: today.getTime(),
         guests: {

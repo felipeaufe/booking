@@ -1,6 +1,13 @@
 import styled, { css } from "styled-components";
 
-const variants = ({variant}: {variant: string}) => ({
+const variants = ({variant = "flat" }: {variant: string}) => ({
+  flat: css`
+    background-color: transparent;
+    height: initial;
+    border: initial;
+    border-radius: initial;
+    padding: initial;
+  `,
   primary: css`
     background-color: var(--color-dark);
     color: white;
@@ -23,7 +30,6 @@ export const Button = styled.button<{ variant: string }>`
   border: 1px solid;
   border-color: transparent;
   border-radius: var(--border-radius-12);
-  background-color: white;
   font-size: var(--font-size-16);
   padding: var(--spacing-16) var(--spacing-20);
   cursor: pointer;

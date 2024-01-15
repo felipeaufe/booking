@@ -8,7 +8,7 @@ import { store } from '@state/store';
 
 import 'react-toastify/dist/ReactToastify.min.css';
 import './assets/css/tokens.css';
-import './assets/css/dialog.css';
+import './assets/css/react-modal.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
