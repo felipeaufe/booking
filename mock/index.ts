@@ -1,4 +1,3 @@
-import {v4 as uuidv4} from 'uuid';
 import Places from './data/places.json';
 import Bookings from './data/bookings.json';
 
@@ -30,7 +29,7 @@ export default [
     method: 'post',
     response: () => {
       return {
-        id: uuidv4(),
+        id: Date.now(),
       };
     },
   },
