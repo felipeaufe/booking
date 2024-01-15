@@ -13,7 +13,7 @@ export const bookingsActions = {
 function* storeBookings(action: PayloadAction<Booking>) {
   try {
     yield put(storeUpdating());
-    const bookings: Booking = yield call(bookingsService.set, action.payload);
+    const bookings: Booking = yield call(bookingsService.post, action.payload);
     yield put(storeSuccess(bookings));
   } catch (e) {
     yield put(storeFailure());

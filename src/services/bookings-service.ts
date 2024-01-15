@@ -2,7 +2,7 @@ import { http } from "@config/http";
 import { Booking } from "@state/bookings/types";
 
 export const bookingsService = {
-  async set (booking: Booking): Promise<Booking> {
+  async post (booking: Booking): Promise<Booking> {
     try {
       const response = await http.post<{ id: string }>('/api/bookings', booking);
       const { id } = response.data;
@@ -22,6 +22,16 @@ export const bookingsService = {
       const response = await http.get<Booking[]>('/api/bookings');
       return response.data;
       
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
+
+  async delete (id: string): Promise<boolean> {
+    try {
+      await http.delete<Booking[]>(`/api/bookings/${id}`);
+      return true;
     } catch (error) {
       console.error(error);
       throw error;

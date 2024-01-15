@@ -33,4 +33,12 @@ export default [
       };
     },
   },
+
+  {
+    url: '/api/bookings/:id',
+    method: 'delete',
+    response: () => {
+      return true;
+    },
+  },
 ];
