@@ -6,8 +6,12 @@ import { useParams } from "react-router-dom";
 import { PlaceBooking } from "@components/place-booking/place-booking";
 import styled from "styled-components";
 import { device } from "@assets/styled/media-query";
+import { SwiperPlaceImages } from "@components/place-images/swiper-place-images";
+import { useViewport } from "@hook/use-media-query";
 
 export function Place () {
+
+  const { isTablet, isDesktop } = useViewport();
 
   const { code } = useParams();
 
@@ -22,13 +26,16 @@ export function Place () {
   }
 
   return (
-    <Container>
-      <PlaceImages code={place.code} name={place.name} images={place.images} />
-      <BookingContainer>
-        <PlaceInformation place={place} />
-        <PlaceBooking code={place.code} />
-      </BookingContainer>
-    </Container>
+    <>
+      { isTablet && <SwiperPlaceImages code={place.code} name={place.name} images={place.images} /> }
+      <Container>
+        { !isTablet && isDesktop && <PlaceImages code={place.code} name={place.name} images={place.images} /> }
+        <BookingContainer>
+          <PlaceInformation place={place} />
+          <PlaceBooking code={place.code} />
+        </BookingContainer>
+      </Container>
+    </>
   )
 }
 

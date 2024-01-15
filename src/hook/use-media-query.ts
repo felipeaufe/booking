@@ -1,15 +1,12 @@
-// import { device } from '@assets/styled/media-query';
 import { useEffect, useState } from 'react';
 import { device } from '@assets/styled/media-query';
-
-const query = `screen and (min-width: 1px) and ${device.mobileL}`;
 
 /**
  *
  * @param queries List of queries to match
  * @returns Boolean value telling if the passed query/queries is a matching.
  */
-function useMediaQuery(): boolean {
+function useMediaQuery(...queries: string[]): boolean {
   const supportMatchMedia =
     typeof window !== 'undefined' && typeof window.matchMedia !== 'undefined';
 
@@ -19,6 +16,7 @@ function useMediaQuery(): boolean {
     let active = true;
     if (!supportMatchMedia) return undefined;
 
+    const query = queries.join();
     const queryList = window.matchMedia(query);
 
     function updateMatch() {
@@ -38,26 +36,12 @@ function useMediaQuery(): boolean {
 }
 
 export function useViewport() {
-  const isMobile = useMediaQuery();
+  const isMobile = useMediaQuery(`screen and (min-width: 1px) and ${device.mobileL}`);
+  const isTablet = useMediaQuery(`screen and (min-width: 1px) and ${device.tablet}`);
 
   return {
     isMobile,
-    isDesktop: !isMobile,
-  };
-}
-
-export function getStaticViewport() {
-  const supportMatchMedia =
-    typeof window !== 'undefined' && typeof window.matchMedia !== 'undefined';
-
-  let isMobile = false;
-
-  if (supportMatchMedia) {
-    isMobile = window.matchMedia(query).matches;
-  }
-
-  return {
-    isMobile,
+    isTablet,
     isDesktop: !isMobile,
   };
 }

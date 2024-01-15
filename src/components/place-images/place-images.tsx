@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-interface PlaceImagesProps {
-  name: string;
-  code: string;
-  images: string[];
+export interface PlaceImagesProps {
+  readonly name: string;
+  readonly code: string;
+  readonly images: string[];
 }
 
 export function PlaceImages ({ name, code, images }: PlaceImagesProps) {
@@ -11,7 +11,7 @@ export function PlaceImages ({ name, code, images }: PlaceImagesProps) {
     <Container>
       <PrincipalImage src={`/img/${code}/${images[0]}`} alt={`Principal image of ${name}`}/>
       <ImageGroup>
-        {images.slice(1).map((image, index) => <Image src={`/img/${code}/${image}`} alt={`Image ${index+1} of ${name}`}/>)}
+        {images.slice(1).map((image, index) => <Image key={code} src={`/img/${code}/${image}`} alt={`Image ${index+1} of ${name}`}/>)}
       </ImageGroup>
     </Container>
   )
