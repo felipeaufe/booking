@@ -1,8 +1,11 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { PlaceImagesProps } from "./place-images";
+import { PlaceImagesProps } from "../place-images/place-images";
 import styled from "styled-components";
 import { Pagination } from "swiper/modules";
 import { device } from "@assets/styled/media-query";
+
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 export function SwiperPlaceImages ({ code, name, images }: PlaceImagesProps) {
   return (

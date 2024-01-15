@@ -1,7 +1,7 @@
 import '../../test-config/mocks/swiper-pagination';
 
 import { act, render, screen } from "@testing-library/react";
-import { SwiperPlaceImages } from "./swiper-place-images";
+import { SwiperPlaceImages } from './swiper-place-images';
 
 describe('swiper-place-images', () => {
 

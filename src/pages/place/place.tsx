@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { PlaceBooking } from "@components/place-booking/place-booking";
 import styled from "styled-components";
 import { device } from "@assets/styled/media-query";
-import { SwiperPlaceImages } from "@components/place-images/swiper-place-images";
+import { SwiperPlaceImages } from "@components/swiper-place-images/swiper-place-images";
 import { useViewport } from "@hook/use-media-query";
 
 export function Place () {
