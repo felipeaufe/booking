@@ -50,8 +50,8 @@ export function CardBooking({ booking }: CardBookingProps) {
             </div>
           </FormData>
           <ButtonContent>
-            <Button variant="primary">Change {!isTablet && 'Reservation'}</Button>
-            <Button variant="secondary">Cancel {!isTablet && 'Reservation'}</Button>
+            <Button data-testid="change" variant="primary">Change {!isTablet && 'Reservation'}</Button>
+            <Button data-testid="cancel" variant="secondary">Cancel {!isTablet && 'Reservation'}</Button>
           </ButtonContent>
         </Content>
       </Box>
