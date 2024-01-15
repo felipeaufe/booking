@@ -2,6 +2,7 @@
 
   /* Color */
   --color-primary: #9E5CF2;
+  --color-primary-10: #F1EAF9;
   --color-primary-5: #F5EFFD;
   
   --color-secondary: #FF991F;
@@ -21,6 +22,7 @@
   --spacing-4: 4px;
   --spacing-8: 8px;
   --spacing-12: 12px;
+  --spacing-14: 14px;
   --spacing-16: 16px;
   --spacing-20: 20px;
   --spacing-24: 24px;
@@ -28,6 +30,7 @@
   --spacing-32: 32px;
   --spacing-36: 36px;
   --spacing-40: 40px;
+  --spacing-44: 44px;
   --spacing-60: 60px;
   --spacing-80: 80px;
   --spacing-92: 92px;
@@ -68,6 +71,9 @@
   --border-radius-12: 12px;
   --border-radius-16: 16px;
   --border-radius-20: 20px;
+  --border-radius-32: 32px;
+  --border-radius-36: 36px;
+  --border-radius-40: 40px;
 
 
   /* Media Devices */
