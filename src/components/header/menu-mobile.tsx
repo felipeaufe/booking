@@ -18,13 +18,13 @@ export function MenuMobile () {
   return isMobile && (
     <Container>
       <Menu>
-        <User onClick={() => openMenu()}>
-          <div>
+        <User>
+          <Button data-testid="bars" onClick={() => openMenu()}>
               <Icon icon="bars" />
-          </div>
+          </Button>
         </User>
       </Menu>
-      <Aside className={open ? "open" : ""}>
+      <Aside data-testid="aside" className={open ? "open" : ""}>
         <MenuPrincipal />
       </Aside>
     </Container>
@@ -41,7 +41,7 @@ const Container = styled.div`
 
 const Aside = styled.div`
   background-color: white;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: -100vw;
   width: 100vw;
@@ -105,4 +105,16 @@ const User = styled.li`
     width: 40px;
     height: 40px;
   }
+`
+
+const Button = styled.button`
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+  width: 100%;
+  height: 100%;
 `

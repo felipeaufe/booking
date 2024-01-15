@@ -1,8 +1,11 @@
 import styled from "styled-components";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Grid, Pagination } from "swiper/modules";
 import { useNavigate } from 'react-router-dom';
 
 import { CardPlace } from "@components/card-place/card-place";
 import { Container as ContainerStyled } from "@assets/styled/container";
+import { device } from "@assets/styled/media-query";
 import { useSelector } from "@state/store";
 
 import 'swiper/css';
@@ -25,15 +28,24 @@ export function ExplorePlace () {
   return (
     <Container>
       <Title>Explore Place</Title>
-      <Content>
-        {places.map((place) =>
-          <CardPlace
-            key={place.code}
-            place={place}
-            onClick={() => handleRedirect(place.code)}
-          />
+      <Swiper
+        slidesPerView={'auto'}
+        spaceBetween={20}
+        grid={{
+          rows: 2,
+          fill: 'row'
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Grid, Pagination]}
+      >
+        {places.map((place) => 
+          <SwiperSlide key={place.code}>
+            <CardPlace place={place} onClick={() => handleRedirect(place.code)} />
+          </SwiperSlide>
         )}
-      </Content>
+      </Swiper>
     </Container>
   )
 }
@@ -58,23 +70,23 @@ const Title = styled.h2`
   }
 `;
 
-const Container = styled(ContainerStyled)`  `;
-
-const Content = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-columns: 350px;
-  gap: 20px;
-
-  @media screen and (max-width: 1280px) {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+const Container = styled(ContainerStyled)`  
+  .swiper {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  @media screen and (max-width: 980px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .swiper-wrapper {
+    margin-bottom: var(--spacing-36);
   }
 
-  @media screen and (max-width: 600px) {
-    grid-template-columns: 1fr;
+  .swiper-slide {
+    width: 390px;
+    
+    @media ${device.mobileL} {
+      width: 330px;
+    }
   }
 `;

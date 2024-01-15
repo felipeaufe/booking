@@ -90,11 +90,12 @@ export function GuestSelect ({ adults, gestChildren, pets, onChange }: GuestSele
 
   return (
     <Container ref={ref}>
-      <Button onClick={toggleGuests}>{selectLabel}</Button>
-      <Content className={ guestsForm ? "open" : ""}>
+      <Button data-testid="guest-button" onClick={toggleGuests}>{selectLabel}</Button>
+      <Content data-testid="guest-select-content" className={ guestsForm ? "open" : ""}>
         <Item>
           <Span>Adults</Span>
           <Quantity
+            name="adults"
             value={adults}
             onClick={handleAdults}
           />
@@ -102,6 +103,7 @@ export function GuestSelect ({ adults, gestChildren, pets, onChange }: GuestSele
         <Item>
           <Span>Children</Span>
           <Quantity
+            name="children"
             value={gestChildren}
             onClick={handleChildren}
           />
@@ -109,6 +111,7 @@ export function GuestSelect ({ adults, gestChildren, pets, onChange }: GuestSele
         <Item>
           <Span>Pets</Span>
           <Quantity
+            name="pets"
             value={pets}
             onClick={handlePets}
           />

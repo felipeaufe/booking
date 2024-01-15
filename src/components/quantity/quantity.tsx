@@ -1,16 +1,18 @@
 import styled from "styled-components"
 
 interface QuantityProps {
-  value: number
-  onClick: (value: number) => void;
+  readonly name: string;
+  readonly value: number
+  readonly onClick: (value: number) => void;
 }
 
-export function Quantity({ value, onClick }: QuantityProps) {
+export function Quantity({ value, name, onClick }: QuantityProps) {
+
   return (
-    <Actions>
-      <Button data-testid="decrease" onClick={() => onClick(value -1)}>-</Button>
-      <Span data-testid="value">{value}</Span>
-      <Button data-testid="increase" onClick={() => onClick(value +1)}>+</Button>
+    <Actions data-testid={`quantity-${name}`}>
+      <Button data-testid={`quantity-${name}-decrease`} onClick={() => onClick(value -1)}>-</Button>
+      <Span data-testid={`quantity-${name}-value`}>{value}</Span>
+      <Button data-testid={`quantity-${name}-increase`} onClick={() => onClick(value +1)}>+</Button>
     </Actions>
   )
 }

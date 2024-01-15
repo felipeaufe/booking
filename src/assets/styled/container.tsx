@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { container } from "./media-query";
 
 
 export const Container = styled.div<{ fluid?: boolean; }>`
@@ -6,7 +7,9 @@ export const Container = styled.div<{ fluid?: boolean; }>`
   border: none;
   box-sizing: border-box;
   outline: none;
-  padding: 0;
+  max-width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
   flex-shrink: 0;
   width: 100%;
   margin-left: auto;
@@ -14,27 +17,10 @@ export const Container = styled.div<{ fluid?: boolean; }>`
 
   ${({ fluid  }: { fluid?: boolean }) => !fluid &&
     css`
-      @media screen and (min-width: 0) {
-        width: calc(100% - 16px * 2);
-        max-width: 576px;
-      }
-      @media screen and (min-width: 0) {
-        max-width: 576px,
-      }
-      @media screen and (min-width: 768px) {
-        width: 100%;
-        max-width: 768px;
-      }
-      @media screen and (min-width: 1024px) {
-        max-width: 992px;
-      }
-      @media screen and (min-width: 1280px) {
-        max-width: 1200px;
-      }
-      @media screen and (min-width: 1536px) {
+      @media screen and ${container.desktopMd} {
         max-width: 1400px;
       }
-      @media screen and (min-width: 1840px) {
+      @media screen and ${container.desktopXg} {
         max-width: 1620px;
       }
     `

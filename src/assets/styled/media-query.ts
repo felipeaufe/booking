@@ -18,3 +18,9 @@ export const device = {
   desktop: `(max-width: ${size.desktop})`,
   desktopL: `(max-width: ${size.desktop})`
 };
+
+export const container = {
+  desktopMd: "(min-width: 1280px)",
+  desktopLg: "(min-width: 1536px)",
+  desktopXg: "(min-width: 1840px)",
+}

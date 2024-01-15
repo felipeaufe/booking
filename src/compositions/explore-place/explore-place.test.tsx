@@ -9,6 +9,8 @@ import { renderRedux } from '@test-config/test-utils/render';
 import { initialState } from '@state/places';
 
 
+
+
 describe('explore-place', () => {
 
   it('should render with two places', async () => {

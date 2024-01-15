@@ -1,35 +1,36 @@
-import { device } from "@assets/styled/media-query";
 import { Icon } from "@elements/icon/icon";
 import { Place } from "@state/places/types";
 import styled from "styled-components";
+import { Link as LinkRouter } from 'react-router-dom';
 
 interface CardPlaceProps {
-  place: Place;
-  onClick?(): void;
+  readonly place: Place;
 }
 
-export function CardPlace ({ place, onClick }: CardPlaceProps) {
+export function CardPlace ({ place }: CardPlaceProps) {
   return (
-    <Container role="button" onClick={onClick}>
-      <Image style={{ backgroundImage: `url(/img/${place.code}/${place.images[0]})`}} />
-      <TitleContainer>
-        <Title>{place.name}</Title>
-        <Rate>
-          <Icon icon="star"/>
-          <span>{place.rate}</span>
-        </Rate>
-      </TitleContainer>
-      <Location>
-        <Icon icon="location-dot"/>
-        <span>{place.state} - {place.country}</span>
-      </Location>
-    </Container> 
+    <Link to={`/place/${place.code}`}>
+      <Container>
+        <Image style={{ backgroundImage: `url(/img/${place.code}/${place.images[0]})`}} />
+        <TitleContainer>
+          <Title>{place.name}</Title>
+          <Rate>
+            <Icon icon="star"/>
+            <span>{place.rate}</span>
+          </Rate>
+        </TitleContainer>
+        <Location>
+          <Icon icon="location-dot"/>
+          <span>{place.state} - {place.country}</span>
+        </Location>
+      </Container> 
+    </Link>
   )
 }
 
 const Container = styled.div`
   cursor: pointer;
-  width: 364px;
+  width: 100%;
   padding: var(--spacing-12);
   background-color: var(--color-gray);
   border: var(--border-solid-1);
@@ -40,10 +41,11 @@ const Container = styled.div`
   &:hover {
     opacity: .9;
   }
+`
 
-  @media ${device.mobileL} {
-    width: 304px;
-  }
+const Link = styled(LinkRouter)`
+  color: inherit;
+  text-decoration: inherit;
 `
 
 const Image = styled.div`
