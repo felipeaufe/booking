@@ -6,17 +6,25 @@ import { MenuMobile } from "../../components/header/menu-mobile";
 
 export function Header () {
   return (
-    <HeaderElement>
-      <Container>
-        <Logo href={`/`}>
-          <img src="/logo-horizontal.svg" alt="Logo" />
-        </Logo>
-        <MenuDesktop />
-        <MenuMobile />
-      </Container>
-    </HeaderElement>
+    <Shadow>
+      <HeaderElement>
+        <Container>
+          <Logo href={`/`}>
+            <img src="/logo-horizontal.svg" alt="Logo" />
+          </Logo>
+          <MenuDesktop />
+          <MenuMobile />
+        </Container>
+      </HeaderElement>
+    </Shadow>
   )
 }
+
+const Shadow = styled.div`
+@media ${device.mobileL} {
+    height: 56px;
+  }
+`
 
 const HeaderElement = styled.header`
   background-color: white;
@@ -28,6 +36,9 @@ const HeaderElement = styled.header`
     padding-top: var(--spacing-8);
     padding-bottom: var(--spacing-8);
     border-bottom: none;
+    position: fixed;
+    width: 100%;
+    z-index: 99;
   }
 `
 
