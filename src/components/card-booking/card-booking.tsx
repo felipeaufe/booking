@@ -1,23 +1,40 @@
 import { Icon } from "@elements/icon/icon";
 import { Booking } from "@state/bookings/types"
-import { useSelector } from "@state/store";
+import { useDispatch, useSelector } from "@state/store";
 import { useMemo } from "react";
 import styled from "styled-components"
 import { Button as ButtonStyled } from '@assets/styled/button';
 import { device } from "@assets/styled/media-query";
 import { useViewport } from "@hook/use-media-query";
+import { bookingsActions } from "@state/bookings/saga";
+import { useDialog } from "@hook/use-dialog";
 
 interface CardBookingProps {
   booking: Booking
 }
 
 export function CardBooking({ booking }: CardBookingProps) {
+  const dispatch = useDispatch();
+  const dialog = useDialog();
+
   const places = useSelector(state => state.places.data);
   const { isTablet } = useViewport();
 
   const place = useMemo(() => {
     return places.find(item => item.code === booking.placeCode);
   }, [places, booking]);
+
+  const handleOnCancel = async () => {
+
+    if(await dialog({
+      title: 'Cancel Booking',
+      message: 'Are you sure you want to cancel this booking?',
+    })) {
+      dispatch({ type: bookingsActions.DELETE_REQUEST, payload: booking.id })
+    }
+  }
+  
+  const handleOnEdit = () => {}
 
   return place && (
     <Container>
@@ -50,8 +67,8 @@ export function CardBooking({ booking }: CardBookingProps) {
             </div>
           </FormData>
           <ButtonContent>
-            <Button data-testid="change" variant="primary">Change {!isTablet && 'Reservation'}</Button>
-            <Button data-testid="cancel" variant="secondary">Cancel {!isTablet && 'Reservation'}</Button>
+            <Button data-testid="change" variant="primary" onClick={handleOnEdit}>Change {!isTablet && 'Reservation'}</Button>
+            <Button data-testid="cancel" variant="secondary" onClick={handleOnCancel}>Cancel {!isTablet && 'Reservation'}</Button>
           </ButtonContent>
         </Content>
       </Box>
