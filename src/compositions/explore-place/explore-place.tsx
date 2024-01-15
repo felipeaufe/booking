@@ -1,22 +1,11 @@
 import styled from "styled-components";
-import { useNavigate } from 'react-router-dom';
 
 import { CardPlace } from "@components/card-place/card-place";
 import { Container as ContainerStyled } from "@assets/styled/container";
 import { useSelector } from "@state/store";
 
-import 'swiper/css';
-import 'swiper/css/grid';
-import 'swiper/css/pagination';
-
 export function ExplorePlace () {
-  const navigate = useNavigate();
   const places = useSelector(state => state.places.data);
-
-  const handleRedirect = (code: string) => {
-    navigate(`/place/${code}`)
-  }
-
 
   if(places.length === 0) {
     return;
@@ -30,7 +19,6 @@ export function ExplorePlace () {
           <CardPlace
             key={place.code}
             place={place}
-            onClick={() => handleRedirect(place.code)}
           />
         )}
       </Content>

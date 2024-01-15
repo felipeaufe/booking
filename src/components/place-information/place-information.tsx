@@ -3,7 +3,7 @@ import { Place } from "@state/places/types"
 import styled from "styled-components";
 
 interface PlaceInformationProps {
-  place: Place
+  readonly place: Place
 }
 
 export function PlaceInformation ({ place }: PlaceInformationProps) {

@@ -1,6 +1,9 @@
+import "@test-config/mocks/react-router-dom";
+
 import { render, screen } from "@testing-library/react";
 import { CardPlace } from "./card-place";
 import { places } from "@test-config/mock-data/places";
+
 
 describe('card-place', () => {
 
@@ -13,16 +16,5 @@ describe('card-place', () => {
     expect(screen.getByText(place.name)).toBeInTheDocument();
     expect(screen.getByText(place.rate)).toBeInTheDocument();
     expect(screen.getByText(`${place.state} - ${place.country}`)).toBeInTheDocument();
-  });
-
-  it('should call callback function on click', () => {
-
-    const callback = jest.fn();
-
-    render(<CardPlace place={place} onClick={callback}/>)
-
-    screen.getByRole('button').click();
-
-    expect(callback).toHaveBeenCalledTimes(1);
   });
 })

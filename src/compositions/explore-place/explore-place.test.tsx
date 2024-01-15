@@ -1,5 +1,4 @@
-import '../../test-config/mocks/swiper';
-import '../../test-config/mocks/use-navigate';
+import "@test-config/mocks/react-router-dom";
 
 import { screen } from "@testing-library/react";
 import { places } from "@test-config/mock-data/places";
@@ -7,9 +6,6 @@ import { ExplorePlace } from "./explore-place";
 import { act } from 'react-dom/test-utils';
 import { renderRedux } from '@test-config/test-utils/render';
 import { initialState } from '@state/places';
-
-
-
 
 describe('explore-place', () => {
 

@@ -8,6 +8,7 @@ interface CardPlaceProps {
 }
 
 export function CardPlace ({ place }: CardPlaceProps) {
+
   return (
     <Link to={`/place/${place.code}`}>
       <Container>
