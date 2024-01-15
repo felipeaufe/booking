@@ -5,7 +5,7 @@ import { Header } from '@compositions/header/header';
 import { placesActions } from '@state/places/saga.ts';
 import { useEffect } from 'react';
 import { bookingsActions } from '@state/bookings/saga.ts';
-import { Footer } from '@compositions/footer/footer';
+import { Footer } from '@components/footer/footer.tsx';
 
 export function App () {
 
