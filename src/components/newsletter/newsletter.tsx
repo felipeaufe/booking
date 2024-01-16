@@ -39,7 +39,7 @@ export function Newsletter () {
               Receive <span>News</span> and <span>Promotions</span> that we have prepared with great care for <span>you</span>.
             </Title>
             <InputContainer>
-              <Input value={email} onChange={handleOnInputChange} type="email" placeholder="Email Address..." />
+              <Input data-testid="input" value={email} onChange={handleOnInputChange} type="email" placeholder="Email Address..." />
               <Button disabled={!isValidEmail} variant="primary" onClick={handleOnClick}>SUBMIT</Button>
             </InputContainer>
           </Container>
