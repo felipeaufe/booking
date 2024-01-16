@@ -1,12 +1,13 @@
 import "@test-config/mocks/use-dispatch";
-import "@test-config/mocks/swiper"
+import "@test-config/mocks/swiper";
+import "@test-config/mocks/use-navigate";
 
-import { renderRedux } from "@test-config/test-utils/render"
-import { act, screen } from "@testing-library/react"
-import { Place } from "./place"
-import { initialState } from "@state/places"
-import { places } from "@test-config/mock-data/places"
-import { useSelector } from "@state/store"
+import { renderRedux } from "@test-config/test-utils/render";
+import { act, screen } from "@testing-library/react";
+import { Place } from "./place";
+import { initialState } from "@state/places";
+import { places } from "@test-config/mock-data/places";
+import { useSelector } from "@state/store";
 
 jest.mock("@state/store");
 jest.mock("@components/booking-form/booking-form", () => ({ BookingForm: () => <div>BookingForm</div>}));

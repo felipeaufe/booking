@@ -4,11 +4,12 @@ import { GuestSelect, Guests } from "@components/guest-select/guest-select";
 import { ButtonDatePicker } from "@elements/button-date-picker/button-date-picker";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { addDays } from "@utils/date";
-import { Booking } from "@state/bookings/types";
-import { useDispatch, useSelector } from "@state/store";
+import { Booking, bookingsEvents } from "@state/bookings/types";
+import { Status, useDispatch, useSelector } from "@state/store";
 import { bookingsActions } from "@state/bookings/saga";
 import { toast } from "react-toastify";
 import { findNextFreeDate, getBookingsIntervals } from "@utils/bookings-intervals";
+import eventBus from "@utils/event-bus";
 
 export interface BookingForm extends Omit<Booking, "placeCode"> {}
 
@@ -32,8 +33,10 @@ export function BookingForm ({ placeCode, booking, onCancel }: BookingFormProps)
 
   const dispatch = useDispatch();
 
-  const { data: bookings, error, loading, success } = useSelector(state => state.bookings);
+  const { data: bookings } = useSelector(state => state.bookings);
   
+  const [ loading, setLoading ] = useState(false);
+
   const [ adults, setAdults ] = useState(initialData.guests.adults);
   const [ children, setChildren ] = useState(initialData.guests.children);
   const [ pets, setPets ] = useState(initialData.guests.pets);
@@ -91,7 +94,10 @@ export function BookingForm ({ placeCode, booking, onCancel }: BookingFormProps)
     onCancel?.();
   };
 
-  useEffect(() => {
+  const handleOnUpdateStatus = ({ success, error, loading }: Status) => {
+    
+    setLoading(loading);
+
     if(success) {
       setCheckIn(null);
       setCheckOut(null);
@@ -107,7 +113,18 @@ export function BookingForm ({ placeCode, booking, onCancel }: BookingFormProps)
       toast.error("Oops, we were unable to proceed with the reservation.")
       onCancel?.();
     }
-  }, [error, success, onCancel])
+  }
+
+  useEffect(() => {
+    const { unsubscribe: storeUnsubscribe } = eventBus.subscribe<Status>(bookingsEvents.STORE_STATUS, handleOnUpdateStatus)
+    const { unsubscribe: updateUnsubscribe } = eventBus.subscribe<Status>(bookingsEvents.UPDATE_STATUS, handleOnUpdateStatus)
+
+    return () => {
+      storeUnsubscribe();
+      updateUnsubscribe();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   
   return (
     <Container>

@@ -30,12 +30,7 @@ describe('booking-form', () => {
 
   it('should return a booking data on submit', async () => {
     renderRedux(<BookingForm placeCode={placeCode} />, {
-      bookings: {
-        data: [] as Booking[],
-        loading: false,
-        error: false,
-        success: false
-      }
+      bookings: { data: [] as Booking[] }
     });
 
     const buttonCheckIn = screen.getByText('Check-in');

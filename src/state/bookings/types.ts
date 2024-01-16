@@ -10,9 +10,13 @@ export interface Booking {
 
 export interface BookingState {
   readonly data: Booking[];
-  readonly loading: boolean;
-  readonly error: boolean;
-  readonly success: boolean;
 }
 
 export const STORE_BOOKINGS = 'bookings';
+
+export const bookingsEvents = {
+  STORE_STATUS: "@event_Booking/STORE_STATUS",
+  UPDATE_STATUS: "@event_Booking/UPDATE_STATUS",
+  FETCH_STATUS: "@event_Booking/FETCH_STATUS",
+  DELETE_STATUS: "@event_Booking/DELETE_STATUS",
+}

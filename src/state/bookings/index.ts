@@ -5,10 +5,7 @@ import { store } from "@utils/store";
 import { reducers } from "./reducers";
 
 export const initialState: BookingState = {
-  data:  store.get(STORE_BOOKINGS) as Booking[] || [],
-  loading: false,
-  error: false,
-  success: false
+  data:  store.get(STORE_BOOKINGS) as Booking[] || []
 };
 
 const slice = createSlice({

@@ -1,5 +1,8 @@
 import { BookingForm } from "@components/booking-form/booking-form";
-import { useSelector } from "@state/store";
+import { bookingsEvents } from "@state/bookings/types";
+import { Status } from "@state/store";
+import eventBus from "@utils/event-bus";
+import { scrollToTop } from "@utils/scroll-to-top";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -11,16 +14,22 @@ interface PlaceBookingProps {
 export function PlaceBooking ({ code }: PlaceBookingProps) {
 
   const navigate = useNavigate();
-  const { success } = useSelector(state => state.bookings);
 
   useEffect(() => {
-    if(success) {
-      setTimeout(() =>  {
-        navigate('/my-reservations');
-        document.body.scrollIntoView({ behavior: "smooth" })
-      }, 500)
+    const { unsubscribe } = eventBus.subscribe<Status>(bookingsEvents.STORE_STATUS, ({ success }) => {  
+      if(success) {
+        setTimeout(() =>  {
+          navigate('/my-reservations');
+          scrollToTop();
+        }, 500)
+      }
+    })
+
+    return () => {
+      unsubscribe();
     }
-  }, [success, navigate])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   
   return (
     <Container>

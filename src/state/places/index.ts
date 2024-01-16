@@ -5,9 +5,7 @@ import { store } from "@utils/store";
 import { reducers } from "./reducers";
 
 export const initialState: PlaceState = {
-  data:  store.get(STORE_PLACES) as Place[] || [],
-  loading: false,
-  error: false
+  data:  store.get(STORE_PLACES) as Place[] || []
 };
 
 const slice = createSlice({

@@ -10,8 +10,6 @@ export interface Place {
 
 export interface PlaceState {
   readonly data: Place[];
-  readonly loading: boolean;
-  readonly error: boolean;
 }
 
 export const STORE_PLACES = 'places';
