@@ -53,3 +53,7 @@ To build this project, we first conducted a study of the pages and flows that we
 [![MIT License](/documentation/images/home.png)]
 
 [Click here to access the complete material!](https://www.figma.com/file/Z0KPdhfLoRImLlFvZLnE5q/Booking?type=design&node-id=884%3A1330&mode=design&t=wHmbz070XIGF3zUE-1)
+
+
+## Contributors
+**@author:** 'Felipe Augusto *< [https://www.linkedin.com/in/felipe-augusto-feitosa/](https://www.linkedin.com/in/felipe-augusto-feitosa/) >*'
