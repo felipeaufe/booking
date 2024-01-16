@@ -12,14 +12,30 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "esModuleInterop": true,
     "jsx": "react-jsx",
 
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "@compositions/*": ["src/compositions/*"],
+      "@test-config/*": ["src/test-config/*"],
+      "@components/*": ["src/components/*"],
+      "@elements/*": ["src/elements/*"],
+      "@services/*": ["src/services/*"],
+      "@config/*": ["src/config/*"],
+      "@assets/*": ["src/assets/*"],
+      "@pages/*": ["src/pages/*"],
+      "@state/*": ["src/state/*"],
+      "@utils/*": ["src/utils/*"],
+      "@hook/*": ["src/hook/*"],
+    },
   },
-  "include": ["src"],
+  "include": ["**/*.js", "**/*.ts", "**/*.tsx", "**/*.json", "src/elements/button-datepicker"],
+  "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

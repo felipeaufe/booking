@@ -1,0 +1,95 @@
+:root {
+
+  /* Color */
+  --color-primary: #9E5CF2;
+  --color-primary-10: #F1EAF9;
+  --color-primary-5: #F5EFFD;
+  
+  --color-secondary: #FF991F;
+  
+  --color-dark: #080808;
+  --color-dark-50: #454545;
+
+  --color-black: #3E3232;
+  --color-black-75: #3E3232;
+  --color-black-50: #3E3232;
+
+  --color-gray: #FAFAFA;
+
+  --color-light-blue: #F6F7FE;
+
+  --color-stroke: #F1F1F1;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-44: 44px;
+  --spacing-60: 60px;
+  --spacing-80: 80px;
+  --spacing-92: 92px;
+  --spacing-100: 100px;
+  --spacing-142: 142px;
+  --spacing-202: 202px;
+
+
+
+  /* Font Size */
+  --font-size-12: 12px;
+  --font-size-14: 14px;
+  --font-size-16: 16px;
+  --font-size-20: 20px;
+  --font-size-24: 24px;
+  --font-size-28: 28px;
+  --font-size-32: 32px;
+  --font-size-36: 36px;
+  --font-size-40: 40px;
+  --font-size-44: 44px;
+  --font-size-48: 48px;
+  --font-size-56: 56px;
+  --font-size-96: 96px;
+
+  /* Font Weight */
+  --font-weight-thin: 100;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semi-bold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+  
+
+  /* Border Solid */
+  --border-solid-1: 1px solid;
+  --border-solid-2: 2px solid;
+  --border-solid-3: 3px solid;
+  --border-solid-4: 4px solid;
+
+  /* Border Radius */
+  --border-radius-4: 4px;
+  --border-radius-8: 8px;
+  --border-radius-12: 12px;
+  --border-radius-16: 16px;
+  --border-radius-20: 20px;
+  --border-radius-32: 32px;
+  --border-radius-36: 36px;
+  --border-radius-40: 40px;
+
+
+  /* Media Devices */
+  --device-mobileS: 320px;
+  --device-mobile: 375px;
+  --device-mobileL: 425px;
+  --device-tablet: 768px;
+  --device-laptop: 1024px;
+  --device-laptopL: 1440px;
+  --device-desktop: 2560px;
+}

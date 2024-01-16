@@ -1,16 +1,61 @@
+import Places from './data/places.json';
+import Bookings from './data/bookings.json';
+
 export default [
+  
+  /** !SECTION Places */
+
   {
-    url: '/api/user',
+    url: '/api/places',
     method: 'get',
     response: () => {
+      return Places;
+    },
+  },
+
+
+  /** !SECTION Bookings */
+
+  {
+    url: '/api/bookings',
+    method: 'get',
+    response: () => {
+      return Bookings;
+    },
+  },
+
+  {
+    url: '/api/bookings',
+    method: 'post',
+    response: () => {
       return {
-        code: 200,
-        data: {
-          id: 1,
-          name: 'John Doe',
-          email: 'john@example.com',
-        },
+        id: Date.now(),
       };
+    },
+  },
+
+  {
+    url: '/api/bookings/:id',
+    method: 'put',
+    response: () => {
+      return true;
+    },
+  },
+
+  {
+    url: '/api/bookings/:id',
+    method: 'delete',
+    response: () => {
+      return true;
+    },
+  },
+
+  /**!SECTION Newsletter   */
+  {
+    url: '/api/newsletter',
+    method: 'post',
+    response: () => {
+      return true;
     },
   },
 ];
