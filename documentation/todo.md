@@ -10,9 +10,9 @@ A booking is when a guest selects a start and end date and submits a reservation
 [x] Use Global State;
 [x] Prevent double bookings.
 [x] Validate the start and and dates;
-[ ] Good UI/UX;
-[ ] UI Responsive;
-[ ] Documentatin;
-[ ] Unit Test;
+[x] Good UI/UX;
+[x] UI Responsive;
+[x] Documentatin;
+[x] Unit Test;
 [x] Style Guide with Figma;
-[ ] Readme.MD with all information needed
+[x] Readme.MD with all information needed
