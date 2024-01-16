@@ -49,4 +49,13 @@ export default [
       return true;
     },
   },
+
+  /**!SECTION Newsletter   */
+  {
+    url: '/api/newsletter',
+    method: 'post',
+    response: () => {
+      return true;
+    },
+  },
 ];
