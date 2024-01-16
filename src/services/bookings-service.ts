@@ -28,6 +28,20 @@ export const bookingsService = {
     }
   },
 
+  async put (booking: Booking): Promise<Booking> {
+    try {
+      const { id, ...data } = booking;
+
+      await http.put(`/api/bookings/${id}`, data);
+      
+      return booking;
+
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
+
   async delete (id: string): Promise<boolean> {
     try {
       await http.delete<Booking[]>(`/api/bookings/${id}`);

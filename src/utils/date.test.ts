@@ -1,4 +1,4 @@
-import { addDays, subDays } from "./date";
+import { addDays, formatDate, subDays } from "./date";
 
 describe('date', () => {
 
@@ -37,5 +37,13 @@ describe('date', () => {
     const subtracted = subDays(added, 2);
 
     expect(getDaysDifferenceInDates(date, subtracted)).toBe(0);
+  })
+
+  it('should return a formatted date', () => {
+    const date = new Date();
+    const formatted = formatDate(date);
+    
+    expect(formatted).toEqual(`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`);
+    
   })
 })

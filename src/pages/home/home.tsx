@@ -1,11 +1,11 @@
 import { Banner } from "@components/banner/banner";
-import { ExplorePlace } from "../../compositions/explore-place/explore-place";
+import { ExplorePlaces } from "../../compositions/explore-places/explore-places";
 
 function Home() {
   return (
     <div> 
       <Banner />
-      <ExplorePlace />
+      <ExplorePlaces />
     </div>
   )
 }

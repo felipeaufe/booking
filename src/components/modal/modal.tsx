@@ -33,7 +33,7 @@ export function Modal({ title, open, onClose, children, ...rest }: DialogProps) 
       <Content {...rest}>
         <Header>
           <Title>{ title }</Title>
-          <Button variant='flat' onClick={() => onClose()}>
+          <Button data-testid="button-close" variant='flat' onClick={() => onClose()}>
             <Icon icon='xmark'/>
           </Button>
         </Header>

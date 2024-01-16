@@ -7,7 +7,7 @@ import { device } from "@assets/styled/media-query";
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-export function SwiperPlaceImages ({ code, name, images }: PlaceImagesProps) {
+export function SwiperPlaceImages ({ code, name, images }: Readonly<PlaceImagesProps>) {
   return (
     <Container>
       <Swiper pagination={true} modules={[Pagination]}>

@@ -14,21 +14,32 @@ export interface BookingForm extends Omit<Booking, "placeCode"> {}
 
 type BookingFormProps = {
   readonly placeCode: string;
+  readonly booking?: Booking;
+  readonly onCancel?: () => void;
 }
-export function BookingForm ({ placeCode }: BookingFormProps) {
+export function BookingForm ({ placeCode, booking, onCancel }: BookingFormProps) {
+  const initialData = {
+    id: booking?.id,
+    placeCode: placeCode,
+    guests: booking?.guests || {
+      adults: 0,
+      children: 0,
+      pets: 0
+    },
+    checkIn: booking?.checkIn ? new Date(booking?.checkOut) : null,
+    checkOut: booking?.checkOut ? new Date(booking?.checkOut) : null
+  }
+
   const dispatch = useDispatch();
 
-  const bookings = useSelector(state => state.bookings.data);
-  const error = useSelector(state => state.bookings.error);
-  const loading = useSelector(state => state.bookings.loading);
-  const success = useSelector(state => state.bookings.success);
+  const { data: bookings, error, loading, success } = useSelector(state => state.bookings);
+  
+  const [ adults, setAdults ] = useState(initialData.guests.adults);
+  const [ children, setChildren ] = useState(initialData.guests.children);
+  const [ pets, setPets ] = useState(initialData.guests.pets);
 
-  const [ adults, setAdults ] = useState(0);
-  const [ children, setChildren ] = useState(0);
-  const [ pets, setPets ] = useState(0);
-
-  const [ checkIn, setCheckIn ] = useState<Date | null>(null);
-  const [ checkOut, setCheckOut ] = useState<Date | null>(null);
+  const [ checkIn, setCheckIn ] = useState<Date | null>(initialData.checkIn);
+  const [ checkOut, setCheckOut ] = useState<Date | null>(initialData.checkOut);
 
   const handleChangeGuests = (value: Guests) => {
     setAdults(value.adults);
@@ -57,6 +68,7 @@ export function BookingForm ({ placeCode }: BookingFormProps) {
     if (isValid) {
       
       const data: Booking = {
+        id: booking?.id,
         placeCode,
         checkIn: (checkIn as Date).getTime(),
         checkOut: (checkOut as Date).getTime(),
@@ -67,9 +79,17 @@ export function BookingForm ({ placeCode }: BookingFormProps) {
         },
       };
 
-      dispatch({ type: bookingsActions.STORE_REQUEST, payload: data })
+      if(data.id) {
+        dispatch({ type: bookingsActions.UPDATE_REQUEST, payload: data })
+      } else {
+        dispatch({ type: bookingsActions.STORE_REQUEST, payload: data })
+      }
     }
-  }, [placeCode, isValid, adults, children, pets, checkIn, checkOut, dispatch]);
+  }, [isValid, booking?.id, placeCode, checkIn, checkOut, adults, children, pets, dispatch]);
+
+  const handleOnCancel = () => {
+    onCancel?.();
+  };
 
   useEffect(() => {
     if(success) {
@@ -80,12 +100,14 @@ export function BookingForm ({ placeCode }: BookingFormProps) {
       setPets(0);
 
       toast.success("Your reservation has been registered successfully.")
+      onCancel?.();
     }
 
     if(error) {
       toast.error("Oops, we were unable to proceed with the reservation.")
+      onCancel?.();
     }
-  }, [error, success])
+  }, [error, success, onCancel])
   
   return (
     <Container>
@@ -112,7 +134,10 @@ export function BookingForm ({ placeCode }: BookingFormProps) {
         </CheckOut>
       </div>
       <GuestSelect adults={adults} gestChildren={children} pets={pets} onChange={data => handleChangeGuests(data)} />
-      <Button disabled={loading || !isValid} variant="primary" onClick={handleOnClick}>Reserve</Button>
+      <ButtonContainer>
+        <Button disabled={loading || !isValid} variant="primary" onClick={handleOnClick}>{ booking ? 'Update' : 'Reserve' }</Button>
+        { booking && <Button disabled={loading || !isValid} variant="secondary" onClick={handleOnCancel}>Cancel</Button>}
+      </ButtonContainer>
     </Container>
   );
 }
@@ -133,6 +158,15 @@ const Container = styled.div`
     width: 100%;
   }
 `;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: var(--spacing-16);
+  & > button {
+    width: 100%;
+  }
+`
+
 const CheckIn = styled(ButtonDatePicker)`
   margin-right: calc(var(--spacing-12) / 2);
   width: 100%;

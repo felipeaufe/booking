@@ -30,6 +30,40 @@ export const reducers = {
     state.success = false;
   },
 
+  /**!SECTION UPDATE */
+  updateUpdating (state: WritableDraft<BookingState>) {
+    state.loading = true;
+    state.error = false;
+    state.success = false;
+  },
+
+  updateSuccess (state: WritableDraft<BookingState>, action: PayloadAction<Booking>) {
+    const bookings = store.get(STORE_BOOKINGS) as Booking[] || [];
+
+    const index = bookings.findIndex(item => item.id === action.payload.id);
+
+    if (index !== -1) {
+      bookings[index] = action.payload;
+    } else {
+      bookings.push(action.payload);
+    }
+
+    store.set(STORE_BOOKINGS, bookings);
+
+    state.data = bookings;
+    state.loading = false;
+    state.error = false;
+    state.success = true;
+  },
+  updateFailure (state: WritableDraft<BookingState>) {
+    const bookings = store.get(STORE_BOOKINGS) as Booking[] || [];
+
+    state.data = bookings;  
+    state.loading = false;
+    state.error = true;
+    state.success = false;
+  },
+
   /**!SECTION FETCH */
   fetchSuccess (state: WritableDraft<BookingState>, action: PayloadAction<Booking[]>) {
     state.data = action.payload;  

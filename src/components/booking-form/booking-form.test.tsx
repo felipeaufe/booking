@@ -3,10 +3,12 @@ import "@test-config/mocks/use-dispatch";
 
 import { fireEvent,screen } from "@testing-library/react";
 import { BookingForm } from "./booking-form";
-import { useDispatch } from "@state/store";
+import { useDispatch, useSelector } from "@state/store";
 import { renderRedux } from "@test-config/test-utils/render";
 import { Booking } from "@state/bookings/types";
 import { bookingsActions } from "@state/bookings/saga";
+import { bookings } from "@test-config/mock-data/bookings";
+import { initialState } from '@state/bookings'
 
 const today = new Date();
 
@@ -22,10 +24,11 @@ describe('booking-form', () => {
 
   const dispatchSpy = jest.fn();
 
+  (useSelector as jest.Mock).mockReturnValue({ ...initialState, data: bookings });
   (useDispatch as jest.Mock).mockReturnValue(dispatchSpy);
   
 
-  fit('should return a booking data on submit', async () => {
+  it('should return a booking data on submit', async () => {
     renderRedux(<BookingForm placeCode={placeCode} />, {
       bookings: {
         data: [] as Booking[],

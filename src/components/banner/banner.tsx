@@ -4,8 +4,14 @@ import { device } from "@assets/styled/media-query";
 import styled from "styled-components";
 
 export function Banner () {
+
+  const handleOnClick = () => {
+    const targetSection = document.getElementById("explore-places");
+    targetSection?.scrollIntoView({ behavior: "smooth" });
+  }
+
   return (
-    <Container>
+    <Container id="banner">
       <Content>
         <Title>
           <span>
@@ -22,7 +28,7 @@ export function Banner () {
             World
           </span>
         </Title>
-        <Button variant="primary">I Want To Travel</Button>
+        <Button variant="primary" onClick={handleOnClick}>I Want To Travel</Button>
       </Content>
       <ImagePerson src="/img/banner/person.png" alt="Woman holding a cell phone, sitting on a small travel suitcase and a backpack on her back" />
     </Container>

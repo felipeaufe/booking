@@ -4,7 +4,7 @@ import { CardPlace } from "@components/card-place/card-place";
 import { Container as ContainerStyled } from "@assets/styled/container";
 import { useSelector } from "@state/store";
 
-export function ExplorePlace () {
+export function ExplorePlaces () {
   const places = useSelector(state => state.places.data);
 
   if(places.length === 0) {
@@ -12,7 +12,7 @@ export function ExplorePlace () {
   }
   
   return (
-    <Container>
+    <Container  id="explore-places">
       <Title>Explore Place</Title>
       <Content>
         {places.map((place) =>

@@ -10,6 +10,7 @@ import { bookingsActions } from "@state/bookings/saga";
 import { useDialog } from "@hook/use-dialog";
 import { Modal } from "@components/modal/modal";
 import { BookingForm } from "@components/booking-form/booking-form";
+import { formatDate } from "@utils/date";
 
 interface CardBookingProps {
   booking: Booking
@@ -46,6 +47,16 @@ export function CardBooking({ booking }: CardBookingProps) {
     setOpenModal(true); 
   }
 
+  const renderDate = (date: Date | number) => {
+    let thisDate = date;
+    
+    if(typeof date === 'number') {
+      thisDate = new Date(date);
+    }
+
+    return formatDate(thisDate as Date);
+  }
+
   return place && (
     <Container>
       <Id><span>#</span>{booking.id}</Id>
@@ -61,18 +72,18 @@ export function CardBooking({ booking }: CardBookingProps) {
           <FormData>
             <div>
               <Label>Check-in: </Label>
-              <Pill>{booking.checkIn}</Pill>
+              <Pill>{renderDate(booking.checkIn)}</Pill>
             </div>
             <div>
               <Label>Checkout: </Label>
-              <Pill>{booking.checkOut}</Pill>
+              <Pill>{renderDate(booking.checkOut)}</Pill>
             </div>
             <div>
               <Label>Guests: </Label>
               <Pill>
-                {booking.guests.adults > 0 ? `Adults: ${booking.guests.adults}` : ''}
-                {booking.guests.children > 0 ? `Children: ${booking.guests.children}` : ''}
-                {booking.guests.pets > 0 ? `Pets: ${booking.guests.adults}` : ''}
+                {booking.guests.adults > 0 ? `Adults: ${booking.guests.adults} ` : ''}
+                {booking.guests.children > 0 ? `Children: ${booking.guests.children} ` : ''}
+                {booking.guests.pets > 0 ? `Pets: ${booking.guests.adults} ` : ''}
               </Pill>
             </div>
           </FormData>
@@ -83,7 +94,7 @@ export function CardBooking({ booking }: CardBookingProps) {
         </Content>
       </Box>
       <Modal title={`Updating: ${place.name}`} open={openModal} onClose={handleCloseModal} >
-        <BookingForm placeCode={booking.placeCode} />
+        <BookingForm placeCode={booking.placeCode} booking={booking} onCancel={handleCloseModal}/>
       </Modal>
     </Container>
   )

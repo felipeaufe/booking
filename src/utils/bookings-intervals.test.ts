@@ -1,7 +1,7 @@
 import { Guests } from "@components/guest-select/guest-select";
 import { Booking } from "@state/bookings/types";
 import { findNextFreeDate, getBookingsIntervals } from "./bookings-intervals";
-import { addDays } from "./date";
+import { addDays, formatDate } from "./date";
 
 describe('bookings-intervals', () => {
   it('should return a bookingIntervals when the code is "lagoa-preta"', () => {
@@ -85,6 +85,9 @@ describe('bookings-intervals', () => {
 
     const nextFreeDay = findNextFreeDate(checkIn, intervals);
 
-    expect(nextFreeDay).toEqual(addDays(new Date(), 5 - 1));
+    const formattedNextFreeDay = formatDate(nextFreeDay as Date);
+    const formattedExpectedDay = formatDate(addDays(new Date(), 5 - 1));
+
+    expect(formattedNextFreeDay).toEqual(formattedExpectedDay);
   });
 })

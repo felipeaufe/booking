@@ -25,3 +25,13 @@ export function addDays(date: Date, days: number){
   
   return newDate
 }
+
+/**
+ * Formats a given date into a string representation.
+ *
+ * @param {Date} date - The date object to be formatted.
+ * @return {string} The formatted date string in the format "dd/mm/yyyy".
+ */
+export function formatDate(date: Date) {
+  return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+}

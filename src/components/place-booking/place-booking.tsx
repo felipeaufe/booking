@@ -1,4 +1,7 @@
 import { BookingForm } from "@components/booking-form/booking-form";
+import { useSelector } from "@state/store";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 interface PlaceBookingProps {
@@ -7,6 +10,18 @@ interface PlaceBookingProps {
 
 export function PlaceBooking ({ code }: PlaceBookingProps) {
 
+  const navigate = useNavigate();
+  const { success } = useSelector(state => state.bookings);
+
+  useEffect(() => {
+    if(success) {
+      setTimeout(() =>  {
+        navigate('/my-reservations');
+        document.body.scrollIntoView({ behavior: "smooth" })
+      }, 500)
+    }
+  }, [success, navigate])
+  
   return (
     <Container>
       <BookingForm placeCode={ code }/>

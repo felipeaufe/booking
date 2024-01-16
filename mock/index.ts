@@ -36,6 +36,14 @@ export default [
 
   {
     url: '/api/bookings/:id',
+    method: 'put',
+    response: () => {
+      return true;
+    },
+  },
+
+  {
+    url: '/api/bookings/:id',
     method: 'delete',
     response: () => {
       return true;
