@@ -22,6 +22,7 @@ const Container = styled.div`
   display: flex;
   gap: 12px;
   margin-bottom: var(--spacing-60);
+  height: 500px;
 `;
 
 const ImageGroup = styled.div`
@@ -44,9 +45,11 @@ const PrincipalImage = styled.img`
   height: 100%;
   border-top-left-radius: var(--border-radius-12);
   border-bottom-left-radius: var(--border-radius-12);
+  object-fit: cover;
 `
 
 const Image = styled.img`
   width: calc(50% - 6px);
   height: calc(50% - 6px);
+  object-fit: cover;
 `

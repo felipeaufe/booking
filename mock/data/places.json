@@ -5,7 +5,11 @@
     "description": "Welcome to the majestic Chapada Diamantina, a setting where nature unfolds in its maximum expression. Surrounded by imposing mountains, lush green valleys and crystal-clear waterfalls, this is a destination that invites exploration and discovery.",
     "rate": 4.9,
     "images": [
-      "01.jpg"
+      "01.jpg",
+      "02.jpeg",
+      "03.jpg",
+      "04.jpg",
+      "05.jpg"
     ],
     "state": "Paraná",
     "country": "BR"
@@ -16,7 +20,11 @@
     "description": "Welcome to the majestic Chapada Diamantina, a setting where nature unfolds in its maximum expression. Surrounded by imposing mountains, lush green valleys and crystal-clear waterfalls, this is a destination that invites exploration and discovery.",
     "rate": 4.9,
     "images": [
-      "01.jpg"
+      "01.jpg",
+      "02.jpg",
+      "03.jpeg",
+      "04.jpg",
+      "05.webp"
     ],
     "state": "Maranhão",
     "country": "BR"
@@ -42,7 +50,11 @@
     "description": "Welcome to the majestic Chapada Diamantina, a setting where nature unfolds in its maximum expression. Surrounded by imposing mountains, lush green valleys and crystal-clear waterfalls, this is a destination that invites exploration and discovery.",
     "rate": 4.9,
     "images": [
-      "01.jpg"
+      "01.jpg",
+      "02.jpg",
+      "03.webp",
+      "04.webp",
+      "05.webp"
     ],
     "state": "Paraná",
     "country": "BR"
@@ -53,7 +65,11 @@
     "description": "Welcome to the majestic Chapada Diamantina, a setting where nature unfolds in its maximum expression. Surrounded by imposing mountains, lush green valleys and crystal-clear waterfalls, this is a destination that invites exploration and discovery.",
     "rate": 4.9,
     "images": [
-      "01.jpg"
+      "01.jpg",
+      "02.jpeg",
+      "03.jpg",
+      "04.jpg",
+      "05.jpeg"
     ],
     "state": "Rio de Janeiro",
     "country": "BR"
@@ -64,7 +80,11 @@
     "description": "Welcome to the majestic Chapada Diamantina, a setting where nature unfolds in its maximum expression. Surrounded by imposing mountains, lush green valleys and crystal-clear waterfalls, this is a destination that invites exploration and discovery.",
     "rate": 4.9,
     "images": [
-      "01.jpg"
+      "01.jpg",
+      "02.jpg",
+      "03.jpg",
+      "04.jpg",
+      "05.webp"
     ],
     "state": "Rio Grande do Sul",
     "country": "BR"
@@ -75,7 +95,11 @@
     "description": "Welcome to the majestic Chapada Diamantina, a setting where nature unfolds in its maximum expression. Surrounded by imposing mountains, lush green valleys and crystal-clear waterfalls, this is a destination that invites exploration and discovery.",
     "rate": 4.9,
     "images": [
-      "01.jpg"
+      "01.jpg",
+      "02.jpg",
+      "03.jpg",
+      "04.jpg",
+      "05.jpg"
     ],
     "state": "Pernambuco",
     "country": "BR"
@@ -86,7 +110,11 @@
     "description": "Welcome to the majestic Chapada Diamantina, a setting where nature unfolds in its maximum expression. Surrounded by imposing mountains, lush green valleys and crystal-clear waterfalls, this is a destination that invites exploration and discovery.",
     "rate": 4.9,
     "images": [
-      "01.jpg"
+      "01.jpg",
+      "02.jpg",
+      "03.jpg",
+      "04.jpeg",
+      "05.jpg"
     ],
     "state": "Mato Grosso do Sul",
     "country": "BR"
