@@ -1,16 +1,18 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
-import { useViewport } from "@hook/use-media-query"
-import { MenuPrincipal } from "./menu-principal"
+import { useViewport } from '@hook/use-media-query';
+import { MenuPrincipal } from './menu-principal';
 
-export function MenuDesktop () {
+export function MenuDesktop() {
   const { isDesktop } = useViewport();
 
-  return isDesktop && (
-    <Content>
-      <MenuPrincipal />
-    </Content>
-  )
+  return (
+    isDesktop && (
+      <Content>
+        <MenuPrincipal />
+      </Content>
+    )
+  );
 }
 
 const Content = styled.div`

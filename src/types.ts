@@ -11,7 +11,7 @@
  * interface User {
  *   readonly name: string;
  * }
- * 
+ *
  * Updating a property in the draft object
  * function updateUser(user: WritableDraft<User>, name: string) {
  *   user.name = name;

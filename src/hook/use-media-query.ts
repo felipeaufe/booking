@@ -36,8 +36,12 @@ function useMediaQuery(...queries: string[]): boolean {
 }
 
 export function useViewport() {
-  const isMobile = useMediaQuery(`screen and (min-width: 1px) and ${device.mobileL}`);
-  const isTablet = useMediaQuery(`screen and (min-width: 1px) and ${device.tablet}`);
+  const isMobile = useMediaQuery(
+    `screen and (min-width: 1px) and ${device.mobileL}`,
+  );
+  const isTablet = useMediaQuery(
+    `screen and (min-width: 1px) and ${device.tablet}`,
+  );
 
   return {
     isMobile,

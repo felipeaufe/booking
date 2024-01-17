@@ -1,8 +1,7 @@
-import { render, screen } from "@testing-library/react";
-import { useViewport } from "./use-media-query";
+import { render, screen } from '@testing-library/react';
+import { useViewport } from './use-media-query';
 
 describe('useMediaQuery', () => {
-  
   const MyComp = () => {
     const { isMobile, isDesktop } = useViewport();
 
@@ -11,11 +10,10 @@ describe('useMediaQuery', () => {
         {isMobile && <p>Mobile</p>}
         {isDesktop && <p>Desktop</p>}
       </>
-    )
-  }
+    );
+  };
 
   it('should validate is a desktop screen', () => {
-    
     global.matchMedia = jest.fn().mockImplementation(query => {
       return {
         matches: false,
@@ -30,12 +28,11 @@ describe('useMediaQuery', () => {
 
     render(<MyComp />);
 
-    expect(screen.queryByText("Desktop")).toBeInTheDocument();
-    expect(screen.queryByText("Mobile")).not.toBeInTheDocument();
-  })
+    expect(screen.queryByText('Desktop')).toBeInTheDocument();
+    expect(screen.queryByText('Mobile')).not.toBeInTheDocument();
+  });
 
   it('should validate is a mobile screen', () => {
-    
     global.matchMedia = jest.fn().mockImplementation(query => {
       return {
         matches: true,
@@ -49,7 +46,7 @@ describe('useMediaQuery', () => {
     });
 
     render(<MyComp />);
-    expect(screen.queryByText("Desktop")).not.toBeInTheDocument();
-    expect(screen.queryByText("Mobile")).toBeInTheDocument();
-  })
-})
+    expect(screen.queryByText('Desktop')).not.toBeInTheDocument();
+    expect(screen.queryByText('Mobile')).toBeInTheDocument();
+  });
+});

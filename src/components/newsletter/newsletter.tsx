@@ -1,14 +1,13 @@
-import { useMemo, useState } from "react";
-import { Container as ContainerStyled } from "@assets/styled/container";
-import { Button as ButtonStyled } from "@assets/styled/button";
-import styled from "styled-components";
-import { device } from "@assets/styled/media-query";
-import { newsletterService } from "@services/newsletter-service";
-import { toast } from "react-toastify";
+import { useMemo, useState } from 'react';
+import { Container as ContainerStyled } from '@assets/styled/container';
+import { Button as ButtonStyled } from '@assets/styled/button';
+import styled from 'styled-components';
+import { device } from '@assets/styled/media-query';
+import { newsletterService } from '@services/newsletter-service';
+import { toast } from 'react-toastify';
 
-export function Newsletter () {
-
-  const [ email, setEmail ] = useState('');
+export function Newsletter() {
+  const [email, setEmail] = useState('');
 
   const isValidEmail = useMemo(() => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -16,19 +15,22 @@ export function Newsletter () {
   }, [email]);
 
   const handleOnClick = () => {
-      newsletterService.post(email)
+    newsletterService
+      .post(email)
       .then(() => {
         setEmail('');
-        toast.success("Subscribed successfully.")
+        toast.success('Subscribed successfully.');
       })
       .catch(() => {
-        toast.error("Oops, we were unable to subscribe.")
+        toast.error('Oops, we were unable to subscribe.');
       });
-  }
+  };
 
-  const handleOnInputChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnInputChange = ({
+    target,
+  }: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(target.value);
-  }
+  };
 
   return (
     <Section>
@@ -36,17 +38,30 @@ export function Newsletter () {
         <Effect>
           <Container>
             <Title>
-              Receive <span>News</span> and <span>Promotions</span> that we have prepared with great care for <span>you</span>.
+              Receive <span>News</span> and <span>Promotions</span> that we have
+              prepared with great care for <span>you</span>.
             </Title>
             <InputContainer>
-              <Input data-testid="input" value={email} onChange={handleOnInputChange} type="email" placeholder="Email Address..." />
-              <Button disabled={!isValidEmail} variant="primary" onClick={handleOnClick}>SUBMIT</Button>
+              <Input
+                data-testid="input"
+                value={email}
+                onChange={handleOnInputChange}
+                type="email"
+                placeholder="Email Address..."
+              />
+              <Button
+                disabled={!isValidEmail}
+                variant="primary"
+                onClick={handleOnClick}
+              >
+                SUBMIT
+              </Button>
             </InputContainer>
           </Container>
         </Effect>
       </Waves>
     </Section>
-  )
+  );
 }
 
 const Section = styled.section`
@@ -57,13 +72,13 @@ const Section = styled.section`
   @media screen and (max-width: 920px) {
     margin-top: calc(var(--spacing-142) + 112px);
   }
-`
+`;
 const Waves = styled.div`
   background-image: url('/waves.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-`
+`;
 
 const Effect = styled.div`
   background-image: url('/newsletter-effect.svg');
@@ -74,7 +89,7 @@ const Effect = styled.div`
   @media ${device.mobileL} {
     background-position: 160%;
   }
-`
+`;
 
 const Title = styled.p`
   margin: 0;
@@ -99,7 +114,7 @@ const Title = styled.p`
   @media ${device.mobileL} {
     top: -100%;
   }
-`
+`;
 
 const Container = styled(ContainerStyled)`
   display: flex;
@@ -108,7 +123,7 @@ const Container = styled(ContainerStyled)`
   justify-content: space-between;
   padding-top: var(--spacing-60);
   padding-bottom: var(--spacing-60);
-`
+`;
 
 const InputContainer = styled.div`
   display: flex;
@@ -123,7 +138,7 @@ const InputContainer = styled.div`
   @media screen and (max-width: 920px) {
     width: 100%;
   }
-`
+`;
 
 const Input = styled.input`
   background-color: white;
@@ -131,13 +146,13 @@ const Input = styled.input`
   height: 64px;
   width: 300px;
   outline: none;
-  border-radius: var(--border-radius-12); 
+  border-radius: var(--border-radius-12);
   padding: 0 var(--spacing-16);
 
   @media screen and (max-width: 920px) {
     width: 100%;
   }
-`
+`;
 
 const Button = styled(ButtonStyled)`
   height: 40px;
@@ -145,4 +160,4 @@ const Button = styled(ButtonStyled)`
   margin-right: var(--spacing-20);
   margin-top: var(--spacing-12);
   margin-bottom: var(--spacing-12);
-`
+`;

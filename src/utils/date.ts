@@ -5,11 +5,11 @@
  * @param {number} days - The number of days to subtract.
  * @return {Date} The resulting date after subtracting the specified number of days.
  */
-export function subDays(date: Date, days: number){
+export function subDays(date: Date, days: number) {
   const newDate = new Date(date);
   newDate.setDate(newDate.getDate() - days);
 
-  return newDate
+  return newDate;
 }
 
 /**
@@ -19,11 +19,11 @@ export function subDays(date: Date, days: number){
  * @param {number} days - The number of days to add to the date.
  * @return {Date} The resulting date after adding the specified number of days.
  */
-export function addDays(date: Date, days: number){
+export function addDays(date: Date, days: number) {
   const newDate = new Date(date);
   newDate.setDate(newDate.getDate() + days);
-  
-  return newDate
+
+  return newDate;
 }
 
 /**
@@ -33,5 +33,5 @@ export function addDays(date: Date, days: number){
  * @return {string} The formatted date string in the format "dd/mm/yyyy".
  */
 export function formatDate(date: Date) {
-  return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+  return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
 }

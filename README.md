@@ -7,6 +7,7 @@ It uses React version 18 and contains a complete configuration for a single-page
 The project tries to represent a simple travel reservation system. Users can choose from available options and make a reservation. The reservation will simulate a request to an API, but the data is only persisted in memory and localStorage.
 
 ## Technology used
+
 Technologies used in the project
 
 - React 18;
@@ -17,14 +18,13 @@ Technologies used in the project
 - Swiper;
 - Jest;
 - Redux Saga;
-- Axios'.
-
+- Axios.
 
 ## Starting project
-1. Install package dependencies with `yarn install` (Node v18.19.0);
-2. Execute the project with `yarn start` or `yarn dev`;
-3. Have fun,
 
+1. Install package dependencies with `yarn install` or `npm install` (Node v18.19.0);
+2. Execute the project with `yarn start` or `yarn dev`;
+3. Have fun.
 
 ## Project Structure
 
@@ -46,7 +46,7 @@ Other on-demand folders were also used:
 - Assets: This folder contains static assets such as Styled Components and stylesheets.
 - Config: This folder contains configuration files for the project.
 
-## Desing
+## Design
 
 To build this project, we first conducted a study of the pages and flows that we wanted to create. We used Figma to create wireframes and prototypes of the pages. This helped us to visualize the project and to identify any potential problems.
 
@@ -54,6 +54,6 @@ To build this project, we first conducted a study of the pages and flows that we
 
 [Click here to access the complete material!](https://www.figma.com/file/Z0KPdhfLoRImLlFvZLnE5q/Booking?type=design&node-id=884%3A1330&mode=design&t=wHmbz070XIGF3zUE-1)
 
-
 ## Contributors
-**@author:** 'Felipe Augusto *< [https://www.linkedin.com/in/felipe-augusto-feitosa/](https://www.linkedin.com/in/felipe-augusto-feitosa/) >*'
+
+**@author:** 'Felipe Augusto _< [https://www.linkedin.com/in/felipe-augusto-feitosa/](https://www.linkedin.com/in/felipe-augusto-feitosa/) >_'

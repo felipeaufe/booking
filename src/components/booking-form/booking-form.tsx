@@ -1,75 +1,84 @@
-import styled from "styled-components";
-import { Button } from "@assets/styled/button";
-import { GuestSelect, Guests } from "@components/guest-select/guest-select";
-import { ButtonDatePicker } from "@elements/button-date-picker/button-date-picker";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { addDays } from "@utils/date";
-import { Booking, bookingsEvents } from "@state/bookings/types";
-import { Status, useDispatch, useSelector } from "@state/store";
-import { bookingsActions } from "@state/bookings/saga";
-import { toast } from "react-toastify";
-import { findNextFreeDate, getBookingsIntervals } from "@utils/bookings-intervals";
-import eventBus from "@utils/event-bus";
+import styled from 'styled-components';
+import { Button } from '@assets/styled/button';
+import { GuestSelect, Guests } from '@components/guest-select/guest-select';
+import { ButtonDatePicker } from '@elements/button-date-picker/button-date-picker';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { addDays } from '@utils/date';
+import { Booking, bookingsEvents } from '@state/bookings/types';
+import { Status, useDispatch, useSelector } from '@state/store';
+import { bookingsActions } from '@state/bookings/saga';
+import { toast } from 'react-toastify';
+import {
+  findNextFreeDate,
+  getBookingsIntervals,
+} from '@utils/bookings-intervals';
+import eventBus from '@utils/event-bus';
 
-export interface BookingForm extends Omit<Booking, "placeCode"> {}
+export interface BookingForm extends Omit<Booking, 'placeCode'> {}
 
 type BookingFormProps = {
   readonly placeCode: string;
   readonly booking?: Booking;
   readonly onCancel?: () => void;
-}
-export function BookingForm ({ placeCode, booking, onCancel }: BookingFormProps) {
+};
+export function BookingForm({
+  placeCode,
+  booking,
+  onCancel,
+}: BookingFormProps) {
   const initialData = {
     id: booking?.id,
     placeCode: placeCode,
     guests: booking?.guests || {
       adults: 0,
       children: 0,
-      pets: 0
+      pets: 0,
     },
     checkIn: booking?.checkIn ? new Date(booking?.checkOut) : null,
-    checkOut: booking?.checkOut ? new Date(booking?.checkOut) : null
-  }
+    checkOut: booking?.checkOut ? new Date(booking?.checkOut) : null,
+  };
 
   const dispatch = useDispatch();
 
   const { data: bookings } = useSelector(state => state.bookings);
-  
-  const [ loading, setLoading ] = useState(false);
 
-  const [ adults, setAdults ] = useState(initialData.guests.adults);
-  const [ children, setChildren ] = useState(initialData.guests.children);
-  const [ pets, setPets ] = useState(initialData.guests.pets);
+  const [loading, setLoading] = useState(false);
 
-  const [ checkIn, setCheckIn ] = useState<Date | null>(initialData.checkIn);
-  const [ checkOut, setCheckOut ] = useState<Date | null>(initialData.checkOut);
+  const [adults, setAdults] = useState(initialData.guests.adults);
+  const [children, setChildren] = useState(initialData.guests.children);
+  const [pets, setPets] = useState(initialData.guests.pets);
+
+  const [checkIn, setCheckIn] = useState<Date | null>(initialData.checkIn);
+  const [checkOut, setCheckOut] = useState<Date | null>(initialData.checkOut);
 
   const handleChangeGuests = (value: Guests) => {
     setAdults(value.adults);
     setChildren(value.children);
     setPets(value.pets);
-  }
-  
+  };
+
   const handleChangeCheckIng = (value: Date | null) => {
     setCheckIn(value);
     setCheckOut(null);
-  }
+  };
 
   const excludedIntervals = useMemo(() => {
     return getBookingsIntervals(placeCode, bookings);
   }, [placeCode, bookings]);
 
   const checkoutMaxDate = useMemo(() => {
-    return findNextFreeDate(checkIn  || addDays(new Date(), 2), excludedIntervals) || addDays(new Date(), 30);
+    return (
+      findNextFreeDate(checkIn || addDays(new Date(), 2), excludedIntervals) ||
+      addDays(new Date(), 30)
+    );
   }, [checkIn, excludedIntervals]);
-  
+
   const isValid = useMemo(() => {
-    return checkIn && checkOut && ( adults > 0 || children > 0 || pets > 0)
+    return checkIn && checkOut && (adults > 0 || children > 0 || pets > 0);
   }, [checkIn, checkOut, adults, children, pets]);
-  
+
   const handleOnClick = useCallback(() => {
     if (isValid) {
-      
       const data: Booking = {
         id: booking?.id,
         placeCode,
@@ -78,54 +87,69 @@ export function BookingForm ({ placeCode, booking, onCancel }: BookingFormProps)
         guests: {
           adults,
           children,
-          pets
+          pets,
         },
       };
 
-      if(data.id) {
-        dispatch({ type: bookingsActions.UPDATE_REQUEST, payload: data })
+      if (data.id) {
+        dispatch({ type: bookingsActions.UPDATE_REQUEST, payload: data });
       } else {
-        dispatch({ type: bookingsActions.STORE_REQUEST, payload: data })
+        dispatch({ type: bookingsActions.STORE_REQUEST, payload: data });
       }
     }
-  }, [isValid, booking?.id, placeCode, checkIn, checkOut, adults, children, pets, dispatch]);
+  }, [
+    isValid,
+    booking?.id,
+    placeCode,
+    checkIn,
+    checkOut,
+    adults,
+    children,
+    pets,
+    dispatch,
+  ]);
 
   const handleOnCancel = () => {
     onCancel?.();
   };
 
   const handleOnUpdateStatus = ({ success, error, loading }: Status) => {
-    
     setLoading(loading);
 
-    if(success) {
+    if (success) {
       setCheckIn(null);
       setCheckOut(null);
       setAdults(0);
       setChildren(0);
       setPets(0);
 
-      toast.success("Your reservation has been registered successfully.")
+      toast.success('Your reservation has been registered successfully.');
       onCancel?.();
     }
 
-    if(error) {
-      toast.error("Oops, we were unable to proceed with the reservation.")
+    if (error) {
+      toast.error('Oops, we were unable to proceed with the reservation.');
       onCancel?.();
     }
-  }
+  };
 
   useEffect(() => {
-    const { unsubscribe: storeUnsubscribe } = eventBus.subscribe<Status>(bookingsEvents.STORE_STATUS, handleOnUpdateStatus)
-    const { unsubscribe: updateUnsubscribe } = eventBus.subscribe<Status>(bookingsEvents.UPDATE_STATUS, handleOnUpdateStatus)
+    const { unsubscribe: storeUnsubscribe } = eventBus.subscribe<Status>(
+      bookingsEvents.STORE_STATUS,
+      handleOnUpdateStatus,
+    );
+    const { unsubscribe: updateUnsubscribe } = eventBus.subscribe<Status>(
+      bookingsEvents.UPDATE_STATUS,
+      handleOnUpdateStatus,
+    );
 
     return () => {
       storeUnsubscribe();
       updateUnsubscribe();
-    }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-  
+  }, []);
+
   return (
     <Container>
       <div>
@@ -136,7 +160,7 @@ export function BookingForm ({ placeCode, booking, onCancel }: BookingFormProps)
           maxDate={addDays(new Date(), 30)}
           excludeDateIntervals={excludedIntervals}
         >
-          Check-in{ checkIn ? `: ${checkIn?.toLocaleDateString()}` : ''}
+          Check-in{checkIn ? `: ${checkIn?.toLocaleDateString()}` : ''}
         </CheckIn>
 
         <CheckOut
@@ -147,13 +171,32 @@ export function BookingForm ({ placeCode, booking, onCancel }: BookingFormProps)
           maxDate={checkoutMaxDate}
           excludeDateIntervals={excludedIntervals}
         >
-          Checkout{ checkOut ? `: ${checkOut?.toLocaleDateString()}` : ''}
+          Checkout{checkOut ? `: ${checkOut?.toLocaleDateString()}` : ''}
         </CheckOut>
       </div>
-      <GuestSelect adults={adults} gestChildren={children} pets={pets} onChange={data => handleChangeGuests(data)} />
+      <GuestSelect
+        adults={adults}
+        gestChildren={children}
+        pets={pets}
+        onChange={data => handleChangeGuests(data)}
+      />
       <ButtonContainer>
-        <Button disabled={loading || !isValid} variant="primary" onClick={handleOnClick}>{ booking ? 'Update' : 'Reserve' }</Button>
-        { booking && <Button disabled={loading || !isValid} variant="secondary" onClick={handleOnCancel}>Cancel</Button>}
+        <Button
+          disabled={loading || !isValid}
+          variant="primary"
+          onClick={handleOnClick}
+        >
+          {booking ? 'Update' : 'Reserve'}
+        </Button>
+        {booking && (
+          <Button
+            disabled={loading || !isValid}
+            variant="secondary"
+            onClick={handleOnCancel}
+          >
+            Cancel
+          </Button>
+        )}
       </ButtonContainer>
     </Container>
   );
@@ -163,7 +206,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
-
 
   & > div {
     display: flex;
@@ -182,7 +224,7 @@ const ButtonContainer = styled.div`
   & > button {
     width: 100%;
   }
-`
+`;
 
 const CheckIn = styled(ButtonDatePicker)`
   margin-right: calc(var(--spacing-12) / 2);

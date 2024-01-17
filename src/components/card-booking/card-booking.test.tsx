@@ -1,31 +1,30 @@
-import { screen } from "@testing-library/react"
-import { CardBooking } from "./card-booking"
-import { renderRedux } from "@test-config/test-utils/render"
-import { initialState } from "@state/bookings"
-import { Booking } from "@state/bookings/types"
-import { places } from "@test-config/mock-data/places"
-import { useSelector } from "@state/store";
+import { screen } from '@testing-library/react';
+import { CardBooking } from './card-booking';
+import { renderRedux } from '@test-config/test-utils/render';
+import { initialState } from '@state/bookings';
+import { Booking } from '@state/bookings/types';
+import { places } from '@test-config/mock-data/places';
+import { useSelector } from '@state/store';
 
-jest.mock("@state/store");
+jest.mock('@state/store');
 
 describe('card-booking', () => {
-
-  (useSelector as jest.Mock).mockReturnValue(places)
+  (useSelector as jest.Mock).mockReturnValue(places);
 
   it('should render CardBooking with success', () => {
     const booking: Booking = {
-      id: "1123123",
+      id: '1123123',
       placeCode: 'lagoa-preta',
       checkIn: new Date().getTime(),
       checkOut: new Date().getTime(),
       guests: {
         adults: 1,
         children: 0,
-        pets: 0
-      }
-    }
-    
-    renderRedux(<CardBooking booking={booking} />, { bookings: initialState })
+        pets: 0,
+      },
+    };
+
+    renderRedux(<CardBooking booking={booking} />, { bookings: initialState });
 
     const buttonChange = screen.getByTestId('change');
     const buttonCancel = screen.getByTestId('cancel');
@@ -36,5 +35,5 @@ describe('card-booking', () => {
     expect(buttonCancel).toBeInTheDocument();
     expect(title).toBeInTheDocument();
     expect(id).toBeInTheDocument();
-  })
-})
+  });
+});

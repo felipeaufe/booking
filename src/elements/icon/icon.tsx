@@ -3,6 +3,6 @@ interface IconProps {
   icon: string;
 }
 
-export function Icon ({ style = "solid", icon }: IconProps) {
-  return <i className={`fa-${style} fa-${icon}`}></i>
+export function Icon({ style = 'solid', icon }: IconProps) {
+  return <i className={`fa-${style} fa-${icon}`}></i>;
 }

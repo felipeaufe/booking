@@ -1,21 +1,22 @@
 export default {
   preset: 'ts-jest',
-  coveragePathIgnorePatterns: [
-    'test-config',
-  ],
+  coveragePathIgnorePatterns: ['test-config'],
   testMatch: ['**/?(*.)+(spec|test).+(ts|tsx|js)'],
-   // to obtain access to the matchers.
+  // to obtain access to the matchers.
   setupFilesAfterEnv: ['./src/test-config/setupTests.ts'],
-      
+
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   modulePaths: ['<rootDir>/src'],
   testEnvironment: 'jsdom',
   transform: {
-    '^.+\\.tsx?$': ['ts-jest', {
-      diagnostics: {
-        ignoreCodes: [151001],
-      }
-    }],
+    '^.+\\.tsx?$': [
+      'ts-jest',
+      {
+        diagnostics: {
+          ignoreCodes: [151001],
+        },
+      },
+    ],
   },
   moduleNameMapper: {
     // if your using tsconfig.paths thers is no harm in telling jest
@@ -32,11 +33,11 @@ export default {
     '@hook/(.*)$': '<rootDir>/src/hook/$1',
     '@/(.*)$': '<rootDir>/src/$1',
     // mocking assests and styling
-  '^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-    '<rootDir>src/test-config/fileMock.ts',
-  '^.+\\.(css|less|scss|sass)$': '<rootDir>src/test-config/styleMock.ts',
-  
-  /* mock models and services folder */
-  '(assets|models|services)': '<rootDir>src/test-config/fileMock.ts',
-},
+    '^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+      '<rootDir>src/test-config/fileMock.ts',
+    '^.+\\.(css|less|scss|sass)$': '<rootDir>src/test-config/styleMock.ts',
+
+    /* mock models and services folder */
+    '(assets|models|services)': '<rootDir>src/test-config/fileMock.ts',
+  },
 };

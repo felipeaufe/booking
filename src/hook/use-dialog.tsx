@@ -27,6 +27,9 @@ function dialog({ title, message }: Dialog): Promise<boolean> {
       document.getElementById(id)?.remove();
     };
 
-    ReactDOM.render(<Dialog title={title} message={message} resolver={handleResolver} />, shadow);
+    ReactDOM.render(
+      <Dialog title={title} message={message} resolver={handleResolver} />,
+      shadow,
+    );
   });
 }

@@ -1,15 +1,15 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
-import { viteMockServe } from 'vite-plugin-mock'
-import { fileURLToPath, URL } from 'node:url'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react-swc';
+import { viteMockServe } from 'vite-plugin-mock';
+import { fileURLToPath, URL } from 'node:url';
 
 function resolvePaths(paths: string[]) {
   return paths.reduce((acc, path) => {
     return {
       ...acc,
-      [`@${path}`]: fileURLToPath(new URL(`./src/${path}`, import.meta.url))
-    }
-  }, {})
+      [`@${path}`]: fileURLToPath(new URL(`./src/${path}`, import.meta.url)),
+    };
+  }, {});
 }
 
 export default defineConfig({
@@ -31,7 +31,7 @@ export default defineConfig({
       'pages',
       'state',
       'utils',
-      'hook'
+      'hook',
     ]),
-  }
-})
+  },
+});

@@ -1,4 +1,3 @@
-
 /**
  * Sets a value in the local storage with the specified key.
  *
@@ -6,11 +5,11 @@
  * @param {object | string | number} value - The value to be stored in the local storage.
  */
 export function set(key: string, value: unknown) {
-  localStorage.setItem(key, typeof value === "string" 
-  ? value
-  : JSON.stringify(value))
+  localStorage.setItem(
+    key,
+    typeof value === 'string' ? value : JSON.stringify(value),
+  );
 }
-
 
 /**
  * Retrieves a value from the local storage based on the specified key.
@@ -23,20 +22,18 @@ export function get<T>(key: string): T | string | null {
 
   try {
     return JSON.parse(data || 'null') as T | string | null;
-  } catch(error) {
+  } catch (error) {
     return data as string;
   }
-  
 }
- 
+
 /**
  * Retrieves the value associated with the specified key from the local storage.
  *
  * @param {string} key - The key to retrieve the value for.
  */
 export function remove(key: string): void {
-  localStorage.removeItem(key)
+  localStorage.removeItem(key);
 }
 
-
-export const store = { set, get ,remove };
+export const store = { set, get, remove };

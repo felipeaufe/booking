@@ -1,29 +1,26 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { CardPlace } from "@components/card-place/card-place";
-import { Container as ContainerStyled } from "@assets/styled/container";
-import { useSelector } from "@state/store";
+import { CardPlace } from '@components/card-place/card-place';
+import { Container as ContainerStyled } from '@assets/styled/container';
+import { useSelector } from '@state/store';
 
-export function ExplorePlaces () {
+export function ExplorePlaces() {
   const places = useSelector(state => state.places.data);
 
-  if(places.length === 0) {
+  if (places.length === 0) {
     return;
   }
-  
+
   return (
-    <Container  id="explore-places">
+    <Container id="explore-places">
       <Title>Explore Place</Title>
       <Content>
-        {places.map((place) =>
-          <CardPlace
-            key={place.code}
-            place={place}
-          />
-        )}
+        {places.map(place => (
+          <CardPlace key={place.code} place={place} />
+        ))}
       </Content>
     </Container>
-  )
+  );
 }
 
 const Title = styled.h2`
@@ -46,7 +43,7 @@ const Title = styled.h2`
   }
 `;
 
-const Container = styled(ContainerStyled)`  `;
+const Container = styled(ContainerStyled)``;
 
 const Content = styled.div`
   display: grid;
@@ -55,7 +52,7 @@ const Content = styled.div`
   gap: 20px;
 
   @media screen and (max-width: 1280px) {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   @media screen and (max-width: 980px) {

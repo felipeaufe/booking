@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export interface PlaceImagesProps {
   readonly name: string;
@@ -6,17 +6,25 @@ export interface PlaceImagesProps {
   readonly images: string[];
 }
 
-export function PlaceImages ({ name, code, images }: PlaceImagesProps) {
+export function PlaceImages({ name, code, images }: PlaceImagesProps) {
   return (
     <Container>
-      <PrincipalImage src={`/img/${code}/${images[0]}`} alt={`Principal image of ${name}`}/>
+      <PrincipalImage
+        src={`/img/${code}/${images[0]}`}
+        alt={`Principal image of ${name}`}
+      />
       <ImageGroup>
-        {images.slice(1).map((image, index) => <Image key={code} src={`/img/${code}/${image}`} alt={`Image ${index+1} of ${name}`}/>)}
+        {images.slice(1).map((image, index) => (
+          <Image
+            key={code}
+            src={`/img/${code}/${image}`}
+            alt={`Image ${index + 1} of ${name}`}
+          />
+        ))}
       </ImageGroup>
     </Container>
-  )
+  );
 }
-
 
 const Container = styled.div`
   display: flex;
@@ -46,10 +54,10 @@ const PrincipalImage = styled.img`
   border-top-left-radius: var(--border-radius-12);
   border-bottom-left-radius: var(--border-radius-12);
   object-fit: cover;
-`
+`;
 
 const Image = styled.img`
   width: calc(50% - 6px);
   height: calc(50% - 6px);
   object-fit: cover;
-`
+`;
