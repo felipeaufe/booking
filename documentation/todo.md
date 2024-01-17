@@ -19,4 +19,4 @@ A booking is when a guest selects a start and end date and submits a reservation
 
 ## Improvements
 [ ] It's possible to booking more than 1 place on the same date. 
-[ ] Install and configure Prettier in the project.
+[x] Install and configure Prettier in the project.
