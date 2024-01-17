@@ -63,8 +63,8 @@ export function BookingForm({
   };
 
   const excludedIntervals = useMemo(() => {
-    return getBookingsIntervals(placeCode, bookings);
-  }, [placeCode, bookings]);
+    return getBookingsIntervals(bookings);
+  }, [bookings]);
 
   const checkoutMaxDate = useMemo(() => {
     return (

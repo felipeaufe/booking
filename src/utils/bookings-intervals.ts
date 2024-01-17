@@ -14,12 +14,10 @@ interface Interval {
  * @return {Interval[]} An array of intervals representing the bookings.
  */
 export function getBookingsIntervals(
-  placeCode: string,
   bookings: Booking[],
 ): Interval[] {
   if (bookings.length > 0) {
     const intervals = bookings
-      .filter(booking => booking.placeCode === placeCode)
       .map(booking => {
         const start = new Date(booking.checkIn);
         const end = new Date(booking.checkOut);
