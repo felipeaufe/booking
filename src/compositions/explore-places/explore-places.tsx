@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { CardPlace } from '@components/card-place/card-place';
-import { Container as ContainerStyled } from '@assets/styled/container';
+import { Container as ContainerStyled } from '@elements/container';
 import { useSelector } from '@state/store';
 
 export function ExplorePlaces() {

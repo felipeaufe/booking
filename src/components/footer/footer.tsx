@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Container as ContainerStyled } from '@assets/styled/container';
+import { Container as ContainerStyled } from '@elements/container';
 import { device } from '@assets/styled/media-query';
 
 export function Footer() {

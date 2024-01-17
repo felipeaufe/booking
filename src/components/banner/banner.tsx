@@ -1,5 +1,5 @@
-import { Button as ButtonStyled } from '@assets/styled/button';
-import { Container as ContainerStyled } from '@assets/styled/container';
+import { Button as ButtonStyled } from '@elements/button';
+import { Container as ContainerStyled } from '@elements/container';
 import { device } from '@assets/styled/media-query';
 import styled from 'styled-components';
 

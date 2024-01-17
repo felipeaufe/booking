@@ -1,4 +1,4 @@
-import { Container } from '@assets/styled/container';
+import { Container } from '@elements/container';
 import { PlaceInformation } from '@components/place-information/place-information';
 import { PlaceImages } from '@components/place-images/place-images';
 import { useSelector } from '@state/store';

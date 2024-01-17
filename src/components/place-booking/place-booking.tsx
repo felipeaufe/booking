@@ -1,4 +1,4 @@
-import { BookingForm } from '@components/booking-form/booking-form';
+import { BookingForm } from '@compositions/booking-form/booking-form';
 import { bookingsEvents } from '@state/bookings/types';
 import { Status } from '@state/store';
 import eventBus from '@utils/event-bus';

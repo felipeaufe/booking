@@ -1,4 +1,4 @@
-import { Guests } from '@components/guest-select/guest-select';
+import { Guests } from '@compositions/guest-select/guest-select';
 
 export interface Booking {
   id?: string;

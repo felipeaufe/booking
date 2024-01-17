@@ -1,14 +1,14 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { ButtonDatePicker } from './button-date-picker';
+import { DatePicker } from './date-picker';
 
-describe('button-date-picker', () => {
+describe('date-picker', () => {
   // const onChange = jest.fn();
   it('should return the chosen date', () => {
     let date: Date | null = null;
     render(
-      <ButtonDatePicker value={new Date()} onChange={value => (date = value)}>
+      <DatePicker value={new Date()} onChange={value => (date = value)}>
         Button
-      </ButtonDatePicker>,
+      </DatePicker>,
     );
 
     const button = screen.getByText('Button');

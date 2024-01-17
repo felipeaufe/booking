@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Button } from '@assets/styled/button';
-import { GuestSelect, Guests } from '@components/guest-select/guest-select';
-import { ButtonDatePicker } from '@elements/button-date-picker/button-date-picker';
+import { Button } from '@elements/button';
+import { GuestSelect, Guests } from '@compositions/guest-select/guest-select';
+import { DatePicker as ReactDateComponent } from '@components/button-date-picker/date-picker';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { addDays } from '@utils/date';
 import { Booking, bookingsEvents } from '@state/bookings/types';
@@ -51,22 +51,11 @@ export function BookingForm({
   const [checkIn, setCheckIn] = useState<Date | null>(initialData.checkIn);
   const [checkOut, setCheckOut] = useState<Date | null>(initialData.checkOut);
 
-  const handleChangeGuests = (value: Guests) => {
-    setAdults(value.adults);
-    setChildren(value.children);
-    setPets(value.pets);
-  };
-
-  const handleChangeCheckIng = (value: Date | null) => {
-    setCheckIn(value);
-    setCheckOut(null);
-  };
-
   const excludedIntervals = useMemo(() => {
     return getBookingsIntervals(bookings);
   }, [bookings]);
 
-  const checkoutMaxDate = useMemo(() => {
+  const maxDate = useMemo(() => {
     return (
       findNextFreeDate(checkIn || addDays(new Date(), 2), excludedIntervals) ||
       addDays(new Date(), 30)
@@ -76,6 +65,24 @@ export function BookingForm({
   const isValid = useMemo(() => {
     return checkIn && checkOut && (adults > 0 || children > 0 || pets > 0);
   }, [checkIn, checkOut, adults, children, pets]);
+
+  const handleChangeGuests = (value: Guests) => {
+    setAdults(value.adults);
+    setChildren(value.children);
+    setPets(value.pets);
+  };
+
+  const handleOnChangeDate = ([start, end]: [Date | null, Date | null]) => {
+    setCheckIn(start);
+    setCheckOut(end);
+  };
+
+  const handleOnCalendarClose = useCallback(() => {
+    if(!checkOut) {
+      setCheckIn(null);
+      setCheckOut(null);
+    }
+  }, [checkOut, setCheckIn, setCheckOut]);
 
   const handleOnClick = useCallback(() => {
     if (isValid) {
@@ -153,26 +160,26 @@ export function BookingForm({
   return (
     <Container>
       <div>
-        <CheckIn
+        <DatePicker
           value={checkIn}
-          onChange={handleChangeCheckIng}
+          onChange={handleOnChangeDate}
           minDate={addDays(new Date(), 2)}
-          maxDate={addDays(new Date(), 30)}
+          maxDate={maxDate}
           excludeDateIntervals={excludedIntervals}
+          startDate={checkIn}
+          endDate={checkOut}
+          onCalendarClose={handleOnCalendarClose}
+          selectsRange
         >
-          Check-in{checkIn ? `: ${checkIn?.toLocaleDateString()}` : ''}
-        </CheckIn>
-
-        <CheckOut
-          value={checkOut}
-          onChange={data => data && setCheckOut(data)}
-          disabled={!checkIn}
-          minDate={checkIn || addDays(new Date(), 2)}
-          maxDate={checkoutMaxDate}
-          excludeDateIntervals={excludedIntervals}
-        >
-          Checkout{checkOut ? `: ${checkOut?.toLocaleDateString()}` : ''}
-        </CheckOut>
+          <ContentDatePicker>
+            <button>
+                Check-in{checkIn ? `: ${checkIn?.toLocaleDateString()}` : ''}
+            </button>
+            <button>
+              Checkout{checkOut ? `: ${checkOut?.toLocaleDateString()}` : ''}
+            </button>
+          </ContentDatePicker>
+        </DatePicker>
       </div>
       <GuestSelect
         adults={adults}
@@ -226,11 +233,17 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const CheckIn = styled(ButtonDatePicker)`
-  margin-right: calc(var(--spacing-12) / 2);
+const DatePicker = styled(ReactDateComponent)`
   width: 100%;
-`;
-const CheckOut = styled(ButtonDatePicker)`
-  margin-left: calc(var(--spacing-12) / 2);
+`
+
+export const ContentDatePicker = styled.div`
+  display: flex;
+  justify-content: space-between;
   width: 100%;
+  gap: 12px;
+
+  & > button {
+    width: 100%
+  }
 `;

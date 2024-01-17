@@ -1,8 +1,7 @@
-import DatePicker from 'react-datepicker';
+import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import styled from 'styled-components';
 
-interface ButtonDatePickerProps {
+interface DatePickerProps {
   readonly children: React.ReactNode;
   readonly value: Date | null;
   readonly disabled?: boolean;
@@ -10,9 +9,15 @@ interface ButtonDatePickerProps {
   readonly excludeDateIntervals?: { start: Date; end: Date }[];
   readonly maxDate?: Date;
   readonly minDate?: Date;
-  readonly onChange: (value: Date) => void;
+  readonly selectsRange?: boolean;
+  readonly startDate?: Date | null;
+  readonly endDate?: Date | null;
+
+
+  readonly onChange: (value: [Date | null, Date | null]) => void;
+  readonly onCalendarClose: () => void;
 }
-export function ButtonDatePicker({
+export function DatePicker({
   children,
   value,
   maxDate,
@@ -20,12 +25,17 @@ export function ButtonDatePicker({
   includeDateIntervals,
   excludeDateIntervals,
   disabled,
+  selectsRange,
+  endDate,
+  startDate,
+  
   onChange,
+  onCalendarClose,
   ...rest
-}: ButtonDatePickerProps) {
+}: DatePickerProps) {
   return (
     <div {...rest}>
-      <DatePicker
+      <ReactDatePicker
         selected={value}
         onChange={onChange}
         includeDateIntervals={includeDateIntervals}
@@ -33,19 +43,15 @@ export function ButtonDatePicker({
         maxDate={maxDate}
         minDate={minDate}
         disabled={disabled}
-        customInput={<Button>{children}</Button>}
-      />
+        selectsRange={selectsRange}
+        startDate={startDate}
+        endDate={endDate}
+        monthsShown={2}
+        customInput={<div>{children}</div>}
+        onCalendarClose={onCalendarClose}
+      >
+       <div style={{ color: "red" }}>Don't forget to check the weather!</div> 
+      </ReactDatePicker>
     </div>
   );
 }
-
-export const Button = styled.button`
-  cursor: pointer;
-  background-color: #f5f5f5;
-  border: 1px solid #e6e6e6;
-  border-radius: var(--border-radius-12);
-  height: 64px;
-  padding: 0 var(--spacing-16);
-  text-align: left;
-  width: 100%;
-`;

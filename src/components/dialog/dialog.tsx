@@ -1,7 +1,7 @@
 import Modal from 'react-modal';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { Button as ButtonStyled } from '@assets/styled/button';
+import { Button as ButtonStyled } from '@elements/button';
 
 interface DialogProps {
   readonly title: string;

@@ -1,6 +1,6 @@
-import { Button as ButtonStyled } from '@assets/styled/button';
+import { Button as ButtonStyled } from '@elements/button';
 import { device } from '@assets/styled/media-query';
-import { CardBooking } from '@components/card-booking/card-booking';
+import { CardBooking } from '@compositions/card-booking/card-booking';
 import { useSelector } from '@state/store';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';

@@ -1,4 +1,4 @@
-import { Guests } from '@components/guest-select/guest-select';
+import { Guests } from '@compositions/guest-select/guest-select';
 import { Booking } from '@state/bookings/types';
 import { findNextFreeDate, getBookingsIntervals } from './bookings-intervals';
 import { addDays, formatDate } from './date';

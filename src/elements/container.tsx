@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { container } from './media-query';
+import { container } from '../assets/styled/media-query';
 
 export const Container = styled.div<{ fluid?: boolean }>`
   appearance: none;

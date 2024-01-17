@@ -3,13 +3,13 @@ import { Booking } from '@state/bookings/types';
 import { useDispatch, useSelector } from '@state/store';
 import { useMemo, useState } from 'react';
 import styled from 'styled-components';
-import { Button as ButtonStyled } from '@assets/styled/button';
+import { Button as ButtonStyled } from '@elements/button';
 import { device } from '@assets/styled/media-query';
 import { useViewport } from '@hook/use-media-query';
 import { bookingsActions } from '@state/bookings/saga';
 import { useDialog } from '@hook/use-dialog';
 import { Modal } from '@components/modal/modal';
-import { BookingForm } from '@components/booking-form/booking-form';
+import { BookingForm } from '@compositions/booking-form/booking-form';
 import { formatDate } from '@utils/date';
 
 interface CardBookingProps {

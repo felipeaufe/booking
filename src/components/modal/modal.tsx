@@ -1,6 +1,6 @@
 import ReactModal from 'react-modal';
 import styled from 'styled-components';
-import { Button as ButtonStyled } from '@assets/styled/button';
+import { Button as ButtonStyled } from '@elements/button';
 import { Icon } from '@elements/icon/icon';
 
 interface DialogProps {
