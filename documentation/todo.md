@@ -16,3 +16,7 @@ A booking is when a guest selects a start and end date and submits a reservation
 [x] Unit Test;
 [x] Style Guide with Figma;
 [x] Readme.MD with all information needed
+
+## Improvements
+[ ] It's possible to booking more than 1 place on the same date. 
+[ ] Install and configure Prettier in the project.
