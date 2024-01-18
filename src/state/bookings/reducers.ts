@@ -1,11 +1,13 @@
-import { PayloadAction } from '@reduxjs/toolkit';
-import { Booking, BookingState, STORE_BOOKINGS, bookingsEvents } from './types';
-import { store } from '@utils/store';
-import { WritableDraft } from 'src/types';
-import eventBus from '@utils/event-bus';
+import { PayloadAction } from "@reduxjs/toolkit";
+import { WritableDraft } from "src/types";
+
+import eventBus from "@utils/event-bus";
+import { store } from "@utils/store";
+
+import { Booking, BookingState, STORE_BOOKINGS, bookingsEvents } from "./types";
 
 export const reducers = {
-  /**!SECTION STORE */
+  /** !SECTION STORE */
 
   storeUpdating: () => {
     eventBus.dispatch(bookingsEvents.STORE_STATUS, {
@@ -43,7 +45,7 @@ export const reducers = {
     });
   },
 
-  /**!SECTION UPDATE */
+  /** !SECTION UPDATE */
   updateUpdating() {
     eventBus.dispatch(bookingsEvents.UPDATE_STATUS, {
       loading: true,
@@ -58,7 +60,7 @@ export const reducers = {
   ) {
     const bookings = (store.get(STORE_BOOKINGS) as Booking[]) || [];
 
-    const index = bookings.findIndex(item => item.id === action.payload.id);
+    const index = bookings.findIndex((item) => item.id === action.payload.id);
 
     if (index !== -1) {
       bookings[index] = action.payload;
@@ -86,7 +88,7 @@ export const reducers = {
     });
   },
 
-  /**!SECTION FETCH */
+  /** !SECTION FETCH */
   fetchSuccess(
     state: WritableDraft<BookingState>,
     action: PayloadAction<Booking[]>,
@@ -107,7 +109,7 @@ export const reducers = {
     });
   },
 
-  /**!SECTION DELETE */
+  /** !SECTION DELETE */
   deleteUpdating() {
     eventBus.dispatch(bookingsEvents.UPDATE_STATUS, {
       loading: true,

@@ -1,6 +1,8 @@
-import { Quantity } from '@components/quantity/quantity';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import styled from 'styled-components';
+import { useEffect, useMemo, useRef, useState } from "react";
+
+import styled from "styled-components";
+
+import { Quantity } from "@components/quantity/quantity";
 
 export interface Guests {
   adults: number;
@@ -22,7 +24,7 @@ export function GuestSelect({
   onChange,
 }: GuestSelectProps) {
   const ref = useRef(null);
-  const [guestsForm, setGuestsOpen] = useState(false);
+  const [guestsForm, setGuestsForm] = useState(false);
 
   const handleValue = (value: number) => {
     return value > 0 ? value : 0;
@@ -53,11 +55,11 @@ export function GuestSelect({
   };
 
   const toggleGuests = () => {
-    setGuestsOpen(!guestsForm);
+    setGuestsForm(!guestsForm);
   };
 
   const selectLabel = useMemo(() => {
-    let label = '';
+    let label = "";
 
     if (adults > 0) {
       label = `${label} Adults: ${adults}`;
@@ -70,31 +72,29 @@ export function GuestSelect({
     }
 
     if (adults === 0 && gestChildren === 0 && pets === 0) {
-      return 'Guests';
+      return "Guests";
     }
 
     return label;
   }, [adults, gestChildren, pets]);
 
   useEffect(() => {
-    if (guestsForm) {
-      const onDocumentClick = (event: MouseEvent) => {
-        if (
-          ref.current &&
-          !(ref.current as unknown as HTMLElement).contains(
-            event.target as Node,
-          )
-        ) {
-          setGuestsOpen(false);
-        }
-      };
+    const onDocumentClick = (event: MouseEvent) => {
+      if (
+        guestsForm &&
+        ref.current &&
+        !(ref.current as unknown as HTMLElement).contains(event.target as Node)
+      ) {
+        setGuestsForm(false);
+      }
+    };
 
-      window.addEventListener('click', onDocumentClick);
-      return () => {
-        window.removeEventListener('click', onDocumentClick);
-      };
-    }
-  }, [ref, guestsForm, setGuestsOpen]);
+    window.addEventListener("click", onDocumentClick);
+
+    return () => {
+      window.removeEventListener("click", onDocumentClick);
+    };
+  }, [ref, guestsForm, setGuestsForm]);
 
   return (
     <Container ref={ref}>
@@ -103,7 +103,7 @@ export function GuestSelect({
       </Button>
       <Content
         data-testid="guest-select-content"
-        className={guestsForm ? 'open' : ''}
+        className={guestsForm ? "open" : ""}
       >
         <Item>
           <Span>Adults</Span>

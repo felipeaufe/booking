@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import { useViewport } from "@hook/use-media-query";
+import styled from "styled-components";
 
-import { useViewport } from '@hook/use-media-query';
-import { MenuPrincipal } from './menu-principal';
+import { MenuPrincipal } from "./menu-principal";
 
 export function MenuDesktop() {
   const { isDesktop } = useViewport();

@@ -1,11 +1,12 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import styled from 'styled-components';
-import { PlaceImagesProps } from '@components/place-images/place-images';
-import { Pagination } from 'swiper/modules';
-import { device } from '@assets/styled/media-query';
+import { device } from "@assets/styled/media-query";
+import styled from "styled-components";
+import { Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import 'swiper/css';
-import 'swiper/css/pagination';
+import { PlaceImagesProps } from "@components/place-images/place-images";
+
+import "swiper/css";
+import "swiper/css/pagination";
 
 export function SwiperPlaceImages({
   code,
@@ -14,9 +15,9 @@ export function SwiperPlaceImages({
 }: Readonly<PlaceImagesProps>) {
   return (
     <Container>
-      <Swiper pagination={true} modules={[Pagination]}>
+      <Swiper pagination modules={[Pagination]}>
         {images.map((image, index) => (
-          <SwiperSlide key={code}>
+          <SwiperSlide key={image}>
             <Image
               src={`/img/${code}/${image}`}
               alt={`Image ${index + 1} of ${name}`}

@@ -1,5 +1,6 @@
+/* eslint-disable react/no-unknown-property */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-jest.mock('swiper/react', () => ({
+jest.mock("swiper/react", () => ({
   Swiper: ({ children, grid, modules, ...rest }: any) => {
     return (
       <div
@@ -19,13 +20,13 @@ jest.mock('swiper/react', () => ({
   ),
 }));
 
-jest.mock('swiper/modules', () => ({
+jest.mock("swiper/modules", () => ({
   Grid: () => ({}),
   Pagination: () => ({}),
 }));
 
-jest.mock('swiper/css', () => jest.fn());
-jest.mock('swiper/css/grid', () => jest.fn());
-jest.mock('swiper/css/pagination', () => jest.fn());
+jest.mock("swiper/css", () => jest.fn());
+jest.mock("swiper/css/grid", () => jest.fn());
+jest.mock("swiper/css/pagination", () => jest.fn());
 
 export {};

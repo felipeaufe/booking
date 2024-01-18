@@ -12,4 +12,4 @@ export interface PlaceState {
   readonly data: Place[];
 }
 
-export const STORE_PLACES = 'places';
+export const STORE_PLACES = "places";

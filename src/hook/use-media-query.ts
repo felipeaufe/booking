@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
-import { device } from '@assets/styled/media-query';
+import { useEffect, useState } from "react";
+
+import { device } from "@assets/styled/media-query";
 
 /**
  *
@@ -8,7 +9,7 @@ import { device } from '@assets/styled/media-query';
  */
 function useMediaQuery(...queries: string[]): boolean {
   const supportMatchMedia =
-    typeof window !== 'undefined' && typeof window.matchMedia !== 'undefined';
+    typeof window !== "undefined" && typeof window.matchMedia !== "undefined";
 
   const [match, setMatch] = useState(false);
 
@@ -24,13 +25,13 @@ function useMediaQuery(...queries: string[]): boolean {
     }
 
     updateMatch();
-    queryList.addEventListener('change', updateMatch);
+    queryList.addEventListener("change", updateMatch);
 
     return () => {
       active = false;
-      queryList.removeEventListener('change', updateMatch);
+      queryList.removeEventListener("change", updateMatch);
     };
-  }, [supportMatchMedia]);
+  }, [queries, supportMatchMedia]);
 
   return match;
 }

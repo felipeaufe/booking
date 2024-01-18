@@ -1,14 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { Booking, BookingState, STORE_BOOKINGS } from './types';
-import { store } from '@utils/store';
-import { reducers } from './reducers';
+import { createSlice } from "@reduxjs/toolkit";
+
+import { store } from "@utils/store";
+
+import { reducers } from "./reducers";
+import { Booking, BookingState, STORE_BOOKINGS } from "./types";
 
 export const initialState: BookingState = {
   data: (store.get(STORE_BOOKINGS) as Booking[]) || [],
 };
 
 const slice = createSlice({
-  name: 'bookings',
+  name: "bookings",
   initialState,
   reducers,
 });

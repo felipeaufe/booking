@@ -1,7 +1,10 @@
-import { Icon } from '@elements/icon/icon';
-import { Place } from '@state/places/types';
-import styled from 'styled-components';
-import { Link as LinkRouter } from 'react-router-dom';
+import { Link as LinkRouter } from "react-router-dom";
+
+import styled from "styled-components";
+
+import { Icon } from "@elements/icon/icon";
+
+import { Place } from "@state/places/types";
 
 interface CardPlaceProps {
   readonly place: Place;

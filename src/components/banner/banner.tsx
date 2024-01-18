@@ -1,12 +1,13 @@
-import { Button as ButtonStyled } from '@elements/button';
-import { Container as ContainerStyled } from '@elements/container';
-import { device } from '@assets/styled/media-query';
-import styled from 'styled-components';
+import { device } from "@assets/styled/media-query";
+import styled from "styled-components";
+
+import { Button as ButtonStyled } from "@elements/button";
+import { Container as ContainerStyled } from "@elements/container";
 
 export function Banner() {
   const handleOnClick = () => {
-    const targetSection = document.getElementById('explore-places');
-    targetSection?.scrollIntoView({ behavior: 'smooth' });
+    const targetSection = document.getElementById("explore-places");
+    targetSection?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (

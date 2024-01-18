@@ -1,6 +1,3 @@
 {
-  "*.[jt]s?(x)": [
-    "pretty-quick --staged",
-    "eslint --fix"
-  ]
+  "*.[jt]s?(x)": ["pretty-quick --staged", "eslint --fix"]
 }

@@ -7,7 +7,7 @@
 export function set(key: string, value: unknown) {
   localStorage.setItem(
     key,
-    typeof value === 'string' ? value : JSON.stringify(value),
+    typeof value === "string" ? value : JSON.stringify(value),
   );
 }
 
@@ -21,7 +21,7 @@ export function get<T>(key: string): T | string | null {
   const data = localStorage.getItem(key);
 
   try {
-    return JSON.parse(data || 'null') as T | string | null;
+    return JSON.parse(data || "null") as T | string | null;
   } catch (error) {
     return data as string;
   }

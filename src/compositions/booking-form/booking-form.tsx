@@ -1,24 +1,28 @@
-import styled from 'styled-components';
-import { Button } from '@elements/button';
-import { GuestSelect, Guests } from '@compositions/guest-select/guest-select';
-import { DatePicker as ReactDateComponent } from '@components/date-picker/date-picker';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { addDays } from '@utils/date';
-import { Booking, bookingsEvents } from '@state/bookings/types';
-import { Status, useDispatch, useSelector } from '@state/store';
-import { bookingsActions } from '@state/bookings/saga';
-import { toast } from 'react-toastify';
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { toast } from "react-toastify";
+
+import { device } from "@assets/styled/media-query";
+import { useViewport } from "@hook/use-media-query";
+import styled from "styled-components";
+
+import { ButtonDatePicker } from "@components/button-date-picker/button-date-picker";
+import { DatePicker as ReactDateComponent } from "@components/date-picker/date-picker";
+import { GuestSelect, Guests } from "@compositions/guest-select/guest-select";
+import { Button } from "@elements/button";
+
 import {
   findNextFreeDate,
   getBookingsIntervals,
   getHighlightInterval,
-} from '@utils/bookings-intervals';
-import eventBus from '@utils/event-bus';
-import { ButtonDatePicker } from '@components/button-date-picker/button-date-picker';
-import { useViewport } from '@hook/use-media-query';
-import { device } from '@assets/styled/media-query';
+} from "@utils/bookings-intervals";
+import { addDays } from "@utils/date";
+import eventBus from "@utils/event-bus";
 
-export interface BookingForm extends Omit<Booking, 'placeCode'> {}
+import { bookingsActions } from "@state/bookings/saga";
+import { Booking, bookingsEvents } from "@state/bookings/types";
+import { Status, useDispatch, useSelector } from "@state/store";
+
+export interface BookingForm extends Omit<Booking, "placeCode"> {}
 
 type BookingFormProps = {
   readonly placeCode: string;
@@ -32,8 +36,8 @@ export function BookingForm({
 }: BookingFormProps) {
   const initialData = {
     id: booking?.id,
-    placeCode: placeCode,
-    guests: booking?.guests || {
+    placeCode,
+    guests: booking?.guests ?? {
       adults: 0,
       children: 0,
       pets: 0,
@@ -45,7 +49,7 @@ export function BookingForm({
   const { isMobile } = useViewport();
   const dispatch = useDispatch();
 
-  const { data: bookings } = useSelector(state => state.bookings);
+  const { data: bookings } = useSelector((state) => state.bookings);
 
   const [loading, setLoading] = useState(false);
 
@@ -84,7 +88,7 @@ export function BookingForm({
   };
 
   const handleOnCalendarClose = useCallback(() => {
-    if(!checkOut) {
+    if (!checkOut) {
       setCheckIn(null);
       setCheckOut(null);
     }
@@ -126,8 +130,12 @@ export function BookingForm({
     onCancel?.();
   };
 
-  const handleOnUpdateStatus = ({ success, error, loading }: Status) => {
-    setLoading(loading);
+  const handleOnUpdateStatus = ({
+    success,
+    error,
+    loading: statusLoading,
+  }: Status) => {
+    setLoading(statusLoading);
 
     if (success) {
       setCheckIn(null);
@@ -136,19 +144,19 @@ export function BookingForm({
       setChildren(0);
       setPets(0);
 
-      toast.success('Your reservation has been registered successfully.');
+      toast.success("Your reservation has been registered successfully.");
       onCancel?.();
     }
 
     if (error) {
-      toast.error('Oops, we were unable to proceed with the reservation.');
+      toast.error("Oops, we were unable to proceed with the reservation.");
       onCancel?.();
     }
   };
 
   const handleOnCleanCheckIn = () => {
-    setCheckIn(null)
-    setCheckOut(null)
+    setCheckIn(null);
+    setCheckOut(null);
   };
 
   useEffect(() => {
@@ -182,11 +190,19 @@ export function BookingForm({
           onCalendarClose={handleOnCalendarClose}
           highlightDates={highlightWithRanges}
           selectsRange
-          monthsShown={ isMobile ? 1 : 2}
+          monthsShown={isMobile ? 1 : 2}
         >
           <ContentDatePicker>
-            <ButtonDatePicker label="Check-in" text={checkIn} onClean={handleOnCleanCheckIn} />
-            <ButtonDatePicker label="Checkout" text={checkOut} onClean={() => setCheckOut(null)} />
+            <ButtonDatePicker
+              label="Check-in"
+              text={checkIn}
+              onClean={handleOnCleanCheckIn}
+            />
+            <ButtonDatePicker
+              label="Checkout"
+              text={checkOut}
+              onClean={() => setCheckOut(null)}
+            />
           </ContentDatePicker>
         </DatePicker>
       </div>
@@ -194,7 +210,7 @@ export function BookingForm({
         adults={adults}
         gestChildren={children}
         pets={pets}
-        onChange={data => handleChangeGuests(data)}
+        onChange={(data) => handleChangeGuests(data)}
       />
       <ButtonContainer>
         <Button
@@ -202,7 +218,7 @@ export function BookingForm({
           variant="primary"
           onClick={handleOnClick}
         >
-          {booking ? 'Update' : 'Reserve'}
+          {booking ? "Update" : "Reserve"}
         </Button>
         {booking && (
           <Button
@@ -233,11 +249,10 @@ const Container = styled.div`
     width: 100%;
   }
 
-
   .react-datepicker__day--highlighted {
     background: transparent;
     color: var(--color-primary);
-    opacity: .5;
+    opacity: 0.5;
   }
 `;
 
@@ -251,7 +266,7 @@ const ButtonContainer = styled.div`
 
 const DatePicker = styled(ReactDateComponent)`
   width: 100%;
-`
+`;
 
 export const ContentDatePicker = styled.div`
   display: flex;
@@ -260,7 +275,7 @@ export const ContentDatePicker = styled.div`
   gap: 12px;
 
   & > button {
-    width: 100%
+    width: 100%;
   }
 
   @media ${device.tablet} {

@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Provider } from 'react-redux';
-import { render } from '@testing-library/react';
-import { configureStore } from '@reduxjs/toolkit';
-import { RootState } from '@state/store';
-import { rootReducer } from '@state/root-reducer';
+import { Provider } from "react-redux";
+
+import { configureStore } from "@reduxjs/toolkit";
+import { render } from "@testing-library/react";
+
+import { rootReducer } from "@state/root-reducer";
+import { RootState } from "@state/store";
 
 type OptionalRootState = Partial<RootState>;
 

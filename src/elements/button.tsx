@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
-const variants = ({ variant = 'flat' }: { variant: string }) =>
+const variants = ({ variant = "flat" }: { variant: string }) =>
   ({
     flat: css`
       background-color: transparent;

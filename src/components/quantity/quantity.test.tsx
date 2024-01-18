@@ -1,15 +1,16 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { Quantity } from './quantity';
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
-describe('quantity', () => {
-  const name = 'test';
+import { Quantity } from "./quantity";
 
-  it('should increase quantity when click on increase button', async () => {
+describe("quantity", () => {
+  const name = "test";
+
+  it("should increase quantity when click on increase button", async () => {
     let value = 0;
 
-    function onClick(newValue: number) {
+    const onClick = (newValue: number) => {
       value = newValue;
-    }
+    };
     const { rerender } = render(
       <Quantity name={name} value={value} onClick={onClick} />,
     );
@@ -35,12 +36,12 @@ describe('quantity', () => {
     });
   });
 
-  it('should decrease quantity when click on decrease button', async () => {
+  it("should decrease quantity when click on decrease button", async () => {
     let value = 2;
 
-    function onClick(newValue: number) {
+    const onClick = (newValue: number) => {
       value = newValue;
-    }
+    };
     const { rerender } = render(
       <Quantity name={name} value={value} onClick={onClick} />,
     );

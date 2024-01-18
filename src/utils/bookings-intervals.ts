@@ -1,5 +1,6 @@
-import { Booking } from '@state/bookings/types';
-import { addDays, subDays } from './date';
+import { Booking } from "@state/bookings/types";
+
+import { addDays, subDays } from "./date";
 
 interface Interval {
   start: Date;
@@ -13,12 +14,10 @@ interface Interval {
  * @param {Booking[]} bookings - The array of bookings.
  * @return {Interval[]} An array of intervals representing the bookings.
  */
-export function getBookingsIntervals(
-  bookings: Booking[],
-): Interval[] {
+export function getBookingsIntervals(bookings: Booking[]): Interval[] {
   if (bookings.length > 0) {
     const intervals = bookings
-      .map(booking => {
+      .map((booking) => {
         const start = new Date(booking.checkIn);
         const end = new Date(booking.checkOut);
         return {
@@ -85,7 +84,6 @@ function resolveDateOverlaps(intervals: Interval[]) {
   return resolvedIntervals;
 }
 
-
 /**
  * Generates an array of highlighted dates based on the provided intervals.
  *
@@ -95,10 +93,10 @@ function resolveDateOverlaps(intervals: Interval[]) {
 export function getHighlightInterval(intervals: Interval[]): Date[] {
   const highlights: Date[] = [];
 
-  for(const interval of intervals) {
+  for (const interval of intervals) {
     let current = interval.start;
 
-    while(Number(current.getDay()) <= Number(interval.end.getDay())) {
+    while (Number(current.getDay()) <= Number(interval.end.getDay())) {
       highlights.push(current);
       current = addDays(current, 1);
     }

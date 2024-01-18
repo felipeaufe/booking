@@ -1,6 +1,7 @@
-import ReactDatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import styled from 'styled-components';
+import ReactDatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+import styled from "styled-components";
 
 interface DatePickerProps {
   readonly children: React.ReactNode;
@@ -15,7 +16,6 @@ interface DatePickerProps {
   readonly endDate?: Date | null;
   readonly monthsShown?: number;
   readonly highlightDates?: Date[] | null;
-
 
   readonly onChange: (value: [Date | null, Date | null]) => void;
   readonly onCalendarClose: () => void;
@@ -33,7 +33,7 @@ export function DatePicker({
   startDate,
   monthsShown = 1,
   highlightDates,
-  
+
   onChange,
   onCalendarClose,
   ...rest
@@ -56,7 +56,7 @@ export function DatePicker({
         onCalendarClose={onCalendarClose}
         customInput={children}
       >
-       <Info>* Date of another reservation</Info> 
+        <Info>* Date of another reservation</Info>
       </ReactDatePicker>
     </div>
   );
@@ -65,4 +65,4 @@ export function DatePicker({
 const Info = styled.p`
   margin: 0;
   color: var(--color-primary);
-`
+`;

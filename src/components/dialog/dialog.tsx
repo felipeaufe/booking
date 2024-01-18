@@ -1,7 +1,9 @@
-import Modal from 'react-modal';
-import { useState } from 'react';
-import styled from 'styled-components';
-import { Button as ButtonStyled } from '@elements/button';
+import { useState } from "react";
+import Modal from "react-modal";
+
+import styled from "styled-components";
+
+import { Button as ButtonStyled } from "@elements/button";
 
 interface DialogProps {
   readonly title: string;
@@ -12,12 +14,12 @@ interface DialogProps {
 export function Dialog({ title, message, resolver }: DialogProps) {
   const customStyles = {
     content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
     },
   };
 

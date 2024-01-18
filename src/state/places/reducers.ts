@@ -1,6 +1,7 @@
-import { PayloadAction } from '@reduxjs/toolkit';
-import { Place, PlaceState } from './types';
-import { WritableDraft } from 'src/types';
+import { PayloadAction } from "@reduxjs/toolkit";
+import { WritableDraft } from "src/types";
+
+import { Place, PlaceState } from "./types";
 
 export const reducers = {
   fetchSuccess(

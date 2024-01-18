@@ -3,5 +3,5 @@
  *
  */
 export function scrollToTop() {
-  document.body.scrollIntoView({ behavior: 'smooth' });
+  document.body.scrollIntoView({ behavior: "smooth" });
 }

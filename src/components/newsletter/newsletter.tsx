@@ -1,13 +1,15 @@
-import { useMemo, useState } from 'react';
-import { Container as ContainerStyled } from '@elements/container';
-import { Button as ButtonStyled } from '@elements/button';
-import styled from 'styled-components';
-import { device } from '@assets/styled/media-query';
-import { newsletterService } from '@services/newsletter-service';
-import { toast } from 'react-toastify';
+import { useMemo, useState } from "react";
+import { toast } from "react-toastify";
+
+import { device } from "@assets/styled/media-query";
+import { newsletterService } from "@services/newsletter-service";
+import styled from "styled-components";
+
+import { Button as ButtonStyled } from "@elements/button";
+import { Container as ContainerStyled } from "@elements/container";
 
 export function Newsletter() {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
 
   const isValidEmail = useMemo(() => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -18,11 +20,11 @@ export function Newsletter() {
     newsletterService
       .post(email)
       .then(() => {
-        setEmail('');
-        toast.success('Subscribed successfully.');
+        setEmail("");
+        toast.success("Subscribed successfully.");
       })
       .catch(() => {
-        toast.error('Oops, we were unable to subscribe.');
+        toast.error("Oops, we were unable to subscribe.");
       });
   };
 
@@ -74,14 +76,14 @@ const Section = styled.section`
   }
 `;
 const Waves = styled.div`
-  background-image: url('/waves.svg');
+  background-image: url("/waves.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 `;
 
 const Effect = styled.div`
-  background-image: url('/newsletter-effect.svg');
+  background-image: url("/newsletter-effect.svg");
   background-repeat: no-repeat;
   background-position: right;
   background-size: contain;

@@ -1,15 +1,17 @@
-import { Guests } from '@compositions/guest-select/guest-select';
-import { Booking } from '@state/bookings/types';
-import { findNextFreeDate, getBookingsIntervals } from './bookings-intervals';
-import { addDays, formatDate } from './date';
+import { Guests } from "@compositions/guest-select/guest-select";
 
-describe('bookings-intervals', () => {
+import { Booking } from "@state/bookings/types";
+
+import { findNextFreeDate, getBookingsIntervals } from "./bookings-intervals";
+import { addDays, formatDate } from "./date";
+
+describe("bookings-intervals", () => {
   it('should return a bookingIntervals when the code is "lagoa-preta"', () => {
-    const code = 'lagoa-preta';
+    const code = "lagoa-preta";
 
     const bookings: Booking[] = [
       {
-        placeCode: '123',
+        placeCode: "123",
         checkIn: new Date().getTime(),
         checkOut: new Date().getTime(),
         guests: {} as Guests,
@@ -21,7 +23,7 @@ describe('bookings-intervals', () => {
         guests: {} as Guests,
       },
       {
-        placeCode: '456',
+        placeCode: "456",
         checkIn: new Date().getTime(),
         checkOut: new Date().getTime(),
         guests: {} as Guests,
@@ -34,8 +36,8 @@ describe('bookings-intervals', () => {
     expect(bookingIntervals[0].end).toEqual(new Date(bookings[1].checkOut));
   });
 
-  it('should prevent intervals overlap', () => {
-    const code = 'lagoa-preta';
+  it("should prevent intervals overlap", () => {
+    const code = "lagoa-preta";
 
     function day(value: number) {
       return addDays(new Date(), value);
@@ -62,7 +64,7 @@ describe('bookings-intervals', () => {
       },
     ];
 
-    const mappedBookings = bookings.map(item => ({
+    const mappedBookings = bookings.map((item) => ({
       ...item,
       checkIn: new Date(item.checkIn),
       checkOut: new Date(item.checkOut),
@@ -79,7 +81,7 @@ describe('bookings-intervals', () => {
     );
   });
 
-  it('should find a next free date in the intervals', () => {
+  it("should find a next free date in the intervals", () => {
     const checkIn = new Date();
 
     const intervals = [

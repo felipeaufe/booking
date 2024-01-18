@@ -1,22 +1,22 @@
-import { Place } from '@state/places/types';
+import { Place } from "@state/places/types";
 
 export const places: Place[] = [
   {
-    code: 'lagoa-preta',
-    name: 'Lagoa Preta',
-    description: '',
+    code: "lagoa-preta",
+    name: "Lagoa Preta",
+    description: "",
     rate: 4.9,
-    images: ['01.jpg'],
-    state: 'Paraná',
-    country: 'BR',
+    images: ["01.jpg"],
+    state: "Paraná",
+    country: "BR",
   },
   {
-    code: 'lencoes-maranhenses',
-    name: 'Lençóis Maranhenses',
-    description: '',
+    code: "lencoes-maranhenses",
+    name: "Lençóis Maranhenses",
+    description: "",
     rate: 4.9,
-    images: ['01.jpg'],
-    state: 'Maranhão',
-    country: 'BR',
+    images: ["01.jpg"],
+    state: "Maranhão",
+    country: "BR",
   },
 ];

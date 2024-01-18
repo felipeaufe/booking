@@ -1,14 +1,15 @@
-import '@test-config/mocks/swiper-pagination';
+import "@test-config/mocks/swiper-pagination";
 
-import { act, render, screen } from '@testing-library/react';
-import { SwiperPlaceImages } from './swiper-place-images';
+import { act, render, screen } from "@testing-library/react";
 
-describe('swiper-place-images', () => {
-  const code = 'lagoa-preta';
-  const name = 'Lagoa Preta';
-  const images = ['01.jpg', '02.jpg', '03.jpg', '04.jpg', '05.jpg'];
+import { SwiperPlaceImages } from "./swiper-place-images";
 
-  it('should render 4 images', async () => {
+describe("swiper-place-images", () => {
+  const code = "lagoa-preta";
+  const name = "Lagoa Preta";
+  const images = ["01.jpg", "02.jpg", "03.jpg", "04.jpg", "05.jpg"];
+
+  it("should render 4 images", async () => {
     await act(async () => {
       render(<SwiperPlaceImages code={code} name={name} images={images} />);
     });

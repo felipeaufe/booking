@@ -1,9 +1,9 @@
-import eventBus from './event-bus';
+import eventBus from "./event-bus";
 
-describe('event-bus', () => {
-  const EVENT_KEY = 'MY_EVENT';
+describe("event-bus", () => {
+  const EVENT_KEY = "MY_EVENT";
 
-  it('deve registrar um evento com subscribe', async () => {
+  it("deve registrar um evento com subscribe", async () => {
     const spyCallback = jest.fn();
 
     eventBus.subscribe(EVENT_KEY, spyCallback);
@@ -12,7 +12,7 @@ describe('event-bus', () => {
     expect(spyCallback).toHaveBeenCalledTimes(1);
   });
 
-  it('deve disparar um evento com dispatch', async () => {
+  it("deve disparar um evento com dispatch", async () => {
     const spyCallback = jest.fn();
 
     eventBus.subscribe<boolean>(EVENT_KEY, spyCallback);
@@ -21,7 +21,7 @@ describe('event-bus', () => {
     expect(spyCallback).toHaveBeenCalledTimes(1);
   });
 
-  it('deve remover um evento com unsubscribe', async () => {
+  it("deve remover um evento com unsubscribe", async () => {
     const spyCallback = jest.fn();
     const spyCallback2 = jest.fn();
 

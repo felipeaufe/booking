@@ -1,11 +1,14 @@
-import { router } from './router.tsx';
-import { RouterProvider } from 'react-router-dom';
-import { useDispatch } from '@state/store';
-import { Header } from '@compositions/header/header';
-import { placesActions } from '@state/places/saga.ts';
-import { useEffect } from 'react';
-import { bookingsActions } from '@state/bookings/saga.ts';
-import { Footer } from '@components/footer/footer.tsx';
+import { useEffect } from "react";
+import { RouterProvider } from "react-router-dom";
+
+import { Footer } from "@components/footer/footer";
+import { Header } from "@compositions/header/header";
+
+import { bookingsActions } from "@state/bookings/saga";
+import { placesActions } from "@state/places/saga";
+import { useDispatch } from "@state/store";
+
+import { router } from "./router";
 
 export function App() {
   const dispatch = useDispatch();

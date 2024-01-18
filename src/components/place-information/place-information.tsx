@@ -1,6 +1,8 @@
-import { Icon } from '@elements/icon/icon';
-import { Place } from '@state/places/types';
-import styled from 'styled-components';
+import styled from "styled-components";
+
+import { Icon } from "@elements/icon/icon";
+
+import { Place } from "@state/places/types";
 
 interface PlaceInformationProps {
   readonly place: Place;

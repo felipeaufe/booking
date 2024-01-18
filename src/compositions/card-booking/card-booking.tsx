@@ -1,16 +1,20 @@
-import { Icon } from '@elements/icon/icon';
-import { Booking } from '@state/bookings/types';
-import { useDispatch, useSelector } from '@state/store';
-import { useMemo, useState } from 'react';
-import styled from 'styled-components';
-import { Button as ButtonStyled } from '@elements/button';
-import { device } from '@assets/styled/media-query';
-import { useViewport } from '@hook/use-media-query';
-import { bookingsActions } from '@state/bookings/saga';
-import { useDialog } from '@hook/use-dialog';
-import { Modal } from '@components/modal/modal';
-import { BookingForm } from '@compositions/booking-form/booking-form';
-import { formatDate } from '@utils/date';
+import { useMemo, useState } from "react";
+
+import { device } from "@assets/styled/media-query";
+import { useDialog } from "@hook/use-dialog";
+import { useViewport } from "@hook/use-media-query";
+import styled from "styled-components";
+
+import { Modal } from "@components/modal/modal";
+import { BookingForm } from "@compositions/booking-form/booking-form";
+import { Button as ButtonStyled } from "@elements/button";
+import { Icon } from "@elements/icon/icon";
+
+import { formatDate } from "@utils/date";
+
+import { bookingsActions } from "@state/bookings/saga";
+import { Booking } from "@state/bookings/types";
+import { useDispatch, useSelector } from "@state/store";
 
 interface CardBookingProps {
   booking: Booking;
@@ -22,18 +26,18 @@ export function CardBooking({ booking }: CardBookingProps) {
   const dispatch = useDispatch();
   const dialog = useDialog();
 
-  const places = useSelector(state => state.places.data);
+  const places = useSelector((state) => state.places.data);
   const { isTablet } = useViewport();
 
   const place = useMemo(() => {
-    return places.find(item => item.code === booking.placeCode);
+    return places.find((item) => item.code === booking.placeCode);
   }, [places, booking]);
 
   const handleOnCancel = async () => {
     if (
       await dialog({
-        title: 'Cancel Booking',
-        message: 'Are you sure you want to cancel this booking?',
+        title: "Cancel Booking",
+        message: "Are you sure you want to cancel this booking?",
       })
     ) {
       dispatch({ type: bookingsActions.DELETE_REQUEST, payload: booking.id });
@@ -51,7 +55,7 @@ export function CardBooking({ booking }: CardBookingProps) {
   const renderDate = (date: Date | number) => {
     let thisDate = date;
 
-    if (typeof date === 'number') {
+    if (typeof date === "number") {
       thisDate = new Date(date);
     }
 
@@ -94,13 +98,13 @@ export function CardBooking({ booking }: CardBookingProps) {
                 <Pill>
                   {booking.guests.adults > 0
                     ? `Adults: ${booking.guests.adults} `
-                    : ''}
+                    : ""}
                   {booking.guests.children > 0
                     ? `Children: ${booking.guests.children} `
-                    : ''}
+                    : ""}
                   {booking.guests.pets > 0
                     ? `Pets: ${booking.guests.adults} `
-                    : ''}
+                    : ""}
                 </Pill>
               </div>
             </FormData>
@@ -110,14 +114,14 @@ export function CardBooking({ booking }: CardBookingProps) {
                 variant="primary"
                 onClick={handleOnEdit}
               >
-                Change {!isTablet && 'Reservation'}
+                Change {!isTablet && "Reservation"}
               </Button>
               <Button
                 data-testid="cancel"
                 variant="secondary"
                 onClick={handleOnCancel}
               >
-                Cancel {!isTablet && 'Reservation'}
+                Cancel {!isTablet && "Reservation"}
               </Button>
             </ButtonContent>
           </Content>

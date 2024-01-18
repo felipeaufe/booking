@@ -1,9 +1,12 @@
-import { device } from '@assets/styled/media-query';
-import { Icon } from '@elements/icon/icon';
-import styled from 'styled-components';
-import { MenuPrincipal } from './menu-principal';
-import { useCallback, useState } from 'react';
-import { useViewport } from '@hook/use-media-query';
+import { useCallback, useState } from "react";
+
+import { device } from "@assets/styled/media-query";
+import { useViewport } from "@hook/use-media-query";
+import styled from "styled-components";
+
+import { Icon } from "@elements/icon/icon";
+
+import { MenuPrincipal } from "./menu-principal";
 
 export function MenuMobile() {
   const [open, setOpen] = useState(false);
@@ -24,7 +27,7 @@ export function MenuMobile() {
             </Button>
           </User>
         </Menu>
-        <Aside data-testid="aside" className={open ? 'open' : ''}>
+        <Aside data-testid="aside" className={open ? "open" : ""}>
           <MenuPrincipal />
         </Aside>
       </Container>

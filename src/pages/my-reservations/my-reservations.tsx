@@ -1,23 +1,26 @@
-import { Button as ButtonStyled } from '@elements/button';
-import { device } from '@assets/styled/media-query';
-import { CardBooking } from '@compositions/card-booking/card-booking';
-import { useSelector } from '@state/store';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import { useNavigate } from "react-router-dom";
+
+import { device } from "@assets/styled/media-query";
+import styled from "styled-components";
+
+import { CardBooking } from "@compositions/card-booking/card-booking";
+import { Button as ButtonStyled } from "@elements/button";
+
+import { useSelector } from "@state/store";
 
 export function MyReservations() {
   const navigate = useNavigate();
-  const bookings = useSelector(state => state.bookings.data);
+  const bookings = useSelector((state) => state.bookings.data);
 
   const handleOnClick = () => {
-    navigate('/');
+    navigate("/");
   };
 
   return (
     <div>
       <H1>My Reservations</H1>
       <List>
-        {bookings.map(booking => (
+        {bookings.map((booking) => (
           <CardBooking key={booking.id} booking={booking} />
         ))}
 

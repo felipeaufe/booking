@@ -1,21 +1,24 @@
-import { Container } from '@elements/container';
-import { PlaceInformation } from '@components/place-information/place-information';
-import { PlaceImages } from '@components/place-images/place-images';
-import { useSelector } from '@state/store';
-import { useParams } from 'react-router-dom';
-import { PlaceBooking } from '@components/place-booking/place-booking';
-import styled from 'styled-components';
-import { device } from '@assets/styled/media-query';
-import { SwiperPlaceImages } from '@components/swiper-place-images/swiper-place-images';
-import { useViewport } from '@hook/use-media-query';
+import { useParams } from "react-router-dom";
+
+import { device } from "@assets/styled/media-query";
+import { useViewport } from "@hook/use-media-query";
+import styled from "styled-components";
+
+import { PlaceBooking } from "@components/place-booking/place-booking";
+import { PlaceImages } from "@components/place-images/place-images";
+import { PlaceInformation } from "@components/place-information/place-information";
+import { SwiperPlaceImages } from "@components/swiper-place-images/swiper-place-images";
+import { Container } from "@elements/container";
+
+import { useSelector } from "@state/store";
 
 export function Place() {
   const { isTablet, isDesktop } = useViewport();
 
   const { code } = useParams();
 
-  const place = useSelector(state =>
-    state.places.data.find(place => place.code === code),
+  const place = useSelector((state) =>
+    state.places.data.find((item) => item.code === code),
   );
 
   if (!place) {

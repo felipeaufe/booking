@@ -1,11 +1,15 @@
-import { BookingForm } from '@compositions/booking-form/booking-form';
-import { bookingsEvents } from '@state/bookings/types';
-import { Status } from '@state/store';
-import eventBus from '@utils/event-bus';
-import { scrollToTop } from '@utils/scroll-to-top';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+import styled from "styled-components";
+
+import { BookingForm } from "@compositions/booking-form/booking-form";
+
+import eventBus from "@utils/event-bus";
+import { scrollToTop } from "@utils/scroll-to-top";
+
+import { bookingsEvents } from "@state/bookings/types";
+import { Status } from "@state/store";
 
 interface PlaceBookingProps {
   readonly code: string;
@@ -20,7 +24,7 @@ export function PlaceBooking({ code }: PlaceBookingProps) {
       ({ success }) => {
         if (success) {
           setTimeout(() => {
-            navigate('/my-reservations');
+            navigate("/my-reservations");
             scrollToTop();
           }, 500);
         }

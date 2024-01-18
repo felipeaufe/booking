@@ -1,11 +1,12 @@
-import { http } from '@config/http';
-import { Booking } from '@state/bookings/types';
+import { http } from "@config/http";
+
+import { Booking } from "@state/bookings/types";
 
 export const bookingsService = {
   async post(booking: Booking): Promise<Booking> {
     try {
       const response = await http.post<{ id: string }>(
-        '/api/bookings',
+        "/api/bookings",
         booking,
       );
       const { id } = response.data;
@@ -22,7 +23,7 @@ export const bookingsService = {
 
   async get(): Promise<Booking[]> {
     try {
-      const response = await http.get<Booking[]>('/api/bookings');
+      const response = await http.get<Booking[]>("/api/bookings");
       return response.data;
     } catch (error) {
       console.error(error);

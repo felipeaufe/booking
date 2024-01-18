@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { render } from '@testing-library/react';
-import { Newsletter } from './newsletter';
+import { render } from "@testing-library/react";
 
-describe('newsletter', () => {
-  it('should render Newsletter', () => {
+import { Newsletter } from "./newsletter";
+
+describe("newsletter", () => {
+  it("should render Newsletter", () => {
     const { container } = render(<Newsletter />);
 
     expect(container).toBeInTheDocument();

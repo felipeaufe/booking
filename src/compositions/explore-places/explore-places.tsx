@@ -1,21 +1,22 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { CardPlace } from '@components/card-place/card-place';
-import { Container as ContainerStyled } from '@elements/container';
-import { useSelector } from '@state/store';
+import { CardPlace } from "@components/card-place/card-place";
+import { Container as ContainerStyled } from "@elements/container";
+
+import { useSelector } from "@state/store";
 
 export function ExplorePlaces() {
-  const places = useSelector(state => state.places.data);
+  const places = useSelector((state) => state.places.data);
 
   if (places.length === 0) {
-    return;
+    return null;
   }
 
   return (
     <Container id="explore-places">
       <Title>Explore Place</Title>
       <Content>
-        {places.map(place => (
+        {places.map((place) => (
           <CardPlace key={place.code} place={place} />
         ))}
       </Content>
@@ -32,7 +33,7 @@ const Title = styled.h2`
   padding-left: 8px;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: calc(50% - 2px);
     left: 0px;

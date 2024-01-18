@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export interface PlaceImagesProps {
   readonly name: string;
@@ -16,7 +16,7 @@ export function PlaceImages({ name, code, images }: PlaceImagesProps) {
       <ImageGroup>
         {images.slice(1).map((image, index) => (
           <Image
-            key={code}
+            key={image}
             src={`/img/${code}/${image}`}
             alt={`Image ${index + 1} of ${name}`}
           />

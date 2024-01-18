@@ -1,36 +1,40 @@
-import { Icon } from "@elements/icon/icon";
 import { useMemo } from "react";
+
 import styled, { css } from "styled-components";
 
+import { Icon } from "@elements/icon/icon";
+
 interface ButtonDatePickerProps {
-  label: string;
-  text: Date | null;
-  onClean: (value: string) => void;
+  readonly label: string;
+  readonly text: Date | null;
+  readonly onClean: (value: string) => void;
 }
 
-export function ButtonDatePicker ({ label, text, onClean }: ButtonDatePickerProps) {
-
+export function ButtonDatePicker({
+  label,
+  text,
+  onClean,
+}: ButtonDatePickerProps) {
   const formattedLabel = useMemo(() => {
     return text ? `${label}:` : label;
   }, [text, label]);
 
   const formattedText = useMemo(() => {
-    return text ? `${text?.toLocaleDateString()}` : '';
+    return text ? `${text?.toLocaleDateString()}` : "";
   }, [text]);
 
   return (
     <Container>
-      <Label hasText={!!text} >{formattedLabel}</Label>
-      <Text data-testid="text"  hasText={!!text}>
+      <Label $hasText={!!text}>{formattedLabel}</Label>
+      <Text data-testid="text" $hasText={!!text}>
         {formattedText}
       </Text>
-      <Button data-testid="clean" onClick={() => onClean('')}>
-        <Icon icon="xmark"/>
+      <Button data-testid="clean" onClick={() => onClean("")}>
+        <Icon icon="xmark" />
       </Button>
     </Container>
-  )
+  );
 }
-
 
 const Container = styled.div`
   cursor: pointer;
@@ -47,21 +51,25 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const Label = styled.label<{ hasText: boolean }>`
+const Label = styled.label<{ $hasText: boolean }>`
   position: absolute;
   left: var(--spacing-16);
   top: 22px;
   font-size: var(--font-size-16);
-  transition: top 0.2s ease-in-out, font-size 0.2s ease-in-out;
+  transition:
+    top 0.2s ease-in-out,
+    font-size 0.2s ease-in-out;
   pointer-events: none;
 
-  ${({ hasText }) => hasText &&  css`
-    top: var(--spacing-8);
-    font-size: var(--font-size-12);
-  `}
+  ${({ $hasText }) =>
+    $hasText &&
+    css`
+      top: var(--spacing-8);
+      font-size: var(--font-size-12);
+    `}
 `;
 
-const Text = styled.p<{ hasText: boolean }>`
+const Text = styled.p<{ $hasText: boolean }>`
   border: none;
   background: none;
   opacity: 0;
@@ -69,9 +77,11 @@ const Text = styled.p<{ hasText: boolean }>`
   pointer-events: none;
   width: 100%;
 
-  ${({ hasText }) => hasText &&  css`
-    opacity: 1;
-  `}
+  ${({ $hasText }) =>
+    $hasText &&
+    css`
+      opacity: 1;
+    `}
 `;
 
 const Button = styled.button`
@@ -87,6 +97,6 @@ const Button = styled.button`
   transition: background 0.2s ease-in-out;
 
   &:hover {
-    background: #E6E6E6;
+    background: #e6e6e6;
   }
 `;

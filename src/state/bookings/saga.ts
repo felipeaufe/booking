@@ -1,6 +1,9 @@
-import { all, call, put, takeEvery, takeLatest } from 'redux-saga/effects';
-import { bookingsService } from '@services/bookings-service';
-import { Booking, STORE_BOOKINGS } from './types';
+import { PayloadAction } from "@reduxjs/toolkit";
+import { bookingsService } from "@services/bookings-service";
+import { all, call, put, takeEvery, takeLatest } from "redux-saga/effects";
+
+import { store } from "@utils/store";
+
 import {
   deleteFailure,
   deleteUpdating,
@@ -12,15 +15,14 @@ import {
   updateFailure,
   updateSuccess,
   updateUpdating,
-} from '.';
-import { PayloadAction } from '@reduxjs/toolkit';
-import { store } from '@utils/store';
+} from ".";
+import { Booking, STORE_BOOKINGS } from "./types";
 
 export const bookingsActions = {
-  STORE_REQUEST: '@bookings/STORE_REQUEST',
-  FETCH_REQUEST: '@bookings/FETCH_REQUEST',
-  DELETE_REQUEST: '@bookings/DELETE_REQUEST',
-  UPDATE_REQUEST: '@bookings/UPDATE_REQUEST',
+  STORE_REQUEST: "@bookings/STORE_REQUEST",
+  FETCH_REQUEST: "@bookings/FETCH_REQUEST",
+  DELETE_REQUEST: "@bookings/DELETE_REQUEST",
+  UPDATE_REQUEST: "@bookings/UPDATE_REQUEST",
 };
 
 function* storeBookings(action: PayloadAction<Booking>) {
@@ -69,7 +71,7 @@ function* deleteBookings(action: PayloadAction<string>) {
     if (response) {
       let bookings = (store.get(STORE_BOOKINGS) as Booking[]) || [];
 
-      bookings = bookings.filter(booking => booking.id !== action.payload);
+      bookings = bookings.filter((booking) => booking.id !== action.payload);
 
       store.set(STORE_BOOKINGS, bookings);
 

@@ -1,13 +1,14 @@
-import styled from 'styled-components';
-import { Container as ContainerStyled } from '@elements/container';
-import { device } from '@assets/styled/media-query';
+import { device } from "@assets/styled/media-query";
+import styled from "styled-components";
+
+import { Container as ContainerStyled } from "@elements/container";
 
 export function Footer() {
   return (
     <FooterElement>
       <Container>
         <div>
-          <Logo href={`/`}>
+          <Logo href="/">
             <Image src="/logo-vertical.svg" alt="Logo" />
           </Logo>
           <About>

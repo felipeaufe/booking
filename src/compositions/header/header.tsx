@@ -1,15 +1,16 @@
-import { Container as ContainerStyled } from '@elements/container';
-import { device } from '@assets/styled/media-query';
-import styled from 'styled-components';
-import { MenuDesktop } from '@components/header/menu-desktop';
-import { MenuMobile } from '@components/header/menu-mobile';
+import { device } from "@assets/styled/media-query";
+import styled from "styled-components";
+
+import { MenuDesktop } from "@components/header/menu-desktop";
+import { MenuMobile } from "@components/header/menu-mobile";
+import { Container as ContainerStyled } from "@elements/container";
 
 export function Header() {
   return (
     <Shadow>
       <HeaderElement>
         <Container>
-          <Logo href={`/`}>
+          <Logo href="/">
             <img src="/logo-horizontal.svg" alt="Logo" />
           </Logo>
           <MenuDesktop />

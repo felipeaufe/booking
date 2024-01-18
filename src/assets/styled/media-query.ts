@@ -1,11 +1,11 @@
 const size = {
-  mobileS: '320px',
-  mobileM: '375px',
-  mobileL: '430px',
-  tablet: '768px',
-  laptop: '1024px',
-  laptopL: '1440px',
-  desktop: '2560px',
+  mobileS: "320px",
+  mobileM: "375px",
+  mobileL: "430px",
+  tablet: "768px",
+  laptop: "1024px",
+  laptopL: "1440px",
+  desktop: "2560px",
 };
 
 export const device = {
@@ -20,7 +20,7 @@ export const device = {
 };
 
 export const container = {
-  desktopMd: '(min-width: 1280px)',
-  desktopLg: '(min-width: 1536px)',
-  desktopXg: '(min-width: 1840px)',
+  desktopMd: "(min-width: 1280px)",
+  desktopLg: "(min-width: 1536px)",
+  desktopXg: "(min-width: 1840px)",
 };
