@@ -1,5 +1,5 @@
 import { Booking } from '@state/bookings/types';
-import { subDays } from './date';
+import { addDays, subDays } from './date';
 
 interface Interval {
   start: Date;
@@ -83,4 +83,26 @@ function resolveDateOverlaps(intervals: Interval[]) {
   }
 
   return resolvedIntervals;
+}
+
+
+/**
+ * Generates an array of highlighted dates based on the provided intervals.
+ *
+ * @param {Interval[]} intervals - An array of intervals.
+ * @return {Date[]} - An array of dates representing the highlight intervals.
+ */
+export function getHighlightInterval(intervals: Interval[]): Date[] {
+  const highlights: Date[] = [];
+
+  for(const interval of intervals) {
+    let current = interval.start;
+
+    while(Number(current.getDay()) <= Number(interval.end.getDay())) {
+      highlights.push(current);
+      current = addDays(current, 1);
+    }
+  }
+
+  return highlights;
 }
