@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 jest.mock('@state/store');
 
-jest.mock('@components/card-booking/card-booking', () => ({
+jest.mock('@compositions/card-booking/card-booking', () => ({
   CardBooking: ({ booking }: any) => <div>{booking.id}</div>,
 }));
 

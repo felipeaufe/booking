@@ -28,7 +28,7 @@ describe('bookings-intervals', () => {
       },
     ];
 
-    const bookingIntervals: Interval[] = getBookingsIntervals(code, bookings);
+    const bookingIntervals: Interval[] = getBookingsIntervals(bookings);
 
     expect(bookingIntervals).toHaveLength(1);
     expect(bookingIntervals[0].end).toEqual(new Date(bookings[1].checkOut));
@@ -68,7 +68,7 @@ describe('bookings-intervals', () => {
       checkOut: new Date(item.checkOut),
     }));
 
-    const bookingIntervals: Interval[] = getBookingsIntervals(code, bookings);
+    const bookingIntervals: Interval[] = getBookingsIntervals(bookings);
 
     expect(bookingIntervals).toHaveLength(1);
     expect(bookingIntervals[0].start).toEqual(

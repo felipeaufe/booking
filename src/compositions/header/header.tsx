@@ -1,8 +1,8 @@
 import { Container as ContainerStyled } from '@elements/container';
 import { device } from '@assets/styled/media-query';
 import styled from 'styled-components';
-import { MenuDesktop } from '../../components/header/menu-desktop';
-import { MenuMobile } from '../../components/header/menu-mobile';
+import { MenuDesktop } from '@components/header/menu-desktop';
+import { MenuMobile } from '@components/header/menu-mobile';
 
 export function Header() {
   return (

@@ -1,5 +1,5 @@
 import { Place } from '@state/places/types';
-import { http } from '../config/http';
+import { http } from '@config/http';
 
 export const placesService = {
   async get(): Promise<Place[]> {

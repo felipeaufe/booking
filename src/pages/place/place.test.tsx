@@ -10,13 +10,12 @@ import { places } from '@test-config/mock-data/places';
 import { useSelector } from '@state/store';
 
 jest.mock('@state/store');
-jest.mock('@components/booking-form/booking-form', () => ({
+jest.mock('@compositions/booking-form/booking-form', () => ({
   BookingForm: () => <div>BookingForm</div>,
 }));
 
 describe('place', () => {
   const place = places[0];
-
   it('should render', () => {
     (useSelector as jest.Mock).mockReturnValue(place);
 

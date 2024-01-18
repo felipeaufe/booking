@@ -1,5 +1,5 @@
 import { Banner } from '@components/banner/banner';
-import { ExplorePlaces } from '../../compositions/explore-places/explore-places';
+import { ExplorePlaces } from '@compositions/explore-places/explore-places';
 import { Newsletter } from '@components/newsletter/newsletter';
 
 function Home() {
