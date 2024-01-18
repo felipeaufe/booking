@@ -1,37 +1,44 @@
-import { Button as ButtonStyled } from "@assets/styled/button";
-import { device } from "@assets/styled/media-query"
-import { CardBooking } from "@components/card-booking/card-booking";
-import { useSelector } from "@state/store";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components"
 
-export function MyReservations () {
+import { device } from "@assets/styled/media-query";
+import styled from "styled-components";
 
+import { CardBooking } from "@compositions/card-booking/card-booking";
+import { Button as ButtonStyled } from "@elements/button";
+
+import { useSelector } from "@state/store";
+
+export function MyReservations() {
   const navigate = useNavigate();
-  const bookings = useSelector(state => state.bookings.data);
+  const bookings = useSelector((state) => state.bookings.data);
 
   const handleOnClick = () => {
-    navigate('/');
-  }
+    navigate("/");
+  };
 
   return (
     <div>
       <H1>My Reservations</H1>
       <List>
-        {bookings.map(booking => <CardBooking key={booking.id} booking={booking} />)}
+        {bookings.map((booking) => (
+          <CardBooking key={booking.id} booking={booking} />
+        ))}
 
-        {bookings.length === 0 && 
+        {bookings.length === 0 && (
           <Box>
             <Title>There are no reservations registered yet!</Title>
-            <Subtitle>Time to dust off your bags and start planning your next adventure.</Subtitle>
-            <Button variant="primary" onClick={handleOnClick}>Start The Search</Button>
+            <Subtitle>
+              Time to dust off your bags and start planning your next adventure.
+            </Subtitle>
+            <Button variant="primary" onClick={handleOnClick}>
+              Start The Search
+            </Button>
           </Box>
-        }
+        )}
       </List>
     </div>
-  )
+  );
 }
-
 
 const H1 = styled.h1`
   font-size: var(--font-size-40);
@@ -39,13 +46,13 @@ const H1 = styled.h1`
   margin-top: var(--spacing-100);
   margin-bottom: var(--spacing-100);
   text-align: center;
-  
+
   @media ${device.mobileL} {
     font-size: var(--font-size-32);
     margin-top: var(--spacing-60);
     margin-bottom: var(--spacing-60);
   }
-`
+`;
 
 const List = styled.div`
   display: flex;
@@ -57,7 +64,7 @@ const List = styled.div`
   border: 1px solid;
   border-color: var(--color-stroke);
   border-radius: var(--border-radius-12);
-  
+
   gap: var(--spacing-40);
 
   @media ${device.mobileL} {

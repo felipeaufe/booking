@@ -1,14 +1,14 @@
-import { Button as ButtonStyled } from "@assets/styled/button";
-import { Container as ContainerStyled } from "@assets/styled/container";
 import { device } from "@assets/styled/media-query";
 import styled from "styled-components";
 
-export function Banner () {
+import { Button as ButtonStyled } from "@elements/button";
+import { Container as ContainerStyled } from "@elements/container";
 
+export function Banner() {
   const handleOnClick = () => {
     const targetSection = document.getElementById("explore-places");
     targetSection?.scrollIntoView({ behavior: "smooth" });
-  }
+  };
 
   return (
     <Container id="banner">
@@ -16,25 +16,37 @@ export function Banner () {
         <Title>
           <span>
             Explore
-            <ImageAirplane src="/img/banner/airplane.svg" alt="Icon-shaped drawing of an airplane" />
+            <ImageAirplane
+              src="/img/banner/airplane.svg"
+              alt="Icon-shaped drawing of an airplane"
+            />
           </span>
           <span>
             Beautiful
-            <ImageStar src="/img/banner/star.svg" alt="Icon-shaped drawing of an airplane" />
+            <ImageStar
+              src="/img/banner/star.svg"
+              alt="Icon-shaped drawing of an airplane"
+            />
           </span>
           <span>
-
-            <ImageArrow src="/img/banner/arrow.svg" alt="Icon-shaped drawing of an airplane" />
+            <ImageArrow
+              src="/img/banner/arrow.svg"
+              alt="Icon-shaped drawing of an airplane"
+            />
             World
           </span>
         </Title>
-        <Button variant="primary" onClick={handleOnClick}>I Want To Travel</Button>
+        <Button variant="primary" onClick={handleOnClick}>
+          I Want To Travel
+        </Button>
       </Content>
-      <ImagePerson src="/img/banner/person.png" alt="Woman holding a cell phone, sitting on a small travel suitcase and a backpack on her back" />
+      <ImagePerson
+        src="/img/banner/person.png"
+        alt="Woman holding a cell phone, sitting on a small travel suitcase and a backpack on her back"
+      />
     </Container>
-  )
+  );
 }
-
 
 const Container = styled(ContainerStyled)`
   display: flex;
@@ -42,7 +54,7 @@ const Container = styled(ContainerStyled)`
   justify-content: space-around;
   margin-top: var(--spacing-142);
   margin-bottom: var(--spacing-202);
-  
+
   @media ${device.tablet} {
     justify-content: space-between;
     align-items: center;
@@ -63,7 +75,6 @@ const Content = styled.div`
   gap: var(--spacing-40);
   width: fit-content;
 
-
   @media ${device.mobileL} {
     gap: 0;
   }
@@ -76,7 +87,6 @@ const Title = styled.h1`
   font-weight: var(--font-weight-black);
   width: fit-content;
 
-  
   @media ${device.tablet} {
     font-size: var(--font-size-56);
   }
@@ -89,7 +99,7 @@ const Title = styled.h1`
     display: inline-flex;
     color: var(--color-dark);
     position: relative;
-    
+
     &:last-child {
       color: var(--color-primary);
     }
@@ -97,13 +107,12 @@ const Title = styled.h1`
 `;
 
 const Button = styled(ButtonStyled)`
-
   @media ${device.mobileL} {
     position: absolute;
     bottom: 0;
   }
 `;
-  
+
 const ImagePerson = styled.img`
   min-width: 300px;
   max-height: 550px;

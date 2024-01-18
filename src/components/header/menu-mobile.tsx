@@ -1,34 +1,38 @@
-import { device } from "@assets/styled/media-query"
-import { Icon } from "@elements/icon/icon"
-import styled from "styled-components"
-import { MenuPrincipal } from "./menu-principal";
 import { useCallback, useState } from "react";
-import { useViewport } from "@hook/use-media-query";
 
-export function MenuMobile () {
-  
+import { device } from "@assets/styled/media-query";
+import { useViewport } from "@hook/use-media-query";
+import styled from "styled-components";
+
+import { Icon } from "@elements/icon/icon";
+
+import { MenuPrincipal } from "./menu-principal";
+
+export function MenuMobile() {
   const [open, setOpen] = useState(false);
 
   const openMenu = useCallback(() => {
     setOpen(!open);
-  }, [open])
+  }, [open]);
 
   const { isMobile } = useViewport();
-  
-  return isMobile && (
-    <Container>
-      <Menu>
-        <User>
-          <Button data-testid="bars" onClick={() => openMenu()}>
+
+  return (
+    isMobile && (
+      <Container>
+        <Menu>
+          <User>
+            <Button data-testid="bars" onClick={() => openMenu()}>
               <Icon icon="bars" />
-          </Button>
-        </User>
-      </Menu>
-      <Aside data-testid="aside" className={open ? "open" : ""}>
-        <MenuPrincipal />
-      </Aside>
-    </Container>
-  )
+            </Button>
+          </User>
+        </Menu>
+        <Aside data-testid="aside" className={open ? "open" : ""}>
+          <MenuPrincipal />
+        </Aside>
+      </Container>
+    )
+  );
 }
 
 const Container = styled.div`
@@ -48,13 +52,17 @@ const Aside = styled.div`
   height: calc(100vh - 56px);
   z-index: 100;
   padding: 20px 0;
-  transition: right 0.4s, opacity 0.3s;
+  transition:
+    right 0.4s,
+    opacity 0.3s;
   opacity: 0;
 
   &.open {
     right: 0vw;
     opacity: 1;
-    transition: right 0.1s, opacity 0.3s;
+    transition:
+      right 0.1s,
+      opacity 0.3s;
   }
 
   & > ul {
@@ -74,16 +82,15 @@ const Aside = styled.div`
         padding-right: var(--spacing-40);
         font-size: var(--font-size-24);
       }
-    } 
+    }
   }
-
 `;
 
 const Menu = styled.ul`
   display: inline-flex;
   align-items: center;
   gap: 28px;
-`
+`;
 
 const User = styled.li`
   display: flex;
@@ -105,16 +112,16 @@ const User = styled.li`
     width: 40px;
     height: 40px;
   }
-`
+`;
 
 const Button = styled.button`
   background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
   width: 100%;
   height: 100%;
-`
+`;

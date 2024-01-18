@@ -3,6 +3,6 @@ jest.mock("@state/store", () => {
   return {
     ...original,
     useDispatch: jest.fn(),
-    useSelector: jest.fn()
+    useSelector: jest.fn(),
   };
-})
+});

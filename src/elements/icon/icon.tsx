@@ -1,8 +1,8 @@
 interface IconProps {
-  style?: 'solid' | 'regular' | 'light' | 'duotone' | 'thin';
-  icon: string;
+  readonly weight?: "solid" | "regular" | "light" | "duotone" | "thin";
+  readonly icon: string;
 }
 
-export function Icon ({ style = "solid", icon }: IconProps) {
-  return <i className={`fa-${style} fa-${icon}`}></i>
+export function Icon({ weight = "solid", icon }: IconProps) {
+  return <i className={`fa-${weight} fa-${icon}`} />;
 }

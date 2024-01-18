@@ -1,23 +1,27 @@
-import { Icon } from "@elements/icon/icon";
-import { Place } from "@state/places/types"
 import styled from "styled-components";
 
+import { Icon } from "@elements/icon/icon";
+
+import { Place } from "@state/places/types";
+
 interface PlaceInformationProps {
-  readonly place: Place
+  readonly place: Place;
 }
 
-export function PlaceInformation ({ place }: PlaceInformationProps) {
+export function PlaceInformation({ place }: PlaceInformationProps) {
   return (
     <Container>
       <Title>Place {place.name}</Title>
       <Location>
         <Icon icon="location-dot" />
-        <span>{place.state} - {place.country}</span>
+        <span>
+          {place.state} - {place.country}
+        </span>
       </Location>
 
       <Description>{place.description}</Description>
     </Container>
-  )
+  );
 }
 
 const Container = styled.div`
@@ -40,11 +44,11 @@ const Location = styled.p`
   & > i {
     font-size: var(--font-size-14);
     margin-right: var(--spacing-8);
-    color: #8B96F6;  
+    color: #8b96f6;
   }
 `;
 
 const Description = styled.p`
   font-size: var(--font-size-16);
   font-weight: var(--font-weight-regular);
-`
+`;

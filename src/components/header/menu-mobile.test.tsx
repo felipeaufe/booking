@@ -1,11 +1,10 @@
 import { render, screen, waitFor } from "@testing-library/react";
+
 import { MenuMobile } from "./menu-mobile";
 
-describe('menu-mobile', () => {
-
-
+describe("menu-mobile", () => {
   beforeEach(() => {
-    global.matchMedia = jest.fn().mockImplementation(query => {
+    global.matchMedia = jest.fn().mockImplementation((query) => {
       return {
         matches: true,
         media: query,
@@ -16,24 +15,22 @@ describe('menu-mobile', () => {
         removeListener: jest.fn(),
       };
     });
-  })
+  });
 
+  it("should render MenuMobile", () => {
+    render(<MenuMobile />);
 
-  it('should render MenuMobile', () => {
-    render(<MenuMobile />)
-    
     const aside = screen.getByTestId("aside");
-    const homeText = screen.getByText("Home")
-    const bookingsText = screen.getByText("My Bookings")
-    
+    const homeText = screen.getByText("Home");
+    const bookingsText = screen.getByText("My Bookings");
+
     expect(homeText).toBeInTheDocument();
     expect(bookingsText).toBeInTheDocument();
-    expect(aside).not.toHaveClass('open');
-  })
+    expect(aside).not.toHaveClass("open");
+  });
 
-  it('should not render MenuMobile when isDesktop', () => {
-
-    global.matchMedia = jest.fn().mockImplementation(query => {
+  it("should not render MenuMobile when isDesktop", () => {
+    global.matchMedia = jest.fn().mockImplementation((query) => {
       return {
         matches: false,
         media: query,
@@ -45,24 +42,23 @@ describe('menu-mobile', () => {
       };
     });
 
-    render(<MenuMobile />)
+    render(<MenuMobile />);
 
-    const homeText = screen.queryByText("Home")
-    const bookingsText = screen.queryByText("My Bookings")
-    
+    const homeText = screen.queryByText("Home");
+    const bookingsText = screen.queryByText("My Bookings");
+
     expect(homeText).not.toBeInTheDocument();
     expect(bookingsText).not.toBeInTheDocument();
-  })
+  });
 
+  it("should open hide menu", async () => {
+    render(<MenuMobile />);
 
-  it('should open hide menu', async () => {
-    render(<MenuMobile />)
-    
     const button = screen.getByTestId("bars");
     const aside = screen.getByTestId("aside");
-    
+
     await waitFor(() => button.click());
 
-    expect(aside).toHaveClass('open');
-  })
-})
+    expect(aside).toHaveClass("open");
+  });
+});

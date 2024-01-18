@@ -1,8 +1,7 @@
+import { container } from "@assets/styled/media-query";
 import styled, { css } from "styled-components";
-import { container } from "./media-query";
 
-
-export const Container = styled.div<{ fluid?: boolean; }>`
+export const Container = styled.div<{ fluid?: boolean }>`
   appearance: none;
   border: none;
   box-sizing: border-box;
@@ -15,7 +14,8 @@ export const Container = styled.div<{ fluid?: boolean; }>`
   margin-left: auto;
   margin-right: auto;
 
-  ${({ fluid  }: { fluid?: boolean }) => !fluid &&
+  ${({ fluid }: { fluid?: boolean }) =>
+    !fluid &&
     css`
       @media screen and ${container.desktopMd} {
         max-width: 1400px;
@@ -23,6 +23,5 @@ export const Container = styled.div<{ fluid?: boolean; }>`
       @media screen and ${container.desktopXg} {
         max-width: 1620px;
       }
-    `
-  }
+    `}
 `;

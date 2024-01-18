@@ -1,5 +1,6 @@
-import { Booking } from "@state/bookings/types";
 import { addDays } from "@utils/date";
+
+import { Booking } from "@state/bookings/types";
 
 export const bookings: Booking[] = [
   {
@@ -10,8 +11,8 @@ export const bookings: Booking[] = [
     guests: {
       adults: 2,
       children: 0,
-      pets: 0
-    }
+      pets: 0,
+    },
   },
   {
     id: "2",
@@ -21,7 +22,7 @@ export const bookings: Booking[] = [
     guests: {
       adults: 2,
       children: 0,
-      pets: 0
-    }
-  }
-]
+      pets: 0,
+    },
+  },
+];

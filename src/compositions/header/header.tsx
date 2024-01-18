@@ -1,15 +1,16 @@
-import { Container as ContainerStyled } from "@assets/styled/container";
 import { device } from "@assets/styled/media-query";
 import styled from "styled-components";
-import { MenuDesktop } from "../../components/header/menu-desktop";
-import { MenuMobile } from "../../components/header/menu-mobile";
 
-export function Header () {
+import { MenuDesktop } from "@components/header/menu-desktop";
+import { MenuMobile } from "@components/header/menu-mobile";
+import { Container as ContainerStyled } from "@elements/container";
+
+export function Header() {
   return (
     <Shadow>
       <HeaderElement>
         <Container>
-          <Logo href={`/`}>
+          <Logo href="/">
             <img src="/logo-horizontal.svg" alt="Logo" />
           </Logo>
           <MenuDesktop />
@@ -17,14 +18,14 @@ export function Header () {
         </Container>
       </HeaderElement>
     </Shadow>
-  )
+  );
 }
 
 const Shadow = styled.div`
-@media ${device.mobileL} {
+  @media ${device.mobileL} {
     height: 56px;
   }
-`
+`;
 
 const HeaderElement = styled.header`
   background-color: white;
@@ -40,7 +41,7 @@ const HeaderElement = styled.header`
     width: 100%;
     z-index: 99;
   }
-`
+`;
 
 const Container = styled(ContainerStyled)`
   display: flex;
@@ -48,8 +49,8 @@ const Container = styled(ContainerStyled)`
   @media ${device.mobileL} {
     height: 40px;
   }
-`
-  
+`;
+
 const Logo = styled.a`
   display: flex;
   align-items: center;
@@ -63,4 +64,4 @@ const Logo = styled.a`
       margin-top: 0px;
     }
   }
-`
+`;

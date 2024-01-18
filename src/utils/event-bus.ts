@@ -51,10 +51,7 @@ function unsubscribe(eventName: string, receiver: Func<Event>) {
  *
  * ```
  */
-export function subscribe<T>(
-  eventName: string,
-  receiver: Func<T>,
-): Subscribe {
+export function subscribe<T>(eventName: string, receiver: Func<T>): Subscribe {
   function register(event: Event) {
     receiver((event as CustomEvent<T>).detail);
   }

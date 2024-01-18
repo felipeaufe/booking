@@ -1,5 +1,5 @@
-import { reducer as placesReducer } from "./places"; 
-import { reducer as bookingsReducer } from "./bookings"; 
+import { reducer as bookingsReducer } from "./bookings";
+import { reducer as placesReducer } from "./places";
 
 export const rootReducer = {
   places: placesReducer,

@@ -6,21 +6,17 @@ export const places: Place[] = [
     name: "Lagoa Preta",
     description: "",
     rate: 4.9,
-    images: [
-      "01.jpg"
-    ],
+    images: ["01.jpg"],
     state: "Paraná",
-    country: "BR"
+    country: "BR",
   },
   {
     code: "lencoes-maranhenses",
     name: "Lençóis Maranhenses",
     description: "",
     rate: 4.9,
-    images: [
-      "01.jpg"
-    ],
+    images: ["01.jpg"],
     state: "Maranhão",
-    country: "BR"
-  }
-]
+    country: "BR",
+  },
+];
