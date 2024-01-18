@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Button } from '@elements/button';
 import { GuestSelect, Guests } from '@compositions/guest-select/guest-select';
-import { DatePicker as ReactDateComponent } from '@components/button-date-picker/date-picker';
+import { DatePicker as ReactDateComponent } from '@components/date-picker/date-picker';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { addDays } from '@utils/date';
 import { Booking, bookingsEvents } from '@state/bookings/types';
@@ -11,8 +11,12 @@ import { toast } from 'react-toastify';
 import {
   findNextFreeDate,
   getBookingsIntervals,
+  getHighlightInterval,
 } from '@utils/bookings-intervals';
 import eventBus from '@utils/event-bus';
+import { ButtonDatePicker } from '@components/button-date-picker/button-date-picker';
+import { useViewport } from '@hook/use-media-query';
+import { device } from '@assets/styled/media-query';
 
 export interface BookingForm extends Omit<Booking, 'placeCode'> {}
 
@@ -38,6 +42,7 @@ export function BookingForm({
     checkOut: booking?.checkOut ? new Date(booking?.checkOut) : null,
   };
 
+  const { isMobile } = useViewport();
   const dispatch = useDispatch();
 
   const { data: bookings } = useSelector(state => state.bookings);
@@ -56,15 +61,16 @@ export function BookingForm({
   }, [bookings]);
 
   const maxDate = useMemo(() => {
-    return (
-      findNextFreeDate(checkIn || addDays(new Date(), 2), excludedIntervals) ||
-      addDays(new Date(), 30)
-    );
+    return checkIn ? findNextFreeDate(checkIn, excludedIntervals) : null;
   }, [checkIn, excludedIntervals]);
 
   const isValid = useMemo(() => {
     return checkIn && checkOut && (adults > 0 || children > 0 || pets > 0);
   }, [checkIn, checkOut, adults, children, pets]);
+
+  const highlightWithRanges = useMemo(() => {
+    return getHighlightInterval(excludedIntervals);
+  }, [excludedIntervals]);
 
   const handleChangeGuests = (value: Guests) => {
     setAdults(value.adults);
@@ -140,6 +146,11 @@ export function BookingForm({
     }
   };
 
+  const handleOnCleanCheckIn = () => {
+    setCheckIn(null)
+    setCheckOut(null)
+  };
+
   useEffect(() => {
     const { unsubscribe: storeUnsubscribe } = eventBus.subscribe<Status>(
       bookingsEvents.STORE_STATUS,
@@ -169,15 +180,13 @@ export function BookingForm({
           startDate={checkIn}
           endDate={checkOut}
           onCalendarClose={handleOnCalendarClose}
+          highlightDates={highlightWithRanges}
           selectsRange
+          monthsShown={ isMobile ? 1 : 2}
         >
           <ContentDatePicker>
-            <button>
-                Check-in{checkIn ? `: ${checkIn?.toLocaleDateString()}` : ''}
-            </button>
-            <button>
-              Checkout{checkOut ? `: ${checkOut?.toLocaleDateString()}` : ''}
-            </button>
+            <ButtonDatePicker label="Check-in" text={checkIn} onClean={handleOnCleanCheckIn} />
+            <ButtonDatePicker label="Checkout" text={checkOut} onClean={() => setCheckOut(null)} />
           </ContentDatePicker>
         </DatePicker>
       </div>
@@ -223,6 +232,13 @@ const Container = styled.div`
     display: flex;
     width: 100%;
   }
+
+
+  .react-datepicker__day--highlighted {
+    background: transparent;
+    color: var(--color-primary);
+    opacity: .5;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -245,5 +261,9 @@ export const ContentDatePicker = styled.div`
 
   & > button {
     width: 100%
+  }
+
+  @media ${device.tablet} {
+    flex-direction: column;
   }
 `;

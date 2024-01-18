@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import '@test-config/mocks/use-dispatch';
 
-import { fireEvent, screen } from '@testing-library/react';
 import { BookingForm } from './booking-form';
 import { useDispatch, useSelector } from '@state/store';
 import { renderRedux } from '@test-config/test-utils/render';
@@ -9,14 +8,16 @@ import { Booking } from '@state/bookings/types';
 import { bookingsActions } from '@state/bookings/saga';
 import { bookings } from '@test-config/mock-data/bookings';
 import { initialState } from '@state/bookings';
+import { screen, fireEvent } from '@testing-library/dom';
 
-const today = new Date();
+const startDate = new Date();
+const endDate = new Date();
 
-jest.mock('@elements/button-date-picker/button-date-picker', () => ({
-  ButtonDatePicker: ({ onChange, children, ...rest }: any) => (
-    <div {...rest} onClick={() => onChange(today)}>
+jest.mock('@components/date-picker/date-picker', () => ({
+  DatePicker: ({ onChange, children, ...rest }: any) => (
+    <button data-testid="button-date-picker" {...rest} onClick={() => onChange([startDate, endDate])}>
       {children}
-    </div>
+    </button>
   ),
 }));
 
@@ -29,6 +30,7 @@ describe('booking-form', () => {
     ...initialState,
     data: bookings,
   });
+
   (useDispatch as jest.Mock).mockReturnValue(dispatchSpy);
 
   it('should return a booking data on submit', async () => {
@@ -36,15 +38,13 @@ describe('booking-form', () => {
       bookings: { data: [] as Booking[] },
     });
 
-    const buttonCheckIn = screen.getByText('Check-in');
-    const buttonCheckOut = screen.getByText('Checkout');
+    const buttonBooking = screen.getByTestId("button-date-picker");
     const inputAdults = screen.getByTestId('quantity-adults-increase');
     const inputChildren = screen.getByTestId('quantity-children-increase');
     const inputPets = screen.getByTestId('quantity-pets-increase');
     const buttonSubmit = screen.getByText('Reserve');
 
-    fireEvent.click(buttonCheckIn);
-    fireEvent.click(buttonCheckOut);
+    fireEvent.click(buttonBooking);
     fireEvent.click(inputAdults);
     fireEvent.click(inputChildren);
     fireEvent.click(inputPets);
@@ -55,8 +55,8 @@ describe('booking-form', () => {
       type: bookingsActions.STORE_REQUEST,
       payload: {
         placeCode,
-        checkIn: today.getTime(),
-        checkOut: today.getTime(),
+        checkIn: startDate.getTime(),
+        checkOut: endDate.getTime(),
         guests: {
           adults: 1,
           children: 1,
