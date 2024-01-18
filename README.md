@@ -6,7 +6,7 @@ It uses React version 18 and contains a complete configuration for a single-page
 
 The project tries to represent a simple travel reservation system. Users can choose from available options and make a reservation. The reservation will simulate a request to an API, but the data is only persisted in memory and localStorage.
 
-## Technology used
+## Technology
 
 Technologies used in the project
 
@@ -50,7 +50,7 @@ Other on-demand folders were also used:
 
 To build this project, we first conducted a study of the pages and flows that we wanted to create. We used Figma to create wireframes and prototypes of the pages. This helped us to visualize the project and to identify any potential problems.
 
-[![MIT License](/documentation/images/home.png)]
+![MIT License](/documentation/images/home.png)
 
 [Click here to access the complete material!](https://www.figma.com/file/Z0KPdhfLoRImLlFvZLnE5q/Booking?type=design&node-id=884%3A1330&mode=design&t=wHmbz070XIGF3zUE-1)
 
