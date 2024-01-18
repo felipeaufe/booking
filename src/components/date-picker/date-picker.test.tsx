@@ -2,27 +2,26 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { DatePicker } from './date-picker';
 
 describe('date-picker', () => {
-  // const onChange = jest.fn();
+  
   it('should return the chosen date', () => {
-    let date: Date | null = null;
+    const onCancelClose = jest.fn();
+    const onChange = jest.fn();
+
     render(
-      <DatePicker value={new Date()} onChange={value => (date = value)}>
-        Button
+      <DatePicker value={new Date()} onChange={onChange} onCalendarClose={onCancelClose}>
+        <button>Button</button>
       </DatePicker>,
     );
 
     const button = screen.getByText('Button');
 
     fireEvent.click(button);
+    expect(onChange).not.toHaveBeenCalled();
 
     const availableDaysElement = document.querySelectorAll(
       '.react-datepicker__day',
     );
-
-    expect(date).toBe(null);
-
     fireEvent.click(availableDaysElement[0]);
-
-    expect(date).not.toBe(null);
+    expect(onChange).toHaveBeenCalled();
   });
 });
